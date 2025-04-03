@@ -1,0 +1,244 @@
+/*Login-form, Register-form*/
+.login-all {
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+input {
+    font-weight: 400 !important;
+}
+
+.login,
+.register {
+    visibility: hidden;
+    z-index: 50;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(11, 43, 82);
+    font-family: 'Poppins';
+    font-weight: 500;
+    width: 480px;
+    height: auto;
+}
+
+
+.login .login-head,
+.register .register-head {
+    display: flex;
+    height: 67px;
+    padding: 16px;
+    font-size: 15px;
+    align-items: center;
+    font-weight: 500;
+}
+
+.toggle-password1,
+.toggle-password2,
+.toggle-password3 {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.iks,
+.iks1 {
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+}
+
+
+.login-form,
+.register-form {
+    height: 480px;
+    font-size: 15px;
+    border-top: solid 0.1px rgb(173, 181, 189);
+    border-bottom: solid 0.1px rgb(173, 181, 189);
+    width: 100%;
+}
+
+#login-submit {
+    width: 100%;
+}
+
+.login-form input,
+.register-form input {
+    color: rgb(11, 43, 82);
+    font-weight: 700;
+}
+
+
+.register-form {
+    padding: 24px 16px;
+}
+
+
+.login-form form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 11%;
+}
+
+.register-form form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10%;
+}
+
+.login-input {
+    width: 90% !important;
+    height: 320px;
+    color: rgb(11, 43, 82);
+    align-content: center;
+    margin: auto;
+}
+
+.login-change,
+.login-change,
+.share {
+    border: 1px solid rgb(173, 181, 189);
+    border-radius: 5px;
+    height: 58px;
+    padding: 16px 12px;
+    width: 100%;
+}
+
+.login-form .check {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.login .socials {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 24px;
+}
+
+.login .socials i {
+    font-size: 28px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.login .socials .social {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border: 1px dashed rgb(173, 181, 189);
+}
+
+.login .login-end,
+.register .register-end {
+    height: 60px;
+    align-content: center;
+}
+
+.login .login-end p,
+.register .register-end p {
+    font-size: 15px;
+}
+
+.name-surname {
+    display: grid;
+    width: 100%;
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-top: 5px;
+}
+
+.divider {
+    position: relative;
+    top: 2px;
+    margin: auto;
+}
+
+#register-name,
+#register-surname {
+    width: 100%;
+}
+
+
+.login .remember-me1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.login a {
+    text-decoration: none;
+    color: rgb(206, 46, 37);
+}
+
+.login .sregister,
+.register .signbutton {
+    color: rgb(206, 46, 37);
+}
+
+.login a:hover,
+.login .sregister:hover,
+.register .signbutton:hover,
+.iks:hover,
+.iks1:hover {
+    cursor: pointer;
+}
+
+.login button,
+.register input[type="submit"] {
+    background-color: rgb(206, 46, 37);
+    color: white;
+    font-weight: 300;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 15px 22.5px;
+    height: 62px;
+    border: 2px solid transparent;
+}
+
+.login button:hover,
+.register button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 34);
+}
+
+#remember-me {
+    position: relative;
+    top: 2px;
+    left: 1px;
+}
+
+.login span,
+.register span {
+    cursor: pointer;
+}
+
+.login-special,
+.register-special {
+    visibility: visible;
+}
+
+.body-special {
+    overflow: hidden;
+}

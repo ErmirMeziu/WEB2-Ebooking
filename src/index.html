@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GeoTrip - Tour & Travel Booking</title>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
+    <script src="script/home.js" defer></script>
+    <script src="script/login-register.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/login-register.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+
+    <style>
+        .home-text {
+            color: white;
+            text-align: center;
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="logo"><img src="images/navbar-photos/uebLogo.webp" alt="ueb-logo"></div>
+        <ul id="lista-navbar">
+            <li><a href="index.html" style="color: rgb(215, 44, 33);"><i class="fa-solid fa-house icon"></i>Home</a>
+            </li>
+            <li><a href="Hotel Page/hotels.html"><i class="fa-solid fa-hotel icon"></i>Hotels</a></li>
+            <li><a href="Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a></li>
+            <li><a href="AboutUs.html"><i class="fa-solid fa-circle-info icon"></i>About Us</a></li>
+        </ul>
+
+        <div class="login-register">
+            <button class="sign-in1" id="sign-in">Sign in/Sign up</button>
+            <i class="fa-solid fa-list list" style="margin-left: 40px;"></i>
+            <div></div>
+        </div>
+    </header>
+
+    <div style="position: relative;" style="width: 100%; height: 100%;">
+        <div class="page-container">
+            <div class="sidebar">
+                <a href="index.html" style="color: rgb(215, 44, 33);"><i class="fa-solid fa-hotel icon"></i>Home</a>
+                <a href="Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a>
+                <a href="AboutUs.html"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="all">
+        <section class="login-all">
+            <div class="login">
+                <div class="login-head">
+                    <h4>Sign in</h4>
+                    <p class="iks"><i class="fa-solid fa-square-xmark fa-xl" style="color: #adb5bd;"></i></p>
+                </div>
+                <div class="login-form">
+                    <div class="login-input">
+                        <form action="" method="post">
+                            <div><input class="login-change" type="email" id="login-email"
+                                    placeholder="Enter your email" required></div>
+                            <div style="position: relative;">
+                                <input class="login-change" type="password" id="login-password"
+                                    placeholder="Enter your password" required>
+                                <i class="fa fa-eye-slash toggle-password1" aria-hidden="true"></i>
+                            </div>
+
+                            <div style="position: relative; width: 100%; margin: auto; margin-bottom: -20px">
+                                <button id="login-submit">Log In</button>
+                                <p id="message1" class="font"
+                                    style="position: absolute; top: -23px; left: 50%; transform: translateX(-50%); font-size: 13px;">
+                                </p>
+                            </div>
+
+                            <div class="check">
+                                <div class="remember">
+                                    <input type="checkbox" name="remember-me" id="remember-me">
+                                    <label for="remember-me" style="cursor: pointer;" class="font">Remember me</label>
+                                </div>
+                                <div><a href="" class="font">Forgot password?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="divider">
+                        <p class="font change-responsive"
+                            style="font-weight: 300; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
+                            -------------
+                            <span class="font">Sign In With More Methods</span> -------------
+                        </p>
+                    </div>
+                    <div class="socials">
+                        <div class="social"><i class="fa-brands fa-facebook" style="color: #0033ff;"></i></div>
+                        <div class="social"><i class="fa-brands fa-whatsapp" style="color: #1bde32;"></i></div>
+                        <div class="social"><i class="fa-brands fa-linkedin icon" style="color: #0033ff;"></i></div>
+                        <div class="social"><i class="fa-brands fa-square-x-twitter icon" style="color: #002f80;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-end">
+                    <p>Don't have an account yet? <span class="sregister">Sign up</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="register">
+            <div class="register-head">
+                <h4>Sign up</h4>
+                <p class="iks1"><i class="fa-solid fa-square-xmark fa-xl" style="color: #adb5bd;"></i></p>
+            </div>
+            <div class="register-form">
+                <form action="" method="post">
+                    <div class="name-surname">
+                        <input class="login-change" type="text" id="register-name" placeholder="Enter your name"
+                            required>
+                        <input class="login-change" type="text" id="register-surname" placeholder="Enter your surname"
+                            required>
+                    </div>
+                    <div>
+                        <input class="login-change" type="email" id="register-email" placeholder="Enter your email"
+                            required>
+                    </div>
+                    <div style="position: relative;">
+                        <input class="login-change" type="password" id="register-password"
+                            placeholder="Enter your password" required>
+                        <i class="fa fa-eye-slash toggle-password2" aria-hidden="true" style="right: 17px;"></i>
+                    </div>
+                    <div style="position: relative;">
+                        <input class="login-change" type="password" id="confirm-password"
+                            placeholder="Confirm your password" required>
+                        <i class="fa fa-eye-slash toggle-password3" aria-hidden="true" style="right: 17px;"></i>
+                    </div>
+                    <div style="position: relative;">
+                        <input type="submit" style="width: 100%; margin: auto;" value="Sign up"
+                            id="register-submit"><br>
+                        <span id="message"
+                            style="position:absolute;font-size: 13px; top: -25px; width: 434px; transform: translateX(-50%);"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="register-end">
+                <p>You have an account? <span class="signbutton">Sign in</span></p>
+            </div>
+        </section>
+    </section>
+
+
+    <section>
+
+        <div class="home">
+            <div class="home-text">
+                <h1>Starts Your Trip With GeoTrip</h1>
+                <p>Take a little break from the work stress of everyday. Discover plan trip and explore
+                    beautiful
+                    <br>
+                    destinations.
+                </p>
+            </div>
+            <div class="search">
+                <form action="" method="post" class="search-bar">
+                    <fieldset class="where-date">
+                        <legend>Where</legend>
+                        <input type="text" name="going-to" id="going-to" placeholder="Going To">
+                    </fieldset>
+                    <fieldset class="where-date">
+                        <legend>Choose Date</legend>
+                        <input type="date" name="date" id="date" min="2025-01-01">
+                    </fieldset>
+                    <fieldset class="memb">
+                        <legend>Members</legend>
+                        <input type="number" name="members" id="members" min="0">
+                    </fieldset>
+                    <button><i class="fa-solid fa-magnifying-glass loop"></i>Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sales-container">
+            <div class="sales">
+                <div class="image">
+                    <img src="images/adds/destination-sales.webp" alt="destination photo" width="80" height="80" ;>
+                </div>
+                <div class="offpercent">
+                    <h4>30% Off On Summer <br> Vacation</h4>
+                    <p><small>Valid 31 March 2025</small></p>
+                </div>
+            </div>
+            <div class="sales">
+                <div class="image"><img src="images/adds/destination-sales.webp" alt="destination photo"></div>
+                <div class="offpercent">
+                    <h4>20% Off On Domestic <br> Holiday</h4>
+                    <p><small>Valid 31 March 2025</small></p>
+                </div>
+            </div>
+            <div class="sales">
+                <div class="image"><img src="images/adds/destination-sales.webp" alt="destination photo"></div>
+                <div class="offpercent">
+                    <h4>40% Off On Winter <br> Vacation</h4>
+                    <p><small>Valid 31 March 2025</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="destinations">
+        <div class="top">
+            <h4>Explore Top Domestic Routes</h4>
+            <a href="Flights Page/flights.html">
+                <button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+            </a>
+        </div>
+        <div class="routes">
+            <div class="routes-same responsive">
+                <div class="routes-image">
+                    <img src="images/routes/tr-1.webp" alt="New York">
+                </div>
+                <div class="bottom">
+                    <div class="directions">
+                        <h4>New York <i class="fa-solid fa-arrow-right-arrow-left"></i> Los Angeles</h4>
+                        <p>Round trip | 3 days</p>
+                    </div>
+                    <div class="cost">
+                        <p>From</p>
+                        <h5>US$492</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="routes-same responsive">
+                <div class="routes-image">
+                    <img src="images/routes/tr-2.webp" alt="New Orleans">
+                </div>
+                <div class="bottom">
+                    <div class="directions">
+                        <h4>New Orleans <i class="fa-solid fa-arrow-right-arrow-left"></i> Long Beach</h4>
+                        <p>Round trip | 3 days</p>
+                    </div>
+                    <div class="cost">
+                        <p>From</p>
+                        <h5>US$492</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="routes-same responsive">
+                <div class="routes-image">
+                    <img src="images/routes/tr-3.webp" alt="Jacksonville">
+                </div>
+                <div class="bottom">
+                    <div class="directions">
+                        <h4>Jacksonville <i class="fa-solid fa-arrow-right-arrow-left"></i> San Antonio</h4>
+                        <p>Round trip | 3 days</p>
+                    </div>
+                    <div class="cost">
+                        <p>From</p>
+                        <h5>US$492</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="routes-different routes-different-image responsive">
+                <img src="images/routes/tr-4.webp" alt="Discover deals">
+                <h4>
+                    Discover great deals on hotels around the world <br>
+                    <a href="Flights Page/flights.html"><button>Go Now</button></a>
+                </h4>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="top">
+            <h4>Browse Popular Destinations</h4>
+            <button>More<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+
+        </div>
+        <div class="container4">
+            <div class="card1 responsive">
+                <img src="images/destinations/Los Angelos.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+
+                        <h2>Los Angeles</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card1 responsive">
+                <img src="images/destinations/Chicago.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+                        <h2>Chicago</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card1 responsive">
+                <img src="images/destinations/Las Vegas.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+                        <h2>Las Vegas</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card1 responsive">
+
+                <img src="images/destinations/New Orleans.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+                        <h2>New Orleans</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="app">
+        <nav class="app-container">
+            <nav class="left">
+                <nav class="download">
+                    <img src="images/download-photo/app-link.png" style="width: 60px; height: 60px;" alt=""
+                        id="downloaded">
+                    <nav class="download-app">
+                        <h4><mark style="background-color: rgb(255,230,229);">Download App Now!</mark></h4>
+                        <p>Use code <span style="color: orangered;">WELCOME</span> and get <span
+                                style="color: rgb(69,171,118);">FLAT 20%</span>
+                            OFF on your first<br>domestic flight booking</p>
+                    </nav>
+                </nav>
+                <nav class="mobile">
+                    <form action="" method="post">
+                        <label for="mobile-number">+91 - </label>
+                        <input type="text" name="mobile-number" id="mobile-number" placeholder="Enter Mobile Number">
+                    </form>
+                    <button>Get App Link</button>
+                </nav>
+            </nav>
+            <nav class="right">
+                <nav class="playstore">
+                    <i class="fa-brands fa-google-play text-light fs-1"></i>
+                    <nav class="same">
+                        <p class="pragraph" style="color: #cacee4; font-weight: 500">GET IT ON </p>
+                        <p>Google Play</span></p>
+                    </nav>
+                </nav>
+                <nav class="appstore">
+                    <i class="fa-brands fa-apple text-light fs-1"></i>
+                    <nav class="same">
+                        <p class="pragraph" style="color: #cacee4; font-weight: 500;">DOWNLOAD ON THE </p>
+                        <p>App Store</p>
+                    </nav>
+                </nav>
+            </nav>
+        </nav>
+    </section>
+    <section class="rental">
+        <div class="top">
+            <h4>Featured Rental In Australia</h4>
+            <a href="Hotel Page/hotels.html"><button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button></a>
+        </div>
+        <div id="card-container" class="card-container" style="color: rgb(5,38,78); height: auto;">
+            <div class="card-different responsive">
+                <img src="images/property/property-different.png" alt="Jackson ville">
+                <h4>
+                    Discover great deals on hotels around the world <br>
+                    <a href="Hotel Page/hotels.html"><button>Go Now</button></a>
+                </h4>
+            </div>
+            <div class="card responsive">
+                <div class="image">
+                    <img src="images/property/property1.webp" alt="">
+                </div>
+                <div class="card-container1">
+                    <div class="head">
+                        <button>House</button>
+                        <h5>Brick Lane Reality</h5>
+                    </div>
+                    <div class="property-same" style="position: relative; top: 7px;">
+                        <div><a href=""> 3 Beds</a></div>
+                        <div><a href=""> 3 Baths</a></div>
+                        <div><a href=""> 2100 sqft</a></div>
+                    </div>
+                    <div class="end">
+                        <div class="left">
+                            <button>15% Off</button>
+                            <h4>From <b>$492</b></h4>
+                        </div>
+                        <div class="right">
+                            <p style="position: relative; top: 5px; right: 2px; ">
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                            </p>
+                            <h5>4.6 <span>(142 reviews)</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card responsive">
+                <div class="image">
+                    <img src="images/property/property2.webp" alt="">
+                </div>
+                <div class="card-container1">
+                    <div class="head">
+                        <button>Villa</button>
+                        <h5>Haven Group Real Estate</h5>
+                    </div>
+                    <div class="property-same" style="position: relative; top: 7px;">
+                        <div><a href=""> 3 Beds</a></div>
+                        <div><a href=""> 3 Baths</a></div>
+                        <div><a href=""> 2100 sqft</a></div>
+                    </div>
+                    <div class="end">
+                        <div class="left">
+                            <button>15% Off</button>
+                            <h4>From <b>$492</b></h4>
+                        </div>
+                        <div class="right">
+                            <p style="position: relative; top: 5px; right: 2px; ">
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                            </p>
+                            <h5>4.6 <span>(142 reviews)</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card responsive">
+                <div class="image">
+                    <img src="images/property/property3.webp" alt="">
+                </div>
+                <div class="card-container1">
+                    <div class="head">
+                        <button style="width: 110px;">Apartment</button>
+                        <h5>Exclesior Real Estate</h5>
+                    </div>
+                    <div class="property-same" style="position: relative; top: 7px;">
+                        <div><a href=""> 3 Beds</a></div>
+                        <div><a href=""> 3 Baths</a></div>
+                        <div><a href=""> 2100 sqft</a></div>
+                    </div>
+                    <div class="end">
+                        <div class="left unik">
+                            <button>15% Off</button>
+                            <h4>From <b>$492</b></h4>
+                        </div>
+                        <div class="right">
+                            <p style="position: relative; top: 5px; right: 2px; ">
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                            </p>
+                            <h5>4.6 <span>(142 reviews)</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="international-routes-container ">
+        <div class="top">
+            <h4>All International Routes</h4>
+            <button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+        </div>
+
+        <div class="buttons">
+            <button>Flights To Popular Countries</button>
+            <button class="button-different">Flights To Popular Destinations</button>
+            <button class="button-different">Popular Flights</button>
+            <button class="button-different">Popular Airlines</button>
+        </div>
+        <div class="international-routes">
+            <div class="all-flights">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Flight To France</th>
+                            <th>Flight To South Korea</th>
+                            <th>Flight To Thailand</th>
+                            <th>Flight To Liverpool</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Flight To Turkey</td>
+                            <td>Flight To Spain</td>
+                            <td>Flight To New York</td>
+                            <td>Flight To Indonesia</td>
+                        </tr>
+                        <tr>
+                            <td>Flight To Japan</td>
+                            <td>Flight To Mexico</td>
+                            <td>Flight To Russia</td>
+                            <td>Flight To China</td>
+                        </tr>
+                        <tr>
+                            <td>Flight To Italy</td>
+                            <td>Flight To Austria</td>
+                            <td>Flight To Vietnam</td>
+                            <td>Flight To Zarmeny</td>
+                        </tr>
+                        <tr>
+                            <td>Flight To Poland</td>
+                            <td>Flight To Canada</td>
+                            <td>Flight To Denver</td>
+                            <td>Flight To Portugal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="home1">
+            <div class="home2">
+                <h4>Subscribe & Get </h4>
+                <h4>Special discount with GeoTrip.com</h4>
+                <div class="home-search1">
+                    <div class="input1">
+                        <input type="email" placeholder="Enter your email">
+                    </div>
+                    <div class="button1">
+                        <input type="submit" value="Submit ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <abbr title="Go up button">
+        <a href="#" class="gotopbtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path fill="#ffffff"
+                    d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+            </svg>
+        </a>
+    </abbr>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="images/footer-photos/logo.webp" alt="">
+                <p>We make your dream more beautiful & enjoyable with lots of happiness.</p>
+                <div class="social-links">
+                    <a href=""><i class='bx bxl-facebook-circle'></i></a>
+                    <a href=""><i class='bx bxl-linkedin-square'></i></i></a>
+                    <a href=""><i class='bx bxl-github'></i></a>
+                    <a href=""><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+            <div class="footer-list">
+                <div class="footer-section">
+                    <h3>The Navigation</h3>
+                    <ul>
+                        <li><a href="#">Talent Marketplace</a></li>
+                        <li><a href="#">Payroll Services</a></li>
+                        <li><a href="#">Direct Contracts</a></li>
+                        <li><a href="#">Hire Worldwide</a></li>
+                        <li><a href="#">Hire in the USA</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Resources</h3>
+                    <ul>
+                        <li><a href="#">Free Business Tools</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Upwork Reviews</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>The Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Trust, Safety & Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Payment Methods</h3>
+                <div class="paymentmethods">
+                    <img src="images/footer-photos/payment.webp" alt="">
+                </div>
+                <h3>Our Partners</h3>
+                <div class="ourpartners">
+                    <div class="partner1">
+                        <a><img src="images/footer-photos/mytrip.webp" alt=""></a>
+                    </div>
+                    <div class="partner1">
+                        <a><img src="images/footer-photos/tripadv.webp" alt=""></a>
+                    </div>
+                    <div class="partner1">
+                        <a><img src="images/footer-photos/goibibo.webp" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <div class="copy"> &copy; <u>2024 GeoTrip. Design by GeoTrip </u></div>
+            <div class="Terms">
+                <a href="#">Terms of Service</a><a href="#">Privacy
+                    Policy</a><a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

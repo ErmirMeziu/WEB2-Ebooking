@@ -1,0 +1,1301 @@
+html,
+header {
+    max-width: 2400px;
+    margin: auto;
+    height: auto;
+}
+
+
+
+.home {
+    width: 100%;
+    min-height: 700px;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: fadeIn 2s ease-in-out;
+    z-index: 1;
+    transition: 2s;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+
+.home-text {
+    margin: auto auto 10px;
+}
+
+.search {
+    background-color: white;
+    border-radius: 10px;
+    padding: 17px;
+    width: 80%;
+    height: auto;
+    z-index: 1 !important;
+    margin: 0px auto auto;
+}
+
+
+.search form {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr 1fr;
+    gap: 5px;
+    width: 100%;
+    background-color: white;
+    margin: auto;
+    align-items: center;
+}
+
+.search-bar input {
+    border: none;
+    color: #4E5F70;
+    position: relative;
+    bottom: 5px;
+    font-weight: 500;
+    color: #05264e;
+    outline: none;
+    width: 100%;
+}
+
+input,
+button {
+    font-family: 'Poppins';
+}
+
+.search fieldset {
+    border: 1px solid rgb(192, 202, 208);
+    font-size: 11px;
+    font-family: 'Poppins';
+    color: #4E5F70;
+    font-weight: 500;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+
+.search button {
+    border: none;
+    height: 50px;
+    background-color: rgb(215, 44, 33);
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins';
+    margin-top: 8.3px;
+}
+
+.search button:hover {
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 33);
+
+}
+
+.loop {
+    margin-right: 7px;
+}
+
+
+/*offers- sales*/
+.sales-container {
+    width: 87%;
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(3, 1fr);
+    margin: auto;
+    margin-top: 40px;
+    gap: 2%;
+}
+
+.sales {
+    display: flex;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    width: 100%;
+    height: 100px;
+}
+
+.sales img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    border-radius: 4px;
+}
+
+.offpercent {
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+    gap: 3px;
+    padding: 10px;
+}
+
+.offpercent p {
+    font-size: 13px;
+    color: rgb(95, 115, 136);
+}
+
+.offpercent h4 {
+    font-size: 17px;
+}
+
+.lista-navbar {
+    align-self: center;
+}
+
+
+/*Download*/
+
+.app {
+    background-color: rgb(255, 230, 229);
+    width: 87%;
+    height: auto;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.app .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.app-container {
+    display: grid;
+    padding: 14px;
+    grid-template-columns: 3fr 2fr;
+    gap: 30px;
+    min-height: 275px;
+    height: auto;
+    color: rgb(5, 38, 78);
+    margin-top: 20px;
+}
+
+.app-container .left {
+    padding: .5%;
+}
+
+.app-container .left .download img {
+    margin: auto;
+}
+
+.app-container .left .download {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    height: auto;
+}
+
+.app-container .left h4 {
+    font-size: 30px;
+}
+
+.app-container .left .mobile {
+    display: flex;
+    width: 90%;
+    background-color: white;
+    align-items: center;
+    height: auto;
+    margin: auto;
+
+}
+
+.app-container .left .mobile form {
+    height: auto;
+    width: 70%;
+    border-radius: 5px;
+    align-content: center;
+    padding: 5%;
+}
+
+
+
+.app-container .left .mobile form input {
+    border: none;
+    outline: none;
+    width: 70%;
+    margin-left: 3%;
+    font-size: 18px;
+    color: rgb(5, 38, 78);
+
+}
+
+.app-container .left .mobile button {
+    font-family: 'Poppins';
+    border-radius: 5px;
+    width: 30%;
+    padding: 2.5%;
+    margin-right: 2%;
+    background-color: rgb(215, 44, 34);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-image: linear-gradient(to right, red, orange) 1;
+
+}
+
+.app-container .mobile button:hover {
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 34);
+}
+
+.app-container .right {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: end;
+}
+
+.app-container .right i {
+    font-size: 40px;
+    margin-right: 20px;
+    color: white;
+}
+
+.app-container .right .playstore {
+    display: flex;
+    font-family: 'Poppins';
+    border: none;
+    border-radius: 5px;
+    width: 210px;
+    height: 83px;
+    background-color: rgb(14, 30, 43);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    align-items: center;
+}
+
+.app-container .right .same {
+    justify-content: center;
+}
+
+.app-container .right p {
+    color: rgb(238, 248, 255);
+}
+
+.app-container .right span {
+    font-size: 18px;
+    color: white;
+}
+
+.app-container .right .appstore {
+    display: flex;
+    font-family: 'Poppins';
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    height: 83px;
+    background-color: rgb(215, 44, 34);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    align-items: center;
+}
+
+.app-container .right .appstore:hover,
+.app-container .right .playstore:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+/*Homepage - featured-routes*/
+.routes {
+    display: grid;
+    width: 87%;
+    height: auto;
+    margin: auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5%;
+    cursor: pointer;
+}
+
+.routes-same {
+    box-shadow: 0px 0px 5px 0px rgb(199, 202, 204);
+    border-radius: 5px;
+    width: 100%;
+    min-height: 370px;
+    height: auto;
+    position: relative;
+
+}
+
+.routes-image {
+    overflow: hidden;
+    width: 100%;
+    height: 63%;
+    border-radius: 5px;
+}
+
+.routes img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px 0px 0px;
+    transition: .3s ease-in-out;
+}
+
+.routes .bottom {
+    height: 37%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.routes img:hover {
+    transform: scale(1.2);
+}
+
+
+.destinations .top button,
+.rental .top button {
+    font-family: 'Poppins';
+    border: none;
+    border-radius: 5px;
+    width: 110px;
+    height: 45px;
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 34);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.destinations .top button:hover,
+.rental .top button:hover {
+    background-color: rgb(215, 44, 34);
+    color: white;
+    cursor: pointer;
+}
+
+.directions {
+    margin-top: 7px;
+}
+
+.directions h4 {
+    font-weight: 600;
+    color: rgb(5, 38, 78);
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+.directions p {
+    font-size: 14px;
+    padding-left: 15px;
+    color: rgb(95, 115, 136);
+}
+
+.cost {
+    padding: 15px;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+.cost h5,
+.cost p {
+    align-content: end;
+}
+
+.cost h5 {
+    font-size: 23px;
+    color: rgb(5, 38, 78);
+}
+
+.cost p {
+    position: relative;
+    font-size: 14px;
+    margin-right: 10px;
+    bottom: 3px;
+    color: rgb(95, 115, 136);
+}
+
+.routes-different {
+    height: 370px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 rgb(199, 202, 204);
+    cursor: auto;
+    overflow: hidden;
+    cursor: pointer;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+
+.routes-different:hover img,
+.card-different:hover img {
+    filter: brightness(.7);
+}
+
+.routes-different img,
+.card-different img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 rgb(199, 202, 204);
+    z-index: -1;
+}
+
+.routes-different h4,
+.card-different h4 {
+    width: 90%;
+    z-index: 2;
+    font-weight: 700;
+    color: white;
+    font-size: 17px;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+.routes-different button,
+.card-different button {
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(196, 41, 29);
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.routes-different button:hover,
+.card-different button:hover {
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 34);
+    cursor: pointer;
+}
+
+
+
+/*featured-rentals*/
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 87%;
+    gap: 1.5%;
+    margin: auto;
+    grid-auto-rows: minmax(300px, auto);
+}
+
+.card {
+    display: grid;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.6s;
+    width: 100%;
+    height: auto;
+    grid-template-rows: 1fr 1fr;
+    cursor: pointer;
+    grid-template-rows: 0.8fr 1.2fr;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card .image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card img {
+    height: 100%;
+    width: 100%;
+}
+
+
+.card-container1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0px 25px;
+    height: auto !important;
+}
+
+.card-different {
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+    min-height: 300px;
+
+}
+
+.card-different img {
+    transition: 0.3s ease;
+}
+
+.card-different img:hover {
+    transform: scale(1.2);
+}
+
+
+.property-same {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.property-same a {
+    font-family: 'Poppins';
+    text-decoration: none;
+    border: 1px dashed rgb(135, 147, 160);
+    color: #45596C;
+    border-radius: 2px;
+    padding: 3px;
+    font-size: 12px;
+}
+
+.head button {
+    font-family: 'Poppins';
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    color: #27A974;
+    background-color: #D4EEE3;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    right: 2px;
+}
+
+.end button {
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 34);
+    font-family: 'Poppins';
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    right: 2px;
+}
+
+.card .end {
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+}
+
+/*all-international-routes*/
+.international-routes {
+    width: 87%;
+    margin: auto;
+}
+
+.international-routes-container .buttons button {
+    border: none;
+    border-radius: 10px;
+    width: auto;
+    height: 50px;
+    background-color: rgb(196, 41, 29);
+    color: white;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 15px;
+    font-family: 'Poppins';
+    cursor: pointer;
+
+}
+
+.international-routes-container .buttons {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    width: 87%;
+    margin: auto;
+    color: rgb(5, 38, 78);
+}
+
+.international-routes-container .buttons .button-different {
+    background-color: rgb(19, 27, 36);
+}
+
+.international-routes-container .all-flights {
+    width: 100%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 70px;
+}
+
+.international-routes-container .all-flights table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.international-routes-container .all-flights th,
+.international-routes-container .all-flights td {
+    font-family: 'Poppins', sans-serif;
+    color: #455873;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.international-routes-container .all-flights td:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.top {
+    width: 87%;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto 20px;
+    color: rgb(5, 38, 78);
+    align-items: center;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+/*go to top button*/
+.gotopbtn {
+    display: flex;
+    visibility: hidden;
+    position: fixed;
+    opacity: 0;
+    width: 3rem;
+    height: 3rem;
+    background: rgb(196, 41, 29);
+    bottom: 40px;
+    right: 24px;
+    border-radius: 10%;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    transition: opacity .5s ease, visibility .5s ease, brightness .5s ease;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.gotopbtn svg {
+    height: 18px;
+}
+
+.gotopbtn:hover {
+    filter: brightness(0.9);
+}
+
+.gotopbtn:active {
+    filter: brightness(0.8);
+}
+
+.gotopbtn-special {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.home1 {
+    display: flex;
+    height: 550px;
+    background-image: url(../images/home-background/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.home2 {
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+}
+
+
+
+
+.home1 h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.home1 .home-search1 {
+    width: 60%;
+    min-height: 65px;
+    height: auto;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: white;
+    border: none;
+    padding: 0px 10px 0px 20px;
+    border-radius: 5px;
+
+}
+
+.input1 {
+    width: 100%;
+    height: 85%;
+}
+
+.button1 {
+    width: 100%;
+    height: 85%;
+
+}
+
+.home1 .button1 input {
+    width: 100%;
+    height: 100%;
+    margin-top: 4px;
+}
+
+.home1 .input1 input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    margin-top: 4px;
+    outline: none;
+    font-family: 'Poppins';
+    color: #5D6F7D;
+    font-weight: 500;
+    border: none;
+
+
+}
+
+.home1 .button1 input {
+    background-color: rgb(215, 44, 33);
+    font-family: 'Poppins';
+    font-weight: 500;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 4.5px;
+    border-image: radial-gradient(ellipse at center, red, orange) 1;
+
+}
+
+.home1 .button1 input:hover {
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 33);
+}
+
+/*popular destinations*/
+.container4 {
+    width: 87%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1%;
+    cursor: pointer;
+    position: relative;
+    height: auto;
+}
+
+
+
+.card1 {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    height: auto;
+}
+
+.card1 img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    transition: .5s ease-in-out;
+    float: left;
+}
+
+.card1:hover img {
+    filter: brightness(0.6);
+}
+
+.container2 {
+    color: white;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.card1:hover .container2 {
+    opacity: 1;
+}
+
+
+
+.text1 h2 {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.button3 button {
+
+    background-color: #ffffff;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;
+
+
+}
+
+.button3 button:hover {
+    background-color: #CD2c22;
+    color: white;
+}
+
+.container2 h2 {
+    margin: 18px;
+}
+
+
+
+
+
+.top button {
+    font-family: 'Poppins';
+    border: none;
+    border-radius: 5px;
+    width: 110px;
+    height: 45px;
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 34);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.top button:hover {
+    background-color: rgb(215, 44, 33);
+    color: rgb(255, 230, 229);
+}
+
+
+
+body {
+    overflow-x: hidden;
+}
+
+
+
+@media (width < 1300px) {
+
+
+    .top {
+        width: 75%;
+    }
+
+    .home2 {
+        width: 75%;
+    }
+
+    .buttons {
+        width: 75% !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+
+    .card-container,
+    .container4,
+    .routes {
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 75% !important;
+        height: auto !important;
+    }
+
+    .sales-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 75% !important;
+    }
+
+    .international-routes {
+        width: 75% !important;
+    }
+
+    header {
+        max-width: 1300px !important;
+    }
+
+    .app {
+        width: 76%;
+    }
+
+    .app-container .left img {
+        margin-right: 30px !important;
+    }
+
+    .footer-container {
+        display: grid !important;
+        grid-template-columns: 1fr;
+    }
+
+    .footer-section,
+    .footer-list {
+        margin: 20px auto 20px;
+    }
+
+}
+
+@media (width < 1000px) {
+
+    .top {
+        width: 73%;
+    }
+
+    .app {
+        width: 73%;
+    }
+
+    .home2 {
+        width: 73%;
+    }
+
+
+    .buttons {
+        width: 73% !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+
+    .card-container,
+    .container4,
+    .sales-container,
+    .routes,
+    .international-routes {
+        width: 73% !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .international-routes .buttons {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+
+    .search form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+
+    .app-container .left .mobile {
+        margin-top: 25px !important;
+    }
+
+
+    .app-container .right {
+        flex-direction: row;
+        margin: auto;
+        margin-top: -15px;
+    }
+
+    .home-text h1 {
+        font-size: 15px;
+    }
+
+    .home-text p {
+        font-size: 12px;
+    }
+
+    #lista-navbar {
+        display: none !important;
+    }
+
+    .list {
+        display: inline !important;
+    }
+
+    header {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1000px !important;
+    }
+}
+
+
+
+
+
+@media (width < 840px) {
+
+    .responsive {
+        min-height: 550px;
+    }
+
+    .card1 {
+        min-height: 490px;
+    }
+
+    .top {
+        width: 65%;
+        font-size: 12px;
+    }
+
+    .app {
+        width: 65%;
+    }
+
+    .home2 {
+        width: 65%;
+
+    }
+
+    .home2 h4 {
+        font-size: 13px;
+    }
+
+    .buttons {
+        width: 65% !important;
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+
+    .card-container,
+    .container4,
+    .sales-container,
+    .international-routes,
+    .routes {
+        display: flex;
+        width: 65% !important;
+        flex-direction: column !important;
+        gap: 20px;
+    }
+
+    .international-routes .buttons {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    .search form {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 840px !important;
+    }
+
+    .routes-different-image {
+        margin-bottom: 25px;
+    }
+
+
+    .app-container .left,
+    .app-container button,
+    .app-container input {
+
+        font-size: 9px !important;
+    }
+
+    .app-container .left img {
+        margin-right: 20px !important;
+    }
+
+
+
+    .app-container .left h4 {
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .app-container .right {
+        display: block;
+        margin: auto;
+        margin-top: -25px;
+    }
+
+    .app-container .right .playstore,
+    .app-container .right .appstore {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+@media (width < 600px) {
+
+    .sidebar {
+        width: 50%;
+    }
+
+    .responsive,
+    .card1 img {
+        min-height: 450px !important;
+    }
+
+    .top {
+        width: 80%;
+        font-size: 12px;
+    }
+
+    .app {
+        width: 80%;
+    }
+
+    .destinations {
+        margin-bottom: -30px;
+    }
+
+    .home2 {
+        width: 100%;
+    }
+
+    .home2 h4 {
+        font-size: 13px;
+    }
+
+    .buttons {
+        width: 80% !important;
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    .card-container,
+    .container4,
+    .sales-container,
+    .international-routes,
+    .routes {
+        width: 80% !important;
+    }
+
+    .international-routes .buttons {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    .search form {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    header {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .app-container .left,
+    .app-container button,
+    .app-container input {
+
+        font-size: 9px !important;
+    }
+
+    .app-container .left img {
+        margin-right: 20px !important;
+    }
+
+
+
+    .app-container .left h4 {
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .app-container .right {
+        display: block;
+        margin: auto;
+        margin-top: -25px;
+    }
+
+    .app-container .right .playstore,
+    .app-container .right .appstore {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+
+    header {
+        max-width: 100% !important;
+    }
+
+    footer {
+        max-width: 100% !important;
+    }
+
+    .footer-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    footer .paymentmethods {
+        width: 90% !important;
+    }
+
+    .footer-section .ourpartners {
+        width: 90%;
+    }
+
+    .footer-section .ourpartners img {
+        width: 90% !important;
+    }
+
+    .login,
+    .register {
+        width: 85% !important;
+    }
+
+    .font {
+        font-size: 10px !important;
+    }
+
+    .register-head,
+    .login-head,
+    .register-end p,
+    .login-end p {
+        font-size: 13px !important;
+    }
+
+    .login-form,
+    .register-form {
+        height: 460px !important;
+    }
+
+    .change-responsive {
+        margin-bottom: 0px !important;
+        margin-top: -5px !important;
+    }
+}

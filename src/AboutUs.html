@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTrip - Tour & Travel Booking</title>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/login-register.css">
+    <link rel="stylesheet" href="styles/AboutUs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+
+    <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
+    <script src="script/login-register.js" defer></script>
+    <script src="script/aboutus.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><img src="images/navbar-photos/uebLogo.webp" alt="ueb-logo"></div>
+        <ul id="lista-navbar">
+            <li><a href="index.html"><i class="fa-solid fa-house icon"></i>Home</a>
+            </li>
+            <li><a href="Hotel Page/hotels.html"><i class="fa-solid fa-hotel icon"></i>Hotels</a></li>
+            <li><a href="Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a></li>
+            <li><a href="AboutUs.html" style="color: rgb(215, 44, 33);"><i
+                        class="fa-solid fa-circle-info icon"></i>About Us</a></li>
+        </ul>
+
+        <div class="login-register">
+            <button class="sign-in1" id="sign-in">Sign in/Sign up</button>
+            <i class="fa-solid fa-list list" style="margin-left: 40px;"></i>
+            <div></div>
+        </div>
+    </header>
+
+    <div style="position: relative;" style="width: 100%; height: 100%;">
+        <div class="page-container">
+            <div class="sidebar">
+                <a href="index.html"><i class="fa-solid fa-hotel icon"></i>Home</a>
+                <a href="Hotel Page/hotels.html"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
+                <a href="Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a>
+                <a href="AboutUs.html" style="color: rgb(215, 44, 33);"><i
+                        class="fa-solid fa-circle-info icon"></i>About Us</a>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="all">
+        <section class="login-all">
+            <div class="login">
+                <div class="login-head">
+                    <h4>Sign in</h4>
+                    <p class="iks"><i class="fa-solid fa-square-xmark fa-xl" style="color: #adb5bd;"></i></p>
+                </div>
+                <div class="login-form">
+                    <div class="login-input">
+                        <form action="" method="post">
+                            <div><input class="login-change" type="email" id="login-email"
+                                    placeholder="Enter your email" required></div>
+                            <div style="position: relative;">
+                                <input class="login-change" type="password" id="login-password"
+                                    placeholder="Enter your password" required>
+                                <i class="fa fa-eye-slash toggle-password1" aria-hidden="true"></i>
+                            </div>
+
+                            <div style="position: relative; width: 100%; margin: auto; margin-bottom: -20px">
+                                <button id="login-submit">Log In</button>
+                                <p id="message1" class="font"
+                                    style="position: absolute; top: -23px; left: 50%; transform: translateX(-50%); font-size: 13px;">
+                                </p>
+                            </div>
+
+                            <div class="check">
+                                <div class="remember">
+                                    <input type="checkbox" name="remember-me" id="remember-me">
+                                    <label for="remember-me" style="cursor: pointer;" class="font">Remember me</label>
+                                </div>
+                                <div><a href="" class="font">Forgot password?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="divider">
+                        <p class="font change-responsive"
+                            style="font-weight: 300; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
+                            -------------
+                            <span class="font">Sign In With More Methods</span> -------------
+                        </p>
+                    </div>
+                    <div class="socials">
+                        <div class="social"><i class="fa-brands fa-facebook" style="color: #0033ff;"></i></div>
+                        <div class="social"><i class="fa-brands fa-whatsapp" style="color: #1bde32;"></i></div>
+                        <div class="social"><i class="fa-brands fa-linkedin icon" style="color: #0033ff;"></i></div>
+                        <div class="social"><i class="fa-brands fa-square-x-twitter icon" style="color: #002f80;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-end">
+                    <p>Don't have an account yet? <span class="sregister">Sign up</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="register">
+            <div class="register-head">
+                <h4>Sign up</h4>
+                <p class="iks1"><i class="fa-solid fa-square-xmark fa-xl" style="color: #adb5bd;"></i></p>
+            </div>
+            <div class="register-form">
+                <form action="" method="post">
+                    <div class="name-surname">
+                        <input class="login-change" type="text" id="register-name" placeholder="Enter your name"
+                            required>
+                        <input class="login-change" type="text" id="register-surname" placeholder="Enter your surname"
+                            required>
+                    </div>
+                    <div>
+                        <input class="login-change" type="email" id="register-email" placeholder="Enter your email"
+                            required>
+                    </div>
+                    <div style="position: relative;">
+                        <input class="login-change" type="password" id="register-password"
+                            placeholder="Enter your password" required>
+                        <i class="fa fa-eye-slash toggle-password2" aria-hidden="true" style="right: 17px;"></i>
+                    </div>
+                    <div style="position: relative;">
+                        <input class="login-change" type="password" id="confirm-password"
+                            placeholder="Confirm your password" required>
+                        <i class="fa fa-eye-slash toggle-password3" aria-hidden="true" style="right: 17px;"></i>
+                    </div>
+                    <div style="position: relative;">
+                        <input type="submit" style="width: 100%; margin: auto;" value="Sign up"
+                            id="register-submit"><br>
+                        <span id="message"
+                            style="position:absolute;font-size: 13px; top: -25px; width: 434px; transform: translateX(-50%);"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="register-end">
+                <p>You have an account? <span class="signbutton">Sign in</span></p>
+            </div>
+        </section>
+    </section>
+
+    <abbr title="Go up button">
+        <a href="#About-GeoTrip" class="gotopbtn" id="gotopbtn">
+            <i class="fa-solid fa-arrow-up fa-sm"></i>
+        </a>
+    </abbr>
+
+
+    <section class="about-us">
+        <div class="videocontainer">
+            <video autoplay muted loop id="myVideo">
+                <source src="//s202.q4cdn.com/757635260/files/videos/home-bg-final.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <section class="about-section" id="About-GeoTrip">
+
+        <!-- Sidebar -->
+
+
+        <div class="about-container">
+            <i class="fa-solid fa-list list1"></i>
+
+            <div class="page-container1">
+                <div class="sidebar1">
+                    <a href="#About-GeoTrip">About GeoTrip</a>
+                    <a href="#Travel">Travel</a>
+                    <a href="#News">News</a>
+                    <a href="#Message">Message</a>
+                </div>
+            </div>
+
+            <h1>About GeoTrip </h1>
+            <h2>(we love to help you travel) <i class="fa-solid fa-volume-high audio-icon" id="audio-icon"></i></h2>
+            <audio id="audio" src="../src/Video/Audio1.mp3" preload="auto"></audio>
+            <h3>OUR MISSION</h3>
+            <p>
+                GeoTrip is a SaaS-based web solution focused on simplifying travel discovery, planning, and booking
+                processes for personal and business travelers, particularly those seeking local and unique experiences.
+                GeoTrip organizes travel in one place in the cloud, making it instantly searchable and available
+                wherever the user goes.
+            </p>
+            <p>At its core, GeoTrip offers advanced mapping and route planning tools that empower users to create both
+                simple and complex multi-destination itineraries. The platform also incorporates top-tier itinerary
+                creation and calendar scheduling features, ensuring every trip is as smooth and efficient as possible.
+            </p>
+            <p>
+                GeoTrip's Travel site revolutionizes personalized travel planning by providing users with fast and
+                unparalleled experiences. It allows users to easily tailor their search criteria at a city, state, or
+                country level, delivering personalized travel options in just seconds while helping users discover
+                hidden gems.
+            </p>
+            <p>
+                In essence, GeoTrip is revolutionizing travel planning through its robust mapping tools, intuitive
+                itinerary builders, scheduling features, and AI-powered travel assistant. By putting complete control in
+                the hands of its users, GeoTrip makes exploring new destinations faster, easier, and more enjoyable.
+                Since its launch, over 100,000 trips have been created by users who trust GeoTrip to deliver memorable
+                travel experiences.
+            </p>
+            <p>Based in Denver, Colorado, GeoTrip is a self-funded startup driven by innovation and passion for travel.
+                The company is now preparing for its first round of seed funding to further refine its platform and
+                leverage its cutting-edge Travel Chat AI, setting a new standard for personalized travel planning. </p>
+        </div>
+    </section>
+
+    <section class="about-us-body" id="Travel">
+
+        <div class="container1">
+
+            <h2>Your Travel All-In-One-Place with GeoTrip</h2>
+
+            <div class="features">
+                <div class="feature">
+                    <h4>Dream about your trip</h4>
+                    <img src="images/aboutUs/icon1.png" alt="Bucket List Icon">
+                    <p>Check out our curated bucket lists and itineraries for inspiration.</p>
+                </div>
+                <div class="feature">
+                    <h4>Explore your places</h4>
+                    <img src="images/aboutUs/icon2.png" alt="Travel Content Icon">
+                    <p>Visit the latest in daily travel content from all over the web.</p>
+                </div>
+                <div class="feature">
+                    <h4>Share with others</h4>
+                    <img src="images//aboutUs/icon3.png" alt="Save Places Icon">
+                    <p>Find and save places to share with friends and family.</p>
+                </div>
+            </div>
+
+
+            <div class="features">
+                <div class="feature">
+                    <h4>Plan Your Route</h4>
+                    <img src="images//aboutUs/icon4.png" alt="Plan Your Route Icon">
+                    <p>Create & save your plans, travel methods, and accommodations.</p>
+                </div>
+                <div class="feature">
+                    <h4>Book Your Travel</h4>
+                    <img src="images//aboutUs/icon5.png" alt="Book Travel Icon">
+                    <p>Add your booked travel plans and dates to your calendar.</p>
+                </div>
+                <div class="feature">
+                    <h4>Enjoy Your Destination</h4>
+                    <img src="images//aboutUs/icon6.png" alt="Enjoy Destination Icon">
+                    <p>Travel, explore, and enjoy. Our mobile app is there for your needs.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="index.html" class="button">Create New Trip</a>
+            <a href="Hotel Page/hotels.html" class="button">Explore Destinations</a>
+
+        </div>
+
+    </section>
+
+    <section class="news-section" id="News">
+        <h1>News</h1>
+        <div class="news-grid">
+            <div class="news-item">
+                <img src="images//aboutUs/AboutUsNews.jpeg" alt="News 1">
+                <a
+                    href="https://www.trip.com/newsroom/trip-com-to-offer-seamless-booking-journey-for-disney-adventure-cruises/"></a>
+                <h2>
+                    <a href="https://www.trip.com/newsroom/trip-com-to-offer-seamless-booking-journey-for-disney-adventure-cruises/"
+                        target="_blank">GeoTrip to Offer Seamless Booking Journey for Disney Adventure Cruises</a>
+                </h2>
+
+                <p>Dec 9, 2024 | GeoTrip.com Group</p>
+                <p>When bookings for the much-anticipated Disney Adventure cruise open...</p>
+            </div>
+            <div class="news-item">
+                <img src="images//aboutUs/AboutUsNews (2).jpeg" alt="News 2">
+                <h2>
+                    <a href="https://www.trip.com/newsroom/trip-com-wins-double-recognition-for-exceptional-customer-service/"
+                        target="_blank">GeoTrip Wins Double Recognition for Exceptional Customer Service</a>
+                </h2>
+                <p>Nov 21, 2024 | GeoTrip</p>
+                <p>GeoTrip has been recognized for outstanding customer service...</p>
+            </div>
+            <div class="news-item">
+                <img src="images//aboutUs/AboutUsNews (3).jpeg" alt="News 3">
+                <h2>
+                    <a href="https://www.trip.com/newsroom/trip-com-joins-gstcs-market-access-program/"
+                        target="_blank">GeoTrip joins GSTC's Market Access Program</a>
+                </h2>
+                <p>Nov 11, 2024 | GeoTrip</p>
+                <p>GeoTrip, a leader in online travel services, introduces a feature for sustainable hotels...</p>
+            </div>
+            <div class="news-item">
+                <img src="images//aboutUs/AboutUsNews(4).jpeg" alt="News 4">
+                <h2>
+                    <a href="https://www.trip.com/newsroom/trip-com-group-celebrates-25-years/" target="_blank"> Group
+                        Celebrates 25 Years of Innovation</a>
+                </h2>
+                <p>Oct 28, 2024 | GeoTrip</p>
+                <p>GeoTrip Group is marking 25 years of leadership in the travel industry...</p>
+            </div>
+            <div class="news-item">
+                <img src="images//aboutUs/AboutUsNews(5).jpg" alt="News 5">
+                <h2>
+                    <a href="https://www.trip.com/newsroom/what-is-next-for-travel-innovation-trip-com-group-leads-with-ai-toolkit-at-itb-asia-2024/"
+                        target="_blank"> What is Next for Travel Innovation?</a>
+                </h2>
+                <p>Oct 24, 2024 | GeoTrip Group</p>
+                <p>As technology paves the way for future travel...</p>
+            </div>
+            <div class="news-item">
+                <img src="images/aboutUs/AboutUsNews(6).jpeg" alt="News 6">
+                <h2>
+                    <a href="https://www.trip.com/newsroom/cruise-travel-boom-trip-record-demand-disney-adventure/"
+                        target="_blank"> Cruise Travel Booms as GeoTrip Anticipates Record Demand</a>
+                </h2>
+                <p>Oct 22, 2024 | GeoTrip</p>
+                <p>The cruise industry is experiencing a renaissance...</p>
+            </div>
+            <div class="news-item">
+                <img src="images//aboutUs/AboutUsNews(7).jpg" alt="News 7">
+                <h2>
+                    <a href="https://www.trip.com/newsroom/trip-com-obtains-iata-goglobal-accreditation/"
+                        target="_blank"> Obtains IATA GoGlobal Accreditation</a>
+                </h2>
+                <p>Oct 17, 2024 | GeoTrip</p>
+                <p>GeoTrip has received IATA's GoGlobal accreditation...</p>
+            </div>
+            <div class="news-item">
+                <img src="images//aboutUs/AboutUsNews(8).jpeg" alt="News 8">
+                <h2>
+                    <a href="https://www.trip.com/newsroom/trip-com-group-2024-sustainable-travel-consumer-report-insights/"
+                        target="_blank"> the Action-Awareness Gap</a>
+                </h2>
+                <p>Oct 14, 2024 | GeoTrip Group</p>
+                <p>GeoTrip Group's 2024 Sustainable Travel Consumer Report highlights...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Modal -->
+    <address class="contact-form-content">
+        <div class="show-hide">
+            <span class="close-form" id="close-contact-form">&times;</span>
+            <h2>Contact Us</h2>
+            <p>If you have any questions or would like to get in touch with us, feel free to send us a message:</p>
+            <form action="mailto:info@geotrip.com" method="post" enctype="text/plain">
+                <label for="user-name-field">Your Name:</label>
+                <input type="text" id="user-name-field" name="user-name" required>
+                <label for="user-email-field">Your Email:</label>
+                <input type="email" id="user-email-field" name="user-email" required>
+                <label for="user-message-field">Your Message:</label>
+                <textarea id="user-message-field" name="user-message" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="button-show" id="Message">Send Message</button>
+        </form>
+    </address>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="images/footer-photos/logo.webp" alt="">
+                <p>We make your dream more beautiful & enjoyable with lots of happiness.</p>
+                <div class="social-links">
+                    <a href=""><i class='bx bxl-facebook-circle'></i></a>
+                    <a href=""><i class='bx bxl-linkedin-square'></i></i></a>
+                    <a href=""><i class='bx bxl-github'></i></a>
+                    <a href=""><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+            <div class="footer-list">
+                <div class="footer-section">
+                    <h3>The Navigation</h3>
+                    <ul>
+                        <li><a href="#">Talent Marketplace</a></li>
+                        <li><a href="#">Payroll Services</a></li>
+                        <li><a href="#">Direct Contracts</a></li>
+                        <li><a href="#">Hire Worldwide</a></li>
+                        <li><a href="#">Hire in the USA</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Resources</h3>
+                    <ul>
+                        <li><a href="#">Free Business Tools</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Upwork Reviews</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>The Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Trust, Safety & Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Payment Methods</h3>
+                <div class="paymentmethods">
+                    <img src="images/footer-photos/payment.webp" alt="">
+                </div>
+                <h3>Our Partners</h3>
+                <div class="ourpartners">
+                    <div class="partner1">
+                        <a><img src="images/footer-photos/mytrip.webp" alt=""></a>
+                    </div>
+                    <div class="partner1">
+                        <a><img src="images/footer-photos/tripadv.webp" alt=""></a>
+                    </div>
+                    <div class="partner1">
+                        <a><img src="images/footer-photos/goibibo.webp" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <div class="copy"> &copy; <u>2024 GeoTrip. Design by GeoTrip </u></div>
+            <div class="Terms">
+                <a href="#">Terms of Service</a><a href="#">Privacy
+                    Policy</a><a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
