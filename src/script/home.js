@@ -22,7 +22,6 @@ function changeImg(callback) {
     setTimeout(() => callback(changeImg), time);
 }
 
-// callback function
 changeImg(changeImg);
 
 /* header */

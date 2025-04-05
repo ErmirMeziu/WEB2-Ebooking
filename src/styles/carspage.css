@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 header {
     background-color: #000;
     position: relative !important;
@@ -29,8 +30,8 @@ header {
     width: 70px;
     height: 120px;
     position: absolute;
-     top: 80%;
-    transform: translate(0, -80%); 
+    top: 80%;
+    transform: translate(0, -80%);
     border-radius: 10px;
     background-size: cover;
     display: inline-block;
@@ -44,7 +45,8 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Semi-transparent black */
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s ease-in-out;
@@ -98,11 +100,12 @@ header {
 
 .slide20 .item:nth-child(3) {
     left: 10%;
-    top: 91%; 
-    
+    top: 91%;
+
 
 
 }
+
 .slide20 .item:nth-child(4) {
     left: calc(10% + 75px);
     top: 91%;
@@ -133,7 +136,7 @@ header {
     display: none;
 }
 
-.slide20 .item:nth-child(2)  {
+.slide20 .item:nth-child(2) {
     display: block;
 }
 
@@ -180,83 +183,81 @@ header {
     background: #ababab;
     color: #fff;
 }
-.container15
-{
+
+.container15 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 87%;
     margin: auto;
     gap: 30PX;
 }
-.pick p
-{
+
+.pick p {
     line-height: 35px;
 }
-hr
-{
+
+hr {
     background-color: #EAEAEA;
     height: 3px;
 }
-.pick p
-{
+
+.pick p {
     font-weight: 600;
     font-size: 14px;
     color: #f26322;
     font-size: 16px;
 }
-.pick h3
-{
+
+.pick h3 {
     font-size: 16px;
     font-weight: 700;
     color: #404040;
 }
-.pick h4
-{
+
+.pick h4 {
     color: #404040;
     font-size: 18px;
 }
-.pick h5
-{
+
+.pick h5 {
     font-weight: unset;
     font-size: 17px;
 }
 
-.price4
-{
+.price4 {
     margin: auto;
     width: 87%;
 }
-.price4 h1
-{
+
+.price4 h1 {
     margin-top: 20px;
 }
-.right2
-{
+
+.right2 {
     line-height: 32px;
     margin-left: 70px;
 }
-.car-features h3
-{
+
+.car-features h3 {
     color: #393939;
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
 }
-.car-features p
-{
+
+.car-features p {
     color: #3D3D3D;
     font-size: 22px;
 }
 
-.Capacity h3
-{
+.Capacity h3 {
     color: #393939;
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
 }
-.Capacity p
-{
+
+.Capacity p {
     color: #3D3D3D;
     font-size: 22px;
 
@@ -275,8 +276,8 @@ hr
     font-weight: 700;
     margin-bottom: 10px;
 }
-.extra-button button
-{
+
+.extra-button button {
     position: relative;
     background: #f4f4f9;
     padding: 5px 8px;
@@ -285,21 +286,21 @@ hr
     font-size: 14px;
 }
 
-.Extra .btnrezervo{
+.Extra .btnrezervo {
     margin-top: 10px;
 }
 
-.Capacity
-{
+.Capacity {
     margin-top: 15px;
 }
-.Extra
-{
+
+.Extra {
     margin-top: 20px;
 }
 
 
-.btnrezervo, .video-watch {
+.btnrezervo,
+.video-watch {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -317,16 +318,16 @@ hr
 }
 
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -372,11 +373,9 @@ hr
     background-color: #45a049;
 }
 
-footer ul li a, footer h3 {
-    color: white !important;
-}
 
-#pickup-input, #dropoff-input {
+#pickup-input,
+#dropoff-input {
     width: 250px;
     height: 30px;
     font-family: 'Poppins';

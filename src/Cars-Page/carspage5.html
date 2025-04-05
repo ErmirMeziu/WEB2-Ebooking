@@ -30,114 +30,43 @@
     <script src="../script/cars-page.js" defer></script>
     <script src="../script/login-register.js" defer></script>
 
-
+    <style>
+        #cars {
+            color: rgb(215, 44, 33);
+        }
+    </style>
 </head>
 
 <body>
 
-    <header style="background-color:#003149 !important;">
-        <div class="logo"><img src="../images/navbar-photos/uebLogo.webp" alt="ueb-logo"></div>
-        <ul>
-            <li><a href="../index.html"><i class="fa-solid fa-house icon"></i>Home</a>
-            </li>
-            <li><a href="../Hotel Page/hotels.html"><i class="fa-solid fa-hotel icon"></i>Hotels</a></li>
-            <li><a href="cars.html" style="color: rgb(215, 44, 33);"><i class="fa-solid fa-car icon"></i>Cars</a>
-            </li>
-            <li><a href="../AboutUs.html"><i class="fa-solid fa-circle-info icon"></i>About Us</a></li>
-        </ul>
-        <div class="login-register">
-            <button id="sign-in">Sign in/Sign up</button>
-        </div>
+    <header>
+        <script>
+            fetch('/src/components/navbar.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.querySelector('header').innerHTML = data;
+
+
+                });
+        </script>
     </header>
 
-    <section class="login-all">
-        <div class="login">
-            <div class="login-head">
-                <h4>Sign in</h4>
-                <p class="iks"><i class="fa-solid fa-square-xmark fa-xl" style="color: #adb5bd;"></i></p>
-            </div>
-            <div class="login-form">
-                <div class="login-input">
-                    <form action="" method="post">
-                        <div><input class="login-change" type="email" id="login-email" placeholder="Enter your email"
-                                required></div>
-                        <div style="position: relative;">
-                            <input class="login-change" type="password" id="login-password"
-                                placeholder="Enter your password" required>
-                            <i class="fa fa-eye-slash toggle-password1" aria-hidden="true"></i>
-                        </div>
+    <section id="all">
+        <script>
+            fetch('/src/components/login_register.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('all').innerHTML = data;
 
-                        <div style="position: relative; margin-bottom: -20px;">
-                            <button id="login-submit" style="width: 100%;">Log In</button>
-                            <p id="message1"
-                                style="position: absolute; top: -23px; left: 50%; transform: translateX(-50%); font-size: 13px;">
-                            </p>
-                        </div>
-
-                        <div class="check">
-                            <div class="remember">
-                                <input type="checkbox" name="remember-me" id="remember-me">
-                                <label for="remember-me" style="cursor: pointer;">Remember me</label>
-                            </div>
-                            <div><a href="">Forgot password?</a></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="divider">
-                    <p style="font-weight: 300; font-size: 14px; margin-top: -10px; margin-bottom: 10px;">-------------
-                        <span>Sign In With More Methods</span> -------------
-                    </p>
-                </div>
-                <div class="socials">
-                    <div class="social"><i class="fa-brands fa-facebook" style="color: #0033ff;"></i></div>
-                    <div class="social"><i class="fa-brands fa-whatsapp" style="color: #1bde32;"></i></div>
-                    <div class="social"><i class="fa-brands fa-linkedin icon" style="color: #0033ff;"></i></div>
-                    <div class="social"><i class="fa-brands fa-square-x-twitter icon" style="color: #002f80;"></i></div>
-                </div>
-            </div>
-            <div class="login-end">
-                <p>Don't have an account yet? <span class="sregister">Sign up</span></p>
-            </div>
-        </div>
+                    setTimeout(() => {
+                        const script = document.createElement('script');
+                        script.src = 'script/login-register.js';
+                        document.body.appendChild(script);
+                    }, 50);
+                });
+        </script>
     </section>
 
-    <section class="register">
-        <div class="register-head">
-            <h4>Sign up</h4>
-            <p class="iks1"><i class="fa-solid fa-square-xmark fa-xl" style="color: #adb5bd;"></i></p>
-        </div>
-        <div class="register-form">
-            <form action="" method="post">
-                <div class="name-surname">
-                    <input class="login-change" type="text" id="register-name" placeholder="Enter your name" required>
-                    <input class="login-change" type="text" id="register-surname" placeholder="Enter your surname"
-                        required>
-                </div>
-                <div>
-                    <input class="login-change" type="email" id="register-email" placeholder="Enter your email"
-                        required>
-                </div>
-                <div style="position: relative;">
-                    <input class="login-change" type="password" id="register-password" placeholder="Enter your password"
-                        required>
-                    <i class="fa fa-eye-slash toggle-password2" aria-hidden="true" style="right: 30px;"></i>
-                </div>
-                <div style="position: relative;">
-                    <input class="login-change" type="password" id="confirm-password"
-                        placeholder="Confirm your password" required>
-                    <i class="fa fa-eye-slash toggle-password3" aria-hidden="true" style="right: 30px;"></i>
-                </div>
-                <div style="position: relative;">
-                    <input type="submit" style="width: 434px; margin: auto;" value="Sign up" id="register-submit"><br>
-                    <span id="message"
-                        style="position:absolute;font-size: 13px; top: -25px; width: 434px; transform: translateX(-50%);"></span>
-                </div>
-            </form>
-        </div>
-        <div class="register-end">
-            <p>You have an account? <span class="signbutton">Sign in</span></p>
-        </div>
-    </section>
 
     <div class="container15">
         <div class="pick">
@@ -234,78 +163,14 @@
         </div>
     </section>
 
-    <footer style="background-color: #003149; margin-top: 100px;">
-        <div class="footer-container">
-            <div class="footer-section">
-                <img src="../images/navbar-photos/uebLogo.webp" alt="">
-                <p style="color: white !important">We make your dream more beautiful & enjoyable with lots of happiness.
-                </p>
-                <div class="social-links">
-                    <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                    <a href=""><i class='bx bxl-linkedin-square'></i></i></a>
-                    <a href=""><i class='bx bxl-github'></i></a>
-                    <a href=""><i class='bx bxl-twitter'></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>The Navigation</h3>
-                <ul>
-                    <li><a href="#">Talent Marketplace</a></li>
-                    <li><a href="#">Payroll Services</a></li>
-                    <li><a href="#">Direct Contracts</a></li>
-                    <li><a href="#">Hire Worldwide</a></li>
-                    <li><a href="#">Hire in the USA</a></li>
-                    <li><a href="#">How to Hire</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Our Resources</h3>
-                <ul>
-                    <li><a href="#">Free Business Tools</a></li>
-                    <li><a href="#">Affiliate Program</a></li>
-                    <li><a href="#">Success Stories</a></li>
-                    <li><a href="#">Upwork Reviews</a></li>
-                    <li><a href="#">Help & Support</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>The Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Leadership</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Investor Relations</a></li>
-                    <li><a href="#">Trust, Safety & Security</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Payment Methods</h3>
-                <div class="paymentmethods">
-                    <img src="../images/footer-photos/payment.webp" alt="">
-                </div>
-                <h3>Our Partners</h3>
-                <div class="ourpartners">
-                    <div class="partner1">
-                        <a><img src="../images/footer-photos/mytrip.webp" alt=""></a>
-                    </div>
-                    <div class="partner1">
-                        <a><img src="../images/footer-photos/tripadv.webp" alt=""></a>
-                    </div>
-                    <div class="partner1">
-                        <a><img src="../images/footer-photos/goibibo.webp" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="footer-bottom">
-            <div class="copy" style="color: white !important"> &copy; <u>2024 GeoTrip. Design by GeoTrip </u></div>
-            <div class="Terms">
-                <a href="#" style="color: white !important">Terms of Service</a><a href="#"
-                    style="color: white !important">Privacy
-                    Policy</a><a href="#" style="color: white !important">Cookies</a>
-            </div>
-        </div>
+    <footer style="margin-top: 100px;">
+        <script>
+            fetch('/src/components/footer.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.querySelector('footer').innerHTML = data;
+                });
+        </script>
     </footer>
 
 </body>

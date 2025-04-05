@@ -1,61 +1,47 @@
 /* login/register */
-const sign = document.querySelector('.sign-in1');
-const iks = document.querySelector('.iks');
-const iks1 = document.querySelector('.iks1');
-const loginall = document.querySelector('.login-all');
-const login = document.querySelector('.login');
-const sregister = document.querySelector('.sregister');
-const register = document.querySelector('.register');
-const signbutton = document.querySelector('.signbutton');
+const btnOpenLogin = document.querySelector('.sign-in1');
+const btnCloseLogin = document.querySelector('.iks');
+const btnCloseRegister = document.querySelector('.iks1');
+const containerOverlay = document.querySelector('.login-all');
+const loginModal = document.querySelector('.login');
+const btnToRegister = document.querySelector('.sregister');
+const registerModal = document.querySelector('.register');
+const btnToLogin = document.querySelector('.signbutton');
 const body = document.querySelector('body');
 
-
-sign.addEventListener('click', function () {
-    login.classList.add('login-special');
-    loginall.classList.add('login-special');
+function openLogin() {
+    loginModal.classList.add('login-special');
+    containerOverlay.classList.add('login-special');
     body.classList.add('body-special');
-});
+}
 
-iks.addEventListener('click', function () {
-    login.classList.remove('login-special');
-    loginall.classList.remove('login-special');
+function closeAll() {
+    loginModal.classList.remove('login-special');
+    registerModal.classList.remove('register-special');
+    containerOverlay.classList.remove('login-special');
     body.classList.remove('body-special');
-});
+}
 
+function openRegister() {
+    registerModal.classList.add('register-special');
+    loginModal.classList.remove('login-special');
+}
 
-iks1.addEventListener('click', function () {
-    register.classList.remove('register-special');
-    loginall.classList.remove('login-special');
-    body.classList.remove('body-special');
-});
+function switchToLogin() {
+    loginModal.classList.add('login-special');
+    registerModal.classList.remove('register-special');
+}
 
-sregister.addEventListener('click', function () {
-    login.classList.remove('login-special');
-    register.classList.add('register-special');
-});
+btnOpenLogin.addEventListener('click', openLogin);
+btnCloseLogin.addEventListener('click', closeAll);
+btnCloseRegister.addEventListener('click', closeAll);
+containerOverlay.addEventListener('click', closeAll);
 
+btnToRegister.addEventListener('click', openRegister);
+btnToLogin.addEventListener('click', switchToLogin);
 
-signbutton.addEventListener('click', function () {
-    login.classList.add('login-special');
-    register.classList.remove('register-special');
-});
-
-
-loginall.addEventListener('click', function () {
-    login.classList.remove('login-special');
-    register.classList.remove('register-special');
-    loginall.classList.remove('login-special');
-    body.classList.remove('body-special');
-});
-
-
-login.addEventListener('click', function (event) {
-    event.stopPropagation();
-});
-
-register.addEventListener('click', function (event) {
-    event.stopPropagation();
-});
+loginModal.addEventListener('click', event => event.stopPropagation());
+registerModal.addEventListener('click', event => event.stopPropagation());
 
 /*login-form*/
 var login_submit = document.getElementById("login-submit");
