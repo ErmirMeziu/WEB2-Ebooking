@@ -40,32 +40,21 @@
 <body>
 
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = 'script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
+
 
     <div class="container15">
         <div class="pick">
@@ -92,22 +81,22 @@
     <br>
     <hr style="background-color: gray;height: 3px;">
     <div class="price4">
-        <h1>Mercedes-Benz GLE 400d</h1>
-        <h1><span id="dailyCost">348.00</span>€ / <span style="color: orange;">DAY</span></h1>
+        <h1>AUDI A4</h1>
+        <h1><span id="dailyCost">72.00</span>€ / <span style="color: orange;">DAY</span></h1>
     </div>
 
     <section class="all">
         <div class="container20">
             <div class="slide20">
-                <div class="item" style="background-image: url(../images/Cars/gle400d/gle400D1.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/audiA4/audiA4-1.jpg);">
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/gle400d/gle400D2.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/audiA4/audiA4-2.jpg);">
 
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/gle400d/gle400D3.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/audiA4/audiA4-3.jpg);">
 
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/gle400d/gle400D2.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/audiA4/audiA4-2.jpg);">
 
                 </div>
             </div>
@@ -163,13 +152,7 @@
     </section>
 
     <footer style="margin-top: 100px;">
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 
 </body>

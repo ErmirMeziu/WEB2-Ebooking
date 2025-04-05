@@ -35,35 +35,24 @@
             color: rgb(215, 44, 33);
         }
     </style>
+
 </head>
 
 <body>
 
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = 'script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
 
@@ -93,22 +82,22 @@
     <br>
     <hr style="background-color: gray;height: 3px;">
     <div class="price4">
-        <h1>Skoda Rapid</h1>
-        <h1><span id="dailyCost">68.00</span>€ / <span style="color: orange;">DAY</span></h1>
+        <h1>BMW X5 xDrive</h1>
+        <h1><span id="dailyCost">230.00</span>€ / <span style="color: orange;">DAY</span></h1>
     </div>
 
     <section class="all">
         <div class="container20">
             <div class="slide20">
-                <div class="item" style="background-image: url(../images/Cars/skoda-rapid/skoda-rapid1.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-1.jpg);">
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/skoda-rapid/skoda-rapid2.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-2.jpg);">
 
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/skoda-rapid/skoda-rapid3.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-3.jpg);">
 
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/skoda-rapid/skoda-rapid2.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-2.jpg);">
 
                 </div>
             </div>
@@ -164,13 +153,7 @@
     </section>
 
     <footer style="margin-top: 100px;">
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 
 </body>

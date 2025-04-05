@@ -81,30 +81,18 @@
 
 <body class="body">
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = '/src/script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
 
@@ -1212,13 +1200,7 @@
 
 
     <footer style=" margin-top: 50px;">
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
     <script src="../script/hotel1.js"></script>
 </body>

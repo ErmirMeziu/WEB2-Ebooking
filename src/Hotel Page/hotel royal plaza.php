@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="stylesheet" href="../styles/login-register.css">
-
+    <link rel="stylesheet" href="../styles/hotel-table-design.css">
 
     <style>
         .hotel-snd ul ol li {
@@ -65,35 +65,34 @@
             color: rgb(215, 44, 33);
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const showPriceButton = document.getElementsByClassName('btn btn-primary');
+            for (let button of showPriceButton) {
+                button.addEventListener('click', function () {
+                    alert("To see available rooms and prices, please enter your check-in and check-out dates.");
+                });
+            }
+        });
+    </script>
+
 </head>
 
 <body class="body">
-
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = '/src/script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
 
@@ -103,6 +102,7 @@
                 <a href="../index.html"><i class="fa-solid fa-hotel icon"></i>Home</a>
                 <a href="hotels.html" style="color: rgb(215, 44, 33)"><i class=" fa-solid fa-hotel
                     icon"></i>Hotels</a>
+                <a href="../Flights Page/flights.html"><i class="fa-solid fa-jet-fighter icon"></i>Flights</a>
                 <a href="../Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a>
                 <a href="../AboutUs.html"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
             </div>
@@ -130,6 +130,7 @@
         </div>
     </section>
 
+
     <div class="body-part">
         <div class="sec1">
             <div class="btn-first" style="width: 100%;">
@@ -151,50 +152,58 @@
             </div>
 
             <div class="text">
-                <p>Hotel Chancellor@Orchard</p>
+                <p>Royal Plaza on Scotts</p>
             </div>
 
             <div class="pin-text">
-                <p><i class="fa-solid fa-location-dot"></i> 28 Cavenagh Road/Orchard Road, Orchard, 229635 Singapore,
-                    Singapore <a
-                        href="https://www.google.com/maps/place/Hotel+Chancellor/@1.3149209,103.8118214,13.59z/data=!4m9!3m8!1s0x31da199656c10c63:0x7634e84074996b35!5m2!4m1!1i2!8m2!3d1.3011349!4d103.8421518!16s%2Fg%2F11cjj86261?entry=ttu&g_ep=EgoyMDI0MTIwOS4wIKXMDSoASAFQAw%3D%3D"
-                        target="_blank"> -Great location - show map</a></p>
+                <p><i class="fa-solid fa-location-dot"></i> 25 Scotts Road, Orchard, 228220 Singapore, Singapore
+                    <a href="https://www.google.com/maps/place/Royal+Plaza+on+Scotts+Singapore/@1.3069768,103.8318329,21z/data=!4m13!1m2!2m1!1sRoyal+Plaza+on+Scotts!3m9!1s0x31da198d67fa674b:0x9b47be9ee2d0ab2d!5m2!4m1!1i2!8m2!3d1.3069695!4d103.8319667!15sChVSb3lhbCBQbGF6YSBvbiBTY290dHNaFyIVcm95YWwgcGxhemEgb24gc2NvdHRzkgEFaG90ZWzgAQA!16s%2Fm%2F09rv85r?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"> -Great location - show map</a>
+                </p>
                 <button id="btn-res">Reserve</button>
             </div>
 
             <div class="photos">
-                <img src="../images/Hotel1/hotel1-room.jpg" alt="Hotel img" class="photo" id="first-photo">
-                <img src="../images/Hotel1/Building.jpg" alt="Hotel img" class="photo" id="second-photo">
-                <img src="../images/Hotel1/buffe.jpg" alt="Hotel img" class="photo" id="third-photo">
+                <img src="../images/hotel-royal-plaza/Outside.jpg" alt="Hotel img" class="photo" id="first-photo">
+                <img src="../images/hotel-royal-plaza/Inside hotel.jpg" alt="Hotel img" class="photo" id="second-photo">
+                <img src="../images//hotel-royal-plaza/Meeting room.jpg" alt="Hotel img" class="photo" id="third-photo">
                 <div class="bottom-photos">
-                    <img src="../images/Hotel1/Inside.jpg" alt="Hotel img" class="bottom-pht">
-                    <img src="../images/Hotel1/pool.jpg" alt="Hotel img" class="bottom-pht">
-                    <img src="../images/Hotel1/conference.jpg" alt="Hotel img" class="bottom-pht">
-                    <img src="../images/Hotel1/hall.jpg" alt="Hotel img" class="bottom-pht">
-                    <img src="../images/Hotel1/pool2.jpg" alt="Hotel img" class="bottom-pht">
+                    <img src="../images/hotel-royal-plaza/Room.jpg" alt="Hotel img" class="bottom-pht">
+                    <img src="../images/hotel-royal-plaza/Bathroom2.jpg" alt="Hotel img" class="bottom-pht">
+                    <img src="../images/hotel-royal-plaza/Chilling room.jpg" alt="Hotel img" class="bottom-pht">
+                    <img src="../images/hotel-royal-plaza/Bathroom.jpg" alt="Hotel img" class="bottom-pht">
+                    <img src="../images/hotel-royal-plaza/Kitchen.jpg" alt="Hotel img" class="bottom-pht">
                 </div>
             </div>
 
             <div class="some-txt">
-                <p>You might be eligible for a Genius discount at Hotel Chancellor@Orchard.To check if a Genius discount
-                    is available for your selected dates sign in.</p><br>
+                <p>You might be eligible for a Genius discount at Royal Plaza on Scotts.
+                    To check if a Genius discount is available for your selected dates sign in.</p><br>
                 <p>Genius discounts at this property are subject to book dates, stay dates and other available deals.
                 </p><br>
-                <p> Featuring a rooftop outdoor pool, Hotel Chancellor@Orchard is centrally located in Orchard Road
-                    where shopping, entertainment and dining destinations are just minutes away. The hotel is within a
-                    5-minute walk to Somerset and Dhoby Ghaut MRT stations.</p><br>
-                <p>10 minutes away, shopping areas like Bugis Village, Chinatown and Little India are accessible by
-                    train. The property is a quick 1.1 km stroll from Singapore Art Museum and Orchard MRT Station.
-                    Changi Airport is approximately 17 km away.</p><br>
-                <p>With an al fresco and indoor dining area, Bistro@Chancellor Cafe on the second floor serves buffet
-                    breakfast every morning.</p><br>
+                <p>Within 5 minutes' walk from popular Orchard Road and Orchard MRT station, Royal Plaza On Scotts
+                    features
+                    an award-winning buffet restaurant and non-smoking rooms with free internet access for multiple
+                    devices.
+                    Union Pay is accepted here. Shopping malls like ION Orchard, Takashimaya and Paragon are within a
+                    10-minute
+                    walk away.</p><br>
+                <p>Royal Plaza on Scotts Carousel Restaurant offers a buffet spread of halal-certified Asian and
+                    Mediterranean dishes.
+                </p><br>
+                <p>Our Co-working Space is available for guests staying in our Premier rooms and Suites. Make yourself
+                    feel at
+                    home and enjoy a selection of hot and cold beverages and light refreshments all-day while taking in
+                    the great
+                    view of the city.</p><br>
 
                 <div id="extra-text" class="hidden">
-                    <p>Hotel Chancellor@Orchard offers a 24-hour front desk, meeting facilities, luggage storage,
-                        children's playground and coin-operated laundry machines. Free WiFi is available throughout the
-                        property.</p><br>
-                    <p>Couples particularly like the location — they rated it <strong>8.1</strong> for a two-person
-                        trip.</p>
+                    <p>Modern rooms at this 100% smoke-free hotel are equipped with air conditioning and a private
+                        bathroom with
+                        a rainshower and hairdryer. A flat-screen TV and tea/coffee making facilities are included.
+                        Rooms come
+                        with room service and free local calls. Dental kit and free toiletries are provided.</p><br>
+                    <p>Couples particularly like the location — they rated it 9.3 for a two-person trip.</p><br>
                 </div>
 
                 <button class="toggle-btn" id="toggle-btn">Show More</button>
@@ -204,34 +213,35 @@
         <div class="sec2">
             <div class="reviews">
                 <div class="txt">
-                    <p id="first">Pleasant <i class="fa-solid fa-volume-high audio-icon" id="audio-icon"></i></p>
-                    <p id="second">667 reviews</p>
+                    <p id="first">Very Good</p>
+                    <p id="second">2139 reviews</p>
                 </div>
                 <div class="btn">
-                    <button>6.4</button>
+                    <button>8.2</button>
                 </div>
-                <audio id="audio" src="../Video/Audio2.mp3" preload="auto"></audio>
             </div>
 
             <div class="location">
                 <div class="txt">
-                    <p id="third">Great location!</p>
+                    <p id="third">Excellent location!</p>
                 </div>
                 <div class="btn">
-                    <button>8.4</button>
+                    <button>9.2</button>
                 </div>
             </div>
 
             <div class="map-container">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.832399358039!2d103.8421518!3d1.3011349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da199656c10c63%3A0x7634e84074996b35!2sHotel%20Chancellor!5e0!3m2!1sen!2ssg!4v1693005872123!5m2!1sen!2ssg"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.921477432484!2d103.8318329!3d1.3069768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da198d67fa674b%3A0x9b47be9ee2d0ab2d!2sRoyal%20Plaza%20on%20Scotts%20Singapore!5e0!3m2!1sen!2ssg!4v1693005872123!5m2!1sen!2ssg"
                     width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
-                <button class="show-on-map-btn"> <a
-                        href="https://www.google.com/maps/place/Hotel+Chancellor/@1.3149209,103.8118214,13.59z/data=!4m9!3m8!1s0x31da199656c10c63:0x7634e84074996b35!5m2!4m1!1i2!8m2!3d1.3011349!4d103.8421518!16s%2Fg%2F11cjj86261?entry=ttu&g_ep=EgoyMDI0MTIwOS4wIKXMDSoASAFQAw%3D%3D"
-                        target="_blank"> Show on map</a></button>
+                <a href="https://www.google.com/maps/place/Royal+Plaza+on+Scotts+Singapore/@1.3069768,103.8318329,21z/data=!4m13!1m2!2m1!1sRoyal+Plaza+on+Scotts!3m9!1s0x31da198d67fa674b:0x9b47be9ee2d0ab2d!5m2!4m1!1i2!8m2!3d1.3069695!4d103.8319667!15sChVSb3lhbCBQbGF6YSBvbiBTY290dHNaFyIVcm95YWwgcGxhemEgb24gc2NvdHRzkgEFaG90ZWzgAQA!16s%2Fm%2F09rv85r?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank" class="show-on-map-btn">
+                    Show on map
+                </a>
             </div>
+
 
             <div class="property">
                 <p id="imp">Property highlights</p>
@@ -272,93 +282,288 @@
         <hr><br>
         <h2 id="avb" class="h2-size">Availability</h2>
 
-        <table class="room-table">
+        <table class="hotel-room-table">
             <thead>
                 <tr>
-                    <th>Room type</th>
-                    <th>Number of guests</th>
-                    <th></th>
+                    <th>Room Type</th>
+                    <th rowspan="4">Number of Guests</th>
+                    <th style="width: 270px;">Price for 3 Nights</th>
+                    <th>Your Choices</th>
+                    <th>Select Room</th>
                 </tr>
             </thead>
             <tbody>
-
-                <tr draggable="true" id="room1">
-                    <td>
-                        <span class="expand-icon" id="number-1">1</span>
-                        <strong>Deluxe Double or Twin Room</strong><br>
-                        1 large double bed <i class="fa-solid fa-bed"></i> or 2 single beds <i
-                            class="fa-solid fa-user-group"></i>
+                <!-- Row 1 -->
+                <tr>
+                    <td class="room-type" rowspan="4">
+                        <a href="#">Deluxe King Room</a>
+                        <p>1 extra-large double bed</p>
+                        <p>Spacious room features a Dream Bed with 320 thread-count linen.</p>
+                        <ul class="amenities">
+                            <li>Room size: 32 m²</li>
+                            <li><i class="fas fa-wifi"></i> Free WiFi</li>
+                            <li><i class="fas fa-shower"></i> Private bathroom</li>
+                            <li><i class="fas fa-tv"></i> Flat-screen TV</li>
+                            <li><i class="fas fa-snowflake"></i> Air conditioning</li>
+                            <li><i class="fas fa-check-circle icon-highlight"></i> Free toiletries</li>
+                            <li><i class="fas fa-check-circle icon-highlight"></i> Shower</li>
+                            <li><i class="fas fa-check-circle icon-highlight"></i> Bathrobe</li>
+                            <li><i class="fas fa-lock icon-highlight"></i> Safety deposit box</li>
+                            <li><i class="fas fa-bath icon-highlight"></i> Bidet & Toilet</li>
+                            <li><i class="fas fa-bed icon-highlight"></i> Linen</li>
+                            <li><i class="fas fa-tv icon-highlight"></i> Satellite channels</li>
+                        </ul>
                     </td>
                     <td class="guest-info">
-                        <i class="fa-solid fa-user-group"></i> + <i class="fa-solid fa-user"></i>
-                        <i class="fa-solid fa-circle-info info-icon"></i>
+                        <i class="fas fa-user"></i> <i class="fas fa-user"></i>
                     </td>
-                    <td>
-                        <button class="btn btn-primary">Show prices</button>
+                    <td class="price">
+                        <p class="money">€2,861</p>
+                        <p class="table-txt">+ €626 taxes and charges</p>
+                        <button class="table-btn">18% off</button>
+                    </td>
+                    <td class="choices">
+                        <ul style="list-style-type: circle;">
+                            <li><strong>Good breakfast €21</strong></li>
+                            <li><strong>Non-refundable</strong></li>
+                            <li>Pay online now</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€2,861)</option>
+                        </select>
                     </td>
                 </tr>
 
-                <tr draggable="true" id="room2">
-                    <td>
-                        <span class="expand-icon" id="number-2">2</span>
-                        <strong>Deluxe Triple Room</strong><br>
-                        1 single bed <i class="fa-solid fa-bed"></i> and 1 large double bed <i
-                            class="fa-solid fa-bed"></i>
-                    </td>
+                <tr>
                     <td class="guest-info">
-                        <i class="fa-solid fa-user-group"></i> + <i class="fa-solid fa-user"></i>
-                        <i class="fa-solid fa-circle-info info-icon"></i>
+                        <i class="fas fa-user"></i> <i class="fas fa-user"></i>
                     </td>
-                    <td>
-                        <button class="btn btn-primary">Show prices</button>
+                    <td class="price">
+                        <p class="money">€3,971</p>
+                        <p class="table-txt">+ €868 taxes and charges</p>
+                        <button class="table-btn">10% off</button>
+                    </td>
+                    <td class="choices">
+                        <ul style="list-style-type: circle;">
+                            <li><strong>Good</strong> breakfast €21</li>
+                            <li style="color: rgb(0, 130, 52);"><strong>Free cancellation</strong> before 30 January
+                                2025</li>
+                            <li>Scheduled payment on 28 January 2025</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€3,971)</option>
+                        </select>
                     </td>
                 </tr>
 
-                <tr draggable="true" id="room3">
-                    <td>
-                        <span class="expand-icon" id="number-3">3</span>
-                        <strong>Premier Double or Twin Room</strong><br>
-                        1 large double bed <i class="fa-solid fa-bed"></i> or 2 single beds <i
-                            class="fa-solid fa-user-group"></i>
-                    </td>
+                <tr>
                     <td class="guest-info">
-                        <i class="fa-solid fa-user-group"></i> + <i class="fa-solid fa-user"></i>
-                        <i class="fa-solid fa-circle-info info-icon"></i>
+                        <i class="fas fa-user"></i> <i class="fas fa-user"></i> <i class="fas fa-user"></i>
                     </td>
-                    <td>
-                        <button class="btn btn-primary">Show prices</button>
+                    <td class="price">
+                        <p class="money">€4,412</p>
+                        <p class="table-txt">+ €965 taxes and charges</p>
+                        <button class="table-btn">9% off</button>
+                    </td>
+                    <td class="choices">
+                        <ul style="list-style-type: circle;">
+                            <li><strong>Good</strong> breakfast €21</li>
+                            <li style="color: rgb(0, 130, 52);"><strong>Free cancellation</strong> before 3 February
+                                2025</li>
+                            <li>Scheduled payment on 1 February 2025</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€4,412)</option>
+                        </select>
                     </td>
                 </tr>
 
-                <tr draggable="true" id="room4">
-                    <td>
-                        <span class="expand-icon" id="number-4">4</span>
-                        <strong>Connecting Rooms</strong><br>
-                        2 large double beds <i class="fa-solid fa-bed"></i> or 4 single beds <i
-                            class="fa-solid fa-user-group"></i>
-                    </td>
+                <tr>
                     <td class="guest-info">
-                        <i class="fa-solid fa-user-group"></i> x 4
-                        <i class="fa-solid fa-circle-info info-icon"></i>
+                        <i class="fas fa-user"></i> <i class="fas fa-user"></i> <i class="fas fa-user"></i>
                     </td>
-                    <td>
-                        <button class="btn btn-primary">Show prices</button>
+                    <td class="price">
+                        <p class="money">€3,930</p>
+                        <p class="table-txt">+ €859 taxes and charges</p>
+                        <button class="table-btn">43% off</button>
+                    </td>
+                    <td class="choices">
+                        <ul style="list-style-type: circle;">
+                            <li><strong>Good breakfast €21</strong></li>
+                            <li><strong>Non-refundable</strong></li>
+                            <li style="color: rgb(0, 130, 52);"><strong>No prepayment needed </strong> – pay at the
+                                property</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€3,930)</option>
+                        </select>
                     </td>
                 </tr>
-
-                <tr draggable="true" id="room4">
-                    <td>
-                        <span class="expand-icon" id="number-5">5</span>
-                        <strong>Penthouse Suite with City View</strong><br>
-                        1 king-sized bed <i class="fa-solid fa-bed"></i>, private terrace, and panoramic city views <i
-                            class="fa-solid fa-city"></i>
+                <!-- Row 2 -->
+                <tr>
+                    <td class="room-type">
+                        <a href="#">Deluxe Twin Room</a><br>
+                        <p>2 single beds </p>
+                        <p>Fitted with 2 comfy single beds, this room offers complimentary coffee and organic tea
+                            sachets.</p>
+                        <ul class="amenities">
+                            <li><i class="fas fa-ruler-combined icon-highlight"></i> 32 m<sup>2</sup></li>
+                            <li><i class="fas fa-city icon-highlight"></i> City view </li>
+                            <li><i class="fas fa-snowflake icon-highlight"></i> Air conditioning</li>
+                            <li><i class="fas fa-bath icon-highlight"></i> Ensuite bathroom</li>
+                            <li><i class="fas fa-tv icon-highlight"></i> Flat-screen TV</li>
+                            <li><i class="fas fa-wifi icon-highlight"></i> Free WiFi</li>
+                        </ul>
                     </td>
-                    <td class="guest-info">
-                        <i class="fa-solid fa-user"></i> x 2
-                        <i class="fa-solid fa-circle-info info-icon"></i>
+                    <td class="guest-info"><i class="fa-solid fa-user"></i> <i class="fa-solid fa-user"></i></td>
+                    <td class="price">
+                        <p class="money">€3,003</p>
+                        <p class="table-txt">+€ 657 taxes and charges</p>
+                        <button class="table-btn">41% off</button>
                     </td>
-                    <td>
-                        <button class="btn btn-primary">Show prices</button>
+                    <td class="choices">
+                        <ul style="list-style-type:circle;">
+                            <li><strong>Partially refundable</strong></li>
+                            <li>Pay online now</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€3,003)</option>
+                            <option value="2">2 (€6,006)</option>
+                            <option value="3">3 (€9,009)</option>
+                            <option value="4">4 (€12,012)</option>
+                        </select>
+                    </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr>
+                    <td class="room-type">
+                        <a href="">Deluxe Plus Twin Room</a>
+                        <p>2 single beds </p>
+                        <p>Fitted with 2 plush twin beds, this room offers complimentary coffee and organic tea sachets.
+                        </p>
+                        <ul class="amenities">
+                            <li><i class="fas fa-ruler-combined icon-highlight"></i> 32 m<sup>2</sup></li>
+                            <li><i class="fas fa-wifi"></i> Free WiFi</li>
+                            <li><i class="fas fa-tv"></i> Flat-screen TV</li>
+                            <li><i class="fas fa-snowflake"></i> Air conditioning</li>
+                            <li><i class="fas fa-shower"></i> Private bathroom</li>
+                        </ul>
+                    </td>
+                    <td class="guest-info"><i class="fa-solid fa-user"></i> <i class="fa-solid fa-user"></i></td>
+                    <td class="price">
+                        <p class="money">€4,661</p>
+                        <p class="table-txt">+€ 1,019 taxes and charges</p>
+                        <button class="table-btn">18% off</button><br>
+                    </td>
+                    <td class="choices">
+                        <ul style="list-style-type:circle;">
+                            <li><strong>Good</strong> breakfast €21</li>
+                            <li style="color: rgb(0, 130, 52);"><strong>Free cancellation</strong> before 30 January
+                                2025</li>
+                            <li>Scheduled payment on 28 January 2025</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€4,661)</option>
+                            <option value="2">2 (€9,323)</option>
+                            <option value="3">3 (€13,984)</option>
+                        </select>
+                    </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr>
+                    <td class="room-type">
+                        <a href="">Club Premier Twin Room</a>
+                        <p>2 single beds</p>
+                        <p>The spacious twin room features air
+                            conditioning, a seating area, as well as a private
+                            bathroom boasting a walk-in shower and a bath.</p>
+                        <ul class="amenities">
+                            <li><i class="fas fa-wifi"></i> Free WiFi</li>
+                            <li><i class="fas fa-shower"></i> Ensuite bathroom</li>
+                            <li><i class="fas fa-coffee"></i> Electric kettle</li>
+                            <li><i class="fas fa-city"></i> City view</li>
+                        </ul>
+                    </td>
+                    <td class="guest-info"><i class="fa-solid fa-user"></i> <i class="fa-solid fa-user"></i> <i
+                            class="fa-solid fa-user"></i></td>
+                    <td class="price">
+                        <p class="money">€7,041</p>
+                        <p class="table-txt">+€ 1,401 taxes and charges</p>
+                        <button class="table-btn">10% off</button><br>
+                    </td>
+                    <td class="choices">
+                        <ul style="list-style-type:circle;">
+                            <li style="color: rgb(0, 130, 52);"><strong>Good breakfast </strong> included</li>
+                            <li style="color: rgb(0, 130, 52);"><strong>Free cancellation</strong> before 30 January
+                                2025</li>
+                            <li style="color: rgb(0, 130, 52);"><strong>No prepayment needed </strong> – pay at the
+                                property</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€7,041)</option>
+                            <option value="2">2 (€14,083)</option>
+                            <option value="3">3 (€21,124)</option>
+                            <option value="4">4 (€28,166)</option>
+                            <option value="5">5 (€35,207)</option>
+                        </select>
+                    </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr>
+                    <td class="room-type">
+                        <a href="">Executive Suite</a>
+                        <p style="color: rgb(163, 0, 0); font-weight: 700;">Only 1 left on our site</p>
+                        <p>1 extra-large double bed</p>
+                        <p>and 1 sofa bed</p>
+                        <p>This family suite features a living and a bedroom, and is fitted with 1 king-sized bed and a
+                            sofa.</p>
+                        <ul class="amenities">
+                            <li><i class="fas fa-wifi"></i> Free WiFi</li>
+                            <li><i class="fas fa-tv"></i> Flat-screen TV</li>
+                            <li><i class="fas fa-snowflake"></i> Air conditioning</li>
+                            <li><i class="fas fa-bath"></i> Ensuite bathroom</li>
+                        </ul>
+                    </td>
+                    <td class="guest-info"><i class="fa-solid fa-user"></i> <i class="fa-solid fa-user"></i></td>
+                    <td class="price">
+                        <p class="money">€ 9,837</p>
+                        <p class="table-txt">+€ 1,958 taxes and charges</p>
+                    </td>
+                    <td class="choices">
+                        <ul style="list-style-type:circle;">
+                            <li style="color: rgb(0, 130, 52);"><strong>Good breakfast </strong> included</li>
+                            <li style="color: rgb(0, 130, 52);"><strong>Free cancellation</strong> before 30 January
+                                2025</li>
+                            <li style="color: rgb(0, 130, 52);"><strong>No prepayment needed </strong> – pay at the
+                                property</li>
+                        </ul>
+                    </td>
+                    <td class="select-room">
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1 (€9,387)</option>
+                        </select>
                     </td>
                 </tr>
             </tbody>
@@ -371,11 +576,11 @@
         </div>
         <div class="guest-reviews">
             <div class="btn">
-                <button>6.4</button>
+                <button>8.2</button>
             </div>
             <div class="gst-txt">
-                <p id="txt-first">Pleasant -</p>
-                <p id="txt-second">667 reviews</p>
+                <p id="txt-first">Good -</p>
+                <p id="txt-second">2139 reviews</p>
             </div>
         </div>
         <div class="reviews-container">
@@ -386,9 +591,9 @@
                         <span>&darr;</span>
                     </div>
                     <div class="bar-container">
-                        <div class="bar bar-red" style="width: 70%;"></div>
+                        <div class="bar bar-blue" style="width: 88%;"></div>
                     </div>
-                    <div class="value">7.0</div>
+                    <div class="value">8.8</div>
                 </div>
 
                 <div class="category">
@@ -397,9 +602,20 @@
                         <span>&darr;</span>
                     </div>
                     <div class="bar-container">
-                        <div class="bar bar-red" style="width: 64%;"></div>
+                        <div class="bar bar-blue" style="width: 74%;"></div>
                     </div>
-                    <div class="value">6.4</div>
+                    <div class="value">7.5</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">
+                        <span>Cleanliness</span>
+                        <span>&darr;</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar bar-blue" style="width: 81%;"></div>
+                    </div>
+                    <div class="value">8.1</div>
                 </div>
 
                 <div class="category">
@@ -408,9 +624,9 @@
                         <span>&darr;</span>
                     </div>
                     <div class="bar-container">
-                        <div class="bar bar-red" style="width: 69%;"></div>
+                        <div class="bar bar-blue" style="width: 79%;"></div>
                     </div>
-                    <div class="value">6.9</div>
+                    <div class="value">7.9</div>
                 </div>
 
                 <div class="category">
@@ -418,9 +634,9 @@
                         <span>Value for money</span>
                     </div>
                     <div class="bar-container">
-                        <div class="bar bar-blue" style="width: 67%;"></div>
+                        <div class="bar bar-blue" style="width: 87%;"></div>
                     </div>
-                    <div class="value">6.7</div>
+                    <div class="value">8.7</div>
                 </div>
 
                 <div class="category">
@@ -428,9 +644,9 @@
                         <span>Free WiFi</span>
                     </div>
                     <div class="bar-container">
-                        <div class="bar bar-blue" style="width: 77%;"></div>
+                        <div class="bar bar-blue" style="width: 84%;"></div>
                     </div>
-                    <div class="value">7.7</div>
+                    <div class="value">8.4</div>
                 </div>
 
                 <div class="category">
@@ -438,9 +654,9 @@
                         <span>Location</span>
                     </div>
                     <div class="bar-container">
-                        <div class="bar bar-blue" style="width: 84%;"></div>
+                        <div class="bar bar-blue" style="width: 92%;"></div>
                     </div>
-                    <div class="value">8.4</div>
+                    <div class="value">9.2</div>
                 </div>
             </div>
         </div>
@@ -455,15 +671,16 @@
             <div class="ask-first">
                 <ol>
                     <li>
-                        Do they serve breakfast?
+                        Is the swimming pool open?
                         <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Yes, breakfast is served from 7 AM to 10 AM.</p>
+                        <p class="answer">There is a swimming pool at Dorsett Singapore.
+                            It will be open during your stay.</p>
                     </li>
                     <hr>
                     <li>
-                        Can I park there?
+                        Do they serve breakfast?
                         <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Yes, free parking is available on-site.</p>
+                        <p class="answer">Yes, they serve breakfast.</p>
                     </li>
                     <hr>
                     <li>
@@ -479,9 +696,10 @@
                     </li>
                     <hr>
                     <li>
-                        Is the swimming pool open?
+                        Can I park there?
                         <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Yes, the pool is open from 8 AM to 8 PM.</p>
+                        <p class="answer">Public parking is possible at a location nearby (reservation is not needed)
+                            and charges may be applicable.</p>
                     </li>
                 </ol>
             </div>
@@ -489,34 +707,37 @@
             <div class="ask-first">
                 <ol style="list-style-type: upper-roman;">
                     <li>
-                        What are the check-in and check-out times?
-                        <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Check-in is from 3 PM, and check-out is until 11 AM.</p>
-                    </li>
-                    <hr>
-                    <li>
                         What restaurants, attractions, and public transport options are nearby?
                         <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Several restaurants, museums, and a metro station are within walking distance.
-                        </p>
+                        <p class="answer">To find out what’s near Dorsett Singapore, click the link below. <a
+                                href="#hotel-sorroun">See property surroundings</a></p>
                     </li>
                     <hr>
                     <li>
                         Are there rooms with a private bathroom?
                         <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Yes, all rooms come with a private bathroom.</p>
+                        <p class="answer">There are still rooms available with a private bathroom.
+                            For example: Dorsett King Room
+                        </p>
                     </li>
                     <hr>
                     <li>
                         Are there rooms with a hot tub?
                         <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Yes, select suites feature private hot tubs.</p>
+                        <p class="answer">Dorsett Singapore doesn't have rooms with a hot tub..</p>
                     </li>
                     <hr>
                     <li>
                         Is there an airport shuttle service?
                         <span class="arrow">&#x25BC;</span>
-                        <p class="answer">Yes, the hotel provides an airport shuttle service for an additional fee.</p>
+                        <p class="answer">Airport shuttle service is not available at Dorsett Singapore.</p>
+                    </li>
+                    <hr>
+                    <li>
+                        What are the check-in and check-out times?
+                        <span class="arrow">&#x25BC;</span>
+                        <p class="answer">✓ Check-in from 15:00 <br>
+                            ✓ Check-out until 11:00</p>
                     </li>
                 </ol>
             </div>
@@ -532,7 +753,7 @@
 
         <br>
         <div class="gs-btn">
-            <h2 class="h2-size">Hotel surroundings</h2>
+            <h2 class="h2-size" id="hotel-sorroun">Hotel surroundings</h2>
             <button id="gst-btn"><a href="#avb">See Availability</a></button>
         </div>
 
@@ -542,16 +763,16 @@
                 <div>
                     <h3><i class="fas fa-map-marker-alt"></i> What's nearby</h3>
                     <ul>
-                        <li>Golfer Alley <span class="distance">100 m</span></li>
-                        <li>Playground, Somerset <span class="distance">350 m</span></li>
-                        <li>The Drome, the Atrium <span class="distance">400 m</span></li>
-                        <li>Cine Level 2 Running Track <span class="distance">550 m</span></li>
-                        <li>Smoking Area, Hawpar Center <span class="distance">600 m</span></li>
-                        <li>Tempat Berteduh <span class="distance">650 m</span></li>
-                        <li>Travel Club <span class="distance">750 m</span></li>
-                        <li>Funhouse, Orchard <span class="distance">800 m</span></li>
-                        <li>Kidz, Play <span class="distance">950 m</span></li>
-                        <li>Singapore Art Museum <span class="distance">1.2 km</span></li>
+                        <li>Sek Kho Club <span class="distance">100 m</span></li>
+                        <li>Doggu X14 <span class="distance">350 m</span></li>
+                        <li>Kiew Lam Club <span class="distance">400 m</span></li>
+                        <li>Duxton Plain Park <span class="distance">550 m</span></li>
+                        <li>Seng Wee Holdings <span class="distance">600 m</span></li>
+                        <li>Exercise Corner, Duxton Plain Park <span class="distance">650 m</span></li>
+                        <li>Gurney Dog Run <span class="distance">750 m</span></li>
+                        <li>Tsla <span class="distance">800 m</span></li>
+                        <li>Playground, BLK 6 Everton Park <span class="distance">950 m</span></li>
+                        <li>88 Karaoke Pub <span class="distance">1.2 km</span></li>
                     </ul>
                 </div>
 
@@ -559,15 +780,15 @@
                 <div>
                     <h3><i class="fas fa-landmark"></i> Top attractions</h3>
                     <ul>
-                        <li>National Gallery Singapore <span class="distance">2.1 km</span></li>
+                        <li>Singapore City Gallery <span class="distance">2.1 km</span></li>
                         <li>Statue of Sir Stamford Raffles <span class="distance">2.1 km</span></li>
                         <li>Asian Civilisations Museum <span class="distance">2.4 km</span></li>
-                        <li>Singapore City Gallery <span class="distance">3.1 km</span></li>
-                        <li>ArtScience Museum <span class="distance">3.2 km</span></li>
-                        <li>Sands SkyPark Observation Deck <span class="distance">3.4 km</span></li>
+                        <li>National Gallery Singapore <span class="distance">3.1 km</span></li>
+                        <li>Singapore Art Museum <span class="distance">3.2 km</span></li>
+                        <li>ArtScience Museum <span class="distance">3.4 km</span></li>
                         <li>National Orchid Garden <span class="distance">3.7 km</span></li>
                         <li>Cloud Forest <span class="distance">4 km</span></li>
-                        <li>Gardens by the Bay <span class="distance">4 km</span></li>
+                        <li>S.E.A. Aquarium <span class="distance">4 km</span></li>
                     </ul>
                 </div>
 
@@ -1122,7 +1343,7 @@
                 <div class="details">
                     <h4>Cancellation/ prepayment</h4>
                     <p>Cancellation and prepayment policies vary according to accommodation type.
-                        Please <a href="#">enter the dates of your stay</a> and check the conditions of your required
+                        Please <a href="#">enter the dates of your stay</a>, and check the conditions of your required
                         option.</p>
                 </div>
             </div>
@@ -1181,22 +1402,9 @@
 
 
     <footer style=" margin-top: 150px;">
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 
-    <script>
-        const audio = document.getElementById("audio");
-        const audioIcon = document.getElementById("audio-icon");
-        audioIcon.addEventListener("click", function () {
-            audio.play();
-        }); 
-    </script>
     <script src="../script/hotel1.js"></script>
 </body>
 

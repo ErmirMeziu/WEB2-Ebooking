@@ -36,30 +36,18 @@
 
 <body>
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = '/src/script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
 
@@ -99,7 +87,7 @@
         </div>
         <div class="sales-container">
             <div class="sales">
-                <img src="/src/images/cars-destinations/Chicago.webp" alt="destination photo">
+                <img src="../images/cars-destinations/Chicago.webp" alt="destination photo">
                 <div class="offpercent">
                     <h5>Los Angeles</h5>
                     <p>Round-Trip | 3D/4N | 3 Person </p>
@@ -107,7 +95,7 @@
                 </div>
             </div>
             <div class="sales">
-                <img src="/src/images/cars-destinations/France.webp" alt="destination photo">
+                <img src="../images/cars-destinations/France.webp" alt="destination photo">
                 <div class="offpercent">
                     <h5>France</h5>
                     <p>Round-Trip | 3D/4N | 3 Person </p>
@@ -115,7 +103,7 @@
                 </div>
             </div>
             <div class="sales">
-                <img src="/src/images/cars-destinations/United Kingdom.webp" alt="destination photo">
+                <img src="../images/cars-destinations/United Kingdom.webp" alt="destination photo">
                 <div class="offpercent">
                     <h5>United Kingdom</h5>
                     <p>Round-Trip | 3D/4N | 3 Person </p>
@@ -153,7 +141,7 @@
 
                 <div class="badge">600Kms included. After that $15/Kms</div>
                 <div class="card-body">
-                    <a href="carspage1.html" style="text-decoration: none; color: black;">
+                    <a href="carspage1.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">BMW 520d xDrive</div>
                             <p class="paragraph">Sedan | AC | 5 Seats</p>
@@ -194,7 +182,7 @@
                 </div>
                 <div class="badge">600Kms included. After that $15/Kms</div>
                 <div class="card-body">
-                    <a href="carspage2.html" style="text-decoration: none; color: black;">
+                    <a href="carspage2.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Skoda Scala</div>
                             <p class="paragraph">Sedan | AC | 5 Seats</p>
@@ -237,7 +225,7 @@
 
                 <div class="card-body">
 
-                    <a href="carspage3.html" style="text-decoration: none; color: black;">
+                    <a href="carspage3.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">BMW 320d xDrive</div>
                             <p class="paragraph">Sedan | AC | 5 Seats</p>
@@ -281,7 +269,7 @@
                 </div>
                 <div class="badge">600Kms included. After that $15/Kms</div>
                 <div class="card-body">
-                    <a href="carspage4.html" style="text-decoration: none; color: black;">
+                    <a href="carspage4.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Audi A4</div>
                             <p class="paragraph">Sedan | AC | 5 Seats</p>
@@ -321,7 +309,7 @@
                 </div>
                 <div class="badge">600Kms included. After that $15/Kms</div>
                 <div class="card-body">
-                    <a href="carspage5.html" style="text-decoration: none; color: black;">
+                    <a href="carspage5.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Skoda Rapid</div>
                             <p class="paragraph">Sedan | AC | 5 Seats</p>
@@ -361,7 +349,7 @@
                 </div>
                 <div class="badge">600Kms included. After that $15/Kms</div>
                 <div class="card-body">
-                    <a href="carspage6.html" style="text-decoration: none; color: black;">
+                    <a href="carspage6.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Mercedes-Benz GLE 400d</div>
                             <p class="paragraph">SUV | AC | 5 Seats</p>
@@ -408,7 +396,7 @@
                 </div>
                 <div class="badge">600Kms included. After that $15/Kms</div>
                 <div class="card-body">
-                    <a href="carspage7.html" style="text-decoration: none; color: black;">
+                    <a href="carspage7.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">BMW X5 xDrive</div>
                             <p class="paragraph">SUV | AC | 5 Seats</p>
@@ -449,7 +437,7 @@
                 <div class="badge">600Kms included. After that $15/Kms</div>
 
                 <div class="card-body">
-                    <a href="carspage8.html" style="text-decoration: none; color: black;">
+                    <a href="carspage8.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Golf 8</div>
                             <p class="paragraph">Sedan | AC | 5 Seats</p>
@@ -490,7 +478,7 @@
                 <div class="badge">600Kms included. After that $15/Kms</div>
 
                 <div class="card-body">
-                    <a href="carspage9.html" style="text-decoration: none; color: black;">
+                    <a href="carspage9.php" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Audi Q8</div>
                             <p class="paragraph">SUV | AC | 5 Seats</p>
@@ -533,13 +521,7 @@
 
 
     <footer style="margin-top: 50px; background-color: white;">
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 </body>
 

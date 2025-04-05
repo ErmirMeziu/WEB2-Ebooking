@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>GeoTrip - Tour & Travel Booking</title>
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,16 +15,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
-    <script src="script/home.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <link rel="stylesheet" href="styles/home.css">
     <link rel="stylesheet" href="styles/login-register.css">
-
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 
+    <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
+    <script src="script/home.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
         .home-text {
@@ -43,30 +41,18 @@
 <body>
 
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = 'script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
 
@@ -110,31 +96,45 @@
             </div>
         </div>
 
+        <?php
+        $offers = [
+            [
+                "title" => "30% Off On Summer <br> Vacation",
+                "discount" => 30,
+                "image" => "images/adds/destination-sales.webp"
+            ],
+            [
+                "title" => "20% Off On Domestic <br> Holiday",
+                "discount" => 20,
+                "image" => "images/adds/destination-sales.webp"
+            ],
+            [
+                "title" => "40% Off On Winter <br> Vacation",
+                "discount" => 40,
+                "image" => "images/adds/destination-sales.webp  "
+            ]
+        ];
+
+        usort($offers, function ($a, $b) {
+            return $b['discount'] <=> $a['discount'];
+        });
+        ?>
+
         <div class="sales-container">
-            <div class="sales">
-                <div class="image">
-                    <img src="images/adds/destination-sales.webp" alt="destination photo" width="80" height="80" ;>
+            <?php foreach ($offers as $offer): ?>
+                <div class="sales">
+                    <div class="image">
+                        <img src="<?= $offer['image'] ?>" alt="destination photo" width="80" height="80">
+                    </div>
+                    <div class="offpercent">
+                        <h4><?= $offer['title'] ?></h4>
+                        <p><small>Valid 31 March 2025</small></p>
+                    </div>
                 </div>
-                <div class="offpercent">
-                    <h4>30% Off On Summer <br> Vacation</h4>
-                    <p><small>Valid 31 March 2025</small></p>
-                </div>
-            </div>
-            <div class="sales">
-                <div class="image"><img src="images/adds/destination-sales.webp" alt="destination photo"></div>
-                <div class="offpercent">
-                    <h4>20% Off On Domestic <br> Holiday</h4>
-                    <p><small>Valid 31 March 2025</small></p>
-                </div>
-            </div>
-            <div class="sales">
-                <div class="image"><img src="images/adds/destination-sales.webp" alt="destination photo"></div>
-                <div class="offpercent">
-                    <h4>40% Off On Winter <br> Vacation</h4>
-                    <p><small>Valid 31 March 2025</small></p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
+
+
     </section>
     <section class="destinations">
         <div class="top">
@@ -487,13 +487,7 @@
     </abbr>
 
     <footer>
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 
 </body>

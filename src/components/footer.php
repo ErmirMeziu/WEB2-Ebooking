@@ -1,6 +1,6 @@
 <div class="footer-container">
     <div class="footer-section">
-        <img src="/src/images/footer-photos/logo.webp" alt="">
+        <img src="/WEB2-Ebooking/src/images/footer-photos/logo.webp" alt="">
         <p>We make your dream more beautiful & enjoyable with lots of happiness.</p>
         <div class="social-links">
             <a href=""><i class='bx bxl-facebook-circle'></i></a>
@@ -44,18 +44,18 @@
     <div class="footer-section">
         <h3>Payment Methods</h3>
         <div class="paymentmethods">
-            <img src="/src/images/footer-photos/payment.webp" alt="">
+            <img src="/WEB2-Ebooking/src/images/footer-photos/payment.webp" alt="">
         </div>
         <h3>Our Partners</h3>
         <div class="ourpartners">
             <div class="partner1">
-                <a><img src="/src/images/footer-photos/mytrip.webp" alt=""></a>
+                <a><img src="/WEB2-Ebooking/src/images/footer-photos/mytrip.webp" alt=""></a>
             </div>
             <div class="partner1">
-                <a><img src="/src/images/footer-photos/tripadv.webp" alt=""></a>
+                <a><img src="/WEB2-Ebooking/src/images/footer-photos/tripadv.webp" alt=""></a>
             </div>
             <div class="partner1">
-                <a><img src="/src/images/footer-photos/goibibo.webp" alt=""></a>
+                <a><img src="/WEB2-Ebooking/src/images/footer-photos/goibibo.webp" alt=""></a>
             </div>
         </div>
     </div>
@@ -64,7 +64,6 @@
 <div class="footer-bottom">
     <div class="copy"> &copy; <u>2024 GeoTrip. Design by GeoTrip </u></div>
     <div class="Terms">
-        <a href="#">Terms of Service</a><a href="#">Privacy
-            Policy</a><a href="#">Cookies</a>
+        <a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookies</a>
     </div>
 </div>

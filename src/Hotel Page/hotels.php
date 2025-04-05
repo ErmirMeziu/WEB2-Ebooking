@@ -36,41 +36,29 @@
 <body class="body">
 
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = '/src/script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
 
     <div style="position: relative;" style="width: 100%; height: 100%;">
         <div class="page-container">
             <div class="sidebar">
-                <a href="/src/index.html"><i class="fa-solid fa-hotel icon"></i>Home</a>
-                <a href="/src/Hotel Page/hotels.html" style="color: rgb(215, 44, 33);"><i
+                <a href="/WEB2-Ebooking/src/index.php"><i class="fa-solid fa-hotel icon"></i>Home</a>
+                <a href="/WEB2-Ebooking/src/Hotel Page/hotels.php" style="color: rgb(215, 44, 33);"><i
                         class="fa-solid fa-hotel icon"></i>Hotels</a>
-                <a href="/src/Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a>
-                <a href="/src/AboutUs.html"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
+                <a href="/WEB2-Ebooking/src/Cars-Page/cars.php"><i class="fa-solid fa-car icon"></i>Cars</a>
+                <a href="/WEB2-Ebooking/src/AboutUs.php"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
             </div>
         </div>
     </div>
@@ -271,7 +259,7 @@
                 <div class="box">
                     <div class="section2">
                         <div class="hotel-img">
-                            <a href="hotel Chancellor.html" target="_blank"><img src="../images/hotel-photo/hotel-1.jpg"
+                            <a href="hotel Chancellor.php" target="_blank"><img src="../images/hotel-photo/hotel-1.jpg"
                                     alt="Picture of hotel"></a>
                         </div>
                         <div class="hotel-text">
@@ -327,7 +315,7 @@
                 <div class="box">
                     <div class="section2">
                         <div class="hotel-img">
-                            <a href="hotel Dorsett.html" target="_blank"><img src="../images/hotel-photo/hotel-2.jpg"
+                            <a href="hotel Dorsett.php" target="_blank"><img src="../images/hotel-photo/hotel-2.jpg"
                                     alt="Hotel"></a>
                         </div>
                         <div class="hotel-text">
@@ -393,8 +381,8 @@
                 <div class="box">
                     <div class="section2">
                         <div class="hotel-img">
-                            <a href="hotel royal plaza.html" target="_blank"><img
-                                    src="../images/hotel-photo/hotel-3.jpg" alt="Hotel"></a>
+                            <a href="hotel royal plaza.php" target="_blank"><img src="../images/hotel-photo/hotel-3.jpg"
+                                    alt="Hotel"></a>
                         </div>
                         <div class="hotel-text">
                             <div class="star">
@@ -448,7 +436,7 @@
                 <div class="box">
                     <div class="section2">
                         <div class="hotel-img">
-                            <a href="siloso beach resort.html" target="_blank"><img
+                            <a href="siloso beach resort.php" target="_blank"><img
                                     src="../images/hotel-photo/hotel-4.jpg" alt="Hotel"></a>
                         </div>
                         <div class="hotel-text">
@@ -996,13 +984,7 @@
     </section>
 
     <footer style=" margin-top: 150px;">
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 </body>
 

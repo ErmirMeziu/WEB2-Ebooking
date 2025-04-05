@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="../styles/login-register.css">
 
     <script src="../script/cars-page.js" defer></script>
-    <script src="../script/login-register.js" defer></script>
 
     <style>
         #cars {
@@ -41,33 +40,20 @@
 <body>
 
     <header>
-        <script>
-            fetch('/src/components/navbar.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('header').innerHTML = data;
-
-
-                });
-        </script>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <script>
-            fetch('/src/components/login_register.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('all').innerHTML = data;
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
 
-                    setTimeout(() => {
-                        const script = document.createElement('script');
-                        script.src = 'script/login-register.js';
-                        document.body.appendChild(script);
-                    }, 50);
-                });
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 50);
         </script>
     </section>
-
 
     <div class="container15">
         <div class="pick">
@@ -94,24 +80,32 @@
     <br>
     <hr style="background-color: gray;height: 3px;">
     <div class="price4">
-        <h1>BMW X5 xDrive</h1>
-        <h1><span id="dailyCost">230.00</span>€ / <span style="color: orange;">DAY</span></h1>
+        <h1>BMW 520d xDrive</h1>
+        <h1><span id="dailyCost">300.00</span>€ / <span style="color: orange;">DAY</span></h1>
     </div>
+
+
+    <div class="video-overlay"></div>
+    <div class="video">
+        <video width="100%" height="100%" controls>
+            <source src="../Video/bmw520d.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
 
     <section class="all">
         <div class="container20">
             <div class="slide20">
-                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-1.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/bmw-520d/bmw-520d1.jpg);">
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-2.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/bmw-520d/bmw-520d2.jpg);">
 
                 </div>
-                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-3.jpg);">
+                <div class="item" style="background-image: url(../images/Cars/bmw-520d/bmw-520d3.jpg);"> </div>
 
-                </div>
-                <div class="item" style="background-image: url(../images/Cars/bmwX5/bmwX5-2.jpg);">
-
-                </div>
+                <div class="item" style="background-image: url(../images/Cars/bmw-520d/bmw-520d2.jpg);"> </div>
             </div>
             <div class="button">
                 <button class="prev2"><i class="fa-solid fa-arrow-left"></i></button>
@@ -135,45 +129,62 @@
             </div>
             <div class="Capacity">
                 <h3>Capacity</h3>
-                <p><i class="fa-solid fa-person" style="margin-right: 17px;"></i>5 Passengers</p>
+                <p><i class="fa-solid fa-person" style="margin-right: 17px;"></i> 5 Passengers</p>
                 <p><i class="fa-solid fa-suitcase" style="margin-right: 15px;"></i>2 Suitcase</p>
             </div>
             <div class="Extra">
                 <h3>Extra</h3>
+
                 <div class="extra-button">
                     <button class="airbag">Airbag</button>
                     <button class="bluetooth">Bluetooth</button>
-                    <button class="radio">Radio</button>
-                    <button class="Air_Condition">Air Condition</button>
+
                 </div>
                 <div class="rezervo">
                     <p>Press the button to book it!</p>
                     <button class="btnrezervo" onclick="rezervo()">Book Now</button>
+                    <button class="video-watch">More about car</button>
                 </div>
                 <div id="modal" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal()">&times;</span>
-                        <h2>
-                            Booking completed successfully!</h2>
+                        <h2>Booking completed successfully!</h2>
                         <p>Thank you for booking.</p>
                         <button class="btn-ok" onclick="closeModal()">OK</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <footer style="margin-top: 100px;">
-        <script>
-            fetch('/src/components/footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.querySelector('footer').innerHTML = data;
-                });
-        </script>
-    </footer>
+    <canvas class="canva" id="xCanvas" width="20" height="20"></canvas>
 
+    <script>
+        const canvas = document.getElementById('xCanvas');
+        const ctx = canvas.getContext('2d');
+
+        ctx.strokeStyle = '#c4291d';
+        ctx.lineWidth = 2;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.beginPath();
+        ctx.moveTo(5, 5);
+        ctx.lineTo(20, 20);
+        ctx.stroke();
+
+
+        ctx.beginPath();
+        ctx.moveTo(20, 5);
+        ctx.lineTo(5, 20);
+        ctx.stroke();
+    </script>
+
+
+
+    <footer style="margin-top: 100px;">
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
+    </footer>
 </body>
 
 </html>
