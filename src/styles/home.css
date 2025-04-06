@@ -673,7 +673,7 @@ button {
 
 .card-details {
     display: flex;
-    gap: 8px;
+    gap: 5px;
     margin-bottom: 15px;
 
 }
@@ -683,7 +683,7 @@ button {
 }
 
 .detail {
-    padding: 5px 10px;
+    padding: 5px 5px;
     font-size: 14px;
     border-radius: 5px;
 

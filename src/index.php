@@ -125,15 +125,15 @@
 
         <div class="sales-container">
             <?php foreach ($offers as $offer): ?>
-                    <div class="sales">
-                        <div class="image">
-                            <img src="<?= $offer->imagePath ?>" alt="destination photo" width="80" height="80">
-                        </div>
-                        <div class="offpercent">
-                            <h4><?= $offer->title ?></h4>
-                            <p><small><?= $offer->valid ?></small></p>
-                        </div>
+                <div class="sales">
+                    <div class="image">
+                        <img src="<?= $offer->imagePath ?>" alt="destination photo" width="80" height="80">
                     </div>
+                    <div class="offpercent">
+                        <h4><?= $offer->title ?></h4>
+                        <p><small><?= $offer->valid ?></small></p>
+                    </div>
+                </div>
             <?php endforeach; ?>
         </div>
     </section>
@@ -395,34 +395,34 @@
         <div class="cars">
 
             <?php foreach ($cars as $car): ?>
-                    <div class="card5">
-                        <div style="height: 50%">
-                            <img src="<?= $car->imagePath ?>" alt="">
-                        </div>
+                <div class="card5">
+                    <div style="height: 50%">
+                        <img src="<?= $car->imagePath ?>" alt="">
+                    </div>
 
-                        <div class="card-body">
-                            <div>
-                                <div class="card-title"><?= $car->name ?></div>
-                                <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
-                                <div class="card-details">
-                                    <div class="detail"><?= $car->details[0] ?></div>
-                                    <div class="detail"><?= $car->details[1] ?></div>
-                                    <div class="detail"><?= $car->details[2] ?></div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-title"><?= $car->name ?></div>
+                            <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
+                            <div class="card-details">
+                                <div class="detail"><?= $car->details[0] ?></div>
+                                <div class="detail"><?= $car->details[1] ?></div>
+                                <div class="detail"><?= $car->details[2] ?></div>
+                            </div>
+                            <div class="price-section">
+                                <div class="price-section2">
+                                    <div class="discount"><?= $car->discount ?>% Off</div>
+                                    <div class="price" style="font-size: 18px;"> US$<?= $car->price ?> <span
+                                            class="old-price">US$<?= $car->oldPrice ?></span></div>
                                 </div>
-                                <div class="price-section">
-                                    <div class="price-section2">
-                                        <div class="discount"><?= $car->discount ?>% Off</div>
-                                        <div class="price"> US$<?= $car->price ?> <span
-                                                class="old-price">US$<?= $car->oldPrice ?></span></div>
-                                    </div>
-                                    <div class="rating">
-                                        <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
-                                        <div class="score"><?= $car->reviewScore ?></div>
-                                    </div>
+                                <div class="rating">
+                                    <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
+                                    <div class="score"><?= $car->reviewScore ?></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
             <?php endforeach; ?>
 
