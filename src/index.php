@@ -59,10 +59,10 @@
     <div style="position: relative;" style="width: 100%; height: 100%;">
         <div class="page-container">
             <div class="sidebar">
-                <a href="index.html" style="color: rgb(215, 44, 33);"><i class="fa-solid fa-hotel icon"></i>Home</a>
-                <a href="/src/Hotel Page/hotels.html"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
-                <a href="Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a>
-                <a href="AboutUs.html"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
+                <a href="index.php" style="color: rgb(215, 44, 33);"><i class="fa-solid fa-hotel icon"></i>Home</a>
+                <a href="/Hotel Page/hotels.php"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
+                <a href="Cars-Page/cars.php"><i class="fa-solid fa-car icon"></i>Cars</a>
+                <a href="AboutUs.php"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
             </div>
         </div>
     </div>
@@ -97,214 +97,58 @@
         </div>
 
         <?php
+        class VacationDiscount
+        {
+            public $title;
+            public $discountPercentage;
+            public $imagePath;
+            public $valid;
+
+            public function __construct($title, $discountPercentage, $imagePath, $valid)
+            {
+                $this->title = $title;
+                $this->discountPercentage = $discountPercentage;
+                $this->imagePath = $imagePath;
+                $this->valid = $valid;
+            }
+        }
         $offers = [
-            [
-                "title" => "30% Off On Summer <br> Vacation",
-                "discount" => 30,
-                "image" => "images/adds/destination-sales.webp"
-            ],
-            [
-                "title" => "20% Off On Domestic <br> Holiday",
-                "discount" => 20,
-                "image" => "images/adds/destination-sales.webp"
-            ],
-            [
-                "title" => "40% Off On Winter <br> Vacation",
-                "discount" => 40,
-                "image" => "images/adds/destination-sales.webp  "
-            ]
+            new VacationDiscount("30% Off On Summer <br> Vacation", 30, "images/adds/destination-sales.webp", "Valid 31 March 2025"),
+            new VacationDiscount("20% Off On Domestic <br> Holiday", 20, "images/adds/destination-sales.webp", "Valid 31 March 2025"),
+            new VacationDiscount("40% Off On Winter <br> Holiday", 40, "images/adds/destination-sales.webp", "Valid 31 March 2025")
         ];
 
         usort($offers, function ($a, $b) {
-            return $b['discount'] <=> $a['discount'];
+            return $b->discountPercentage > $a->discountPercentage;
         });
         ?>
 
         <div class="sales-container">
             <?php foreach ($offers as $offer): ?>
-                <div class="sales">
-                    <div class="image">
-                        <img src="<?= $offer['image'] ?>" alt="destination photo" width="80" height="80">
+                    <div class="sales">
+                        <div class="image">
+                            <img src="<?= $offer->imagePath ?>" alt="destination photo" width="80" height="80">
+                        </div>
+                        <div class="offpercent">
+                            <h4><?= $offer->title ?></h4>
+                            <p><small><?= $offer->valid ?></small></p>
+                        </div>
                     </div>
-                    <div class="offpercent">
-                        <h4><?= $offer['title'] ?></h4>
-                        <p><small>Valid 31 March 2025</small></p>
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
-
-
     </section>
-    <section class="destinations">
-        <div class="top">
-            <h4>Explore Top Domestic Routes</h4>
-            <a href="Flights Page/flights.html">
-                <button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
-            </a>
-        </div>
-        <div class="routes">
-            <div class="routes-same responsive">
-                <div class="routes-image">
-                    <img src="images/routes/tr-1.webp" alt="New York">
-                </div>
-                <div class="bottom">
-                    <div class="directions">
-                        <h4>New York <i class="fa-solid fa-arrow-right-arrow-left"></i> Los Angeles</h4>
-                        <p>Round trip | 3 days</p>
-                    </div>
-                    <div class="cost">
-                        <p>From</p>
-                        <h5>US$492</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="routes-same responsive">
-                <div class="routes-image">
-                    <img src="images/routes/tr-2.webp" alt="New Orleans">
-                </div>
-                <div class="bottom">
-                    <div class="directions">
-                        <h4>New Orleans <i class="fa-solid fa-arrow-right-arrow-left"></i> Long Beach</h4>
-                        <p>Round trip | 3 days</p>
-                    </div>
-                    <div class="cost">
-                        <p>From</p>
-                        <h5>US$492</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="routes-same responsive">
-                <div class="routes-image">
-                    <img src="images/routes/tr-3.webp" alt="Jacksonville">
-                </div>
-                <div class="bottom">
-                    <div class="directions">
-                        <h4>Jacksonville <i class="fa-solid fa-arrow-right-arrow-left"></i> San Antonio</h4>
-                        <p>Round trip | 3 days</p>
-                    </div>
-                    <div class="cost">
-                        <p>From</p>
-                        <h5>US$492</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="routes-different routes-different-image responsive">
-                <img src="images/routes/tr-4.webp" alt="Discover deals">
-                <h4>
-                    Discover great deals on hotels around the world <br>
-                    <a href="Flights Page/flights.html"><button>Go Now</button></a>
-                </h4>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="top">
-            <h4>Browse Popular Destinations</h4>
-            <button>More<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
 
-        </div>
-        <div class="container4">
-            <div class="card1 responsive">
-                <img src="images/destinations/Los Angelos.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-
-                        <h2>Los Angeles</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card1 responsive">
-                <img src="images/destinations/Chicago.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-                        <h2>Chicago</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card1 responsive">
-                <img src="images/destinations/Las Vegas.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-                        <h2>Las Vegas</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card1 responsive">
-
-                <img src="images/destinations/New Orleans.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-                        <h2>New Orleans</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="app">
-        <nav class="app-container">
-            <nav class="left">
-                <nav class="download">
-                    <img src="images/download-photo/app-link.png" style="width: 60px; height: 60px;" alt=""
-                        id="downloaded">
-                    <nav class="download-app">
-                        <h4><mark style="background-color: rgb(255,230,229);">Download App Now!</mark></h4>
-                        <p>Use code <span style="color: orangered;">WELCOME</span> and get <span
-                                style="color: rgb(69,171,118);">FLAT 20%</span>
-                            OFF on your first<br>domestic flight booking</p>
-                    </nav>
-                </nav>
-                <nav class="mobile">
-                    <form action="" method="post">
-                        <label for="mobile-number">+91 - </label>
-                        <input type="text" name="mobile-number" id="mobile-number" placeholder="Enter Mobile Number">
-                    </form>
-                    <button>Get App Link</button>
-                </nav>
-            </nav>
-            <nav class="right">
-                <nav class="playstore">
-                    <i class="fa-brands fa-google-play text-light fs-1"></i>
-                    <nav class="same">
-                        <p class="pragraph" style="color: #cacee4; font-weight: 500">GET IT ON </p>
-                        <p>Google Play</span></p>
-                    </nav>
-                </nav>
-                <nav class="appstore">
-                    <i class="fa-brands fa-apple text-light fs-1"></i>
-                    <nav class="same">
-                        <p class="pragraph" style="color: #cacee4; font-weight: 500;">DOWNLOAD ON THE </p>
-                        <p>App Store</p>
-                    </nav>
-                </nav>
-            </nav>
-        </nav>
-    </section>
     <section class="rental">
         <div class="top">
             <h4>Featured Rental In Australia</h4>
-            <a href="Hotel Page/hotels.html"><button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button></a>
+            <a href="Hotel Page/hotels.php"><button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button></a>
         </div>
-        <div id="card-container" class="card-container" style="color: rgb(5,38,78); height: auto;">
+        <div id="card-container" class="card-container" style="color: rgb(5,38,78); height: 450px;">
             <div class="card-different responsive">
                 <img src="images/property/property-different.png" alt="Jackson ville">
                 <h4>
                     Discover great deals on hotels around the world <br>
-                    <a href="Hotel Page/hotels.html"><button>Go Now</button></a>
+                    <a href="Hotel Page/hotels.php"><button>Go Now</button></a>
                 </h4>
             </div>
             <div class="card responsive">
@@ -404,6 +248,194 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section>
+        <div class="top">
+            <h4>Browse Popular Destinations</h4>
+            <button>More<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+
+        </div>
+        <div class="container4">
+            <div class="card1 responsive">
+                <img src="images/destinations/Los Angelos.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+
+                        <h2>Los Angeles</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card1 responsive">
+                <img src="images/destinations/Chicago.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+                        <h2>Chicago</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card1 responsive">
+                <img src="images/destinations/Las Vegas.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+                        <h2>Las Vegas</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card1 responsive">
+
+                <img src="images/destinations/New Orleans.webp" alt="">
+                <div class="container2">
+                    <div class="text1">
+                        <h2>New Orleans</h2>
+                    </div>
+                    <div class="button3">
+                        <button>Discover</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="app">
+        <nav class="app-container">
+            <nav class="left">
+                <nav class="download">
+                    <img src="images/download-photo/app-link.png" style="width: 60px; height: 60px;" alt=""
+                        id="downloaded">
+                    <nav class="download-app">
+                        <h4><mark style="background-color: rgb(255,230,229);">Download App Now!</mark></h4>
+                        <p>Use code <span style="color: orangered;">WELCOME</span> and get <span
+                                style="color: rgb(69,171,118);">FLAT 20%</span>
+                            OFF on your first<br>domestic flight booking</p>
+                    </nav>
+                </nav>
+                <nav class="mobile">
+                    <form action="" method="post">
+                        <label for="mobile-number">+91 - </label>
+                        <input type="text" name="mobile-number" id="mobile-number" placeholder="Enter Mobile Number">
+                    </form>
+                    <button>Get App Link</button>
+                </nav>
+            </nav>
+            <nav class="right">
+                <nav class="playstore">
+                    <i class="fa-brands fa-google-play text-light fs-1"></i>
+                    <nav class="same">
+                        <p class="pragraph" style="color: #cacee4; font-weight: 500">GET IT ON </p>
+                        <p>Google Play</span></p>
+                    </nav>
+                </nav>
+                <nav class="appstore">
+                    <i class="fa-brands fa-apple text-light fs-1"></i>
+                    <nav class="same">
+                        <p class="pragraph" style="color: #cacee4; font-weight: 500;">DOWNLOAD ON THE </p>
+                        <p>App Store</p>
+                    </nav>
+                </nav>
+            </nav>
+        </nav>
+    </section>
+
+    <section class="destinations">
+        <?php
+        class Car
+        {
+            public $imagePath;
+            public $name;
+            public $type;
+            public $numberOfSeats;
+            public $details;
+            public $discount;
+            public $price;
+            public $oldPrice;
+            public $numberOfReviews;
+            public $reviewScore;
+
+            public function __construct($imagePath, $name, $type, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore)
+            {
+                $this->imagePath = $imagePath;
+                $this->name = $name;
+                $this->type = $type;
+                $this->numberOfSeats = $numberOfSeats;
+                $this->details = $details;
+                $this->discount = $discount;
+                $this->oldPrice = $oldPrice;
+                $this->price = $oldPrice - $discount / 100 * $oldPrice;
+
+                $this->numberOfReviews = $numberOfReviews;
+                $this->reviewScore = $reviewScore;
+            }
+        }
+
+        $cars = [
+            new Car("images/Cars/audiQ8/audiQ8-1.jpg", "Audi Q8", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 12, 450, 3219, 4.8),
+            new Car("images/Cars/bmw-520d/bmw-520d1.jpg", "BMW 520d xDrive", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 19, 370, 3014, 4.9),
+            new Car("images/Cars/gle400d/gle400D1.jpg", "Mercedes-Benz GLE 400d", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 20, 435, 3014, 4.4),
+        ]
+            ?>
+
+
+        <div class="top">
+            <h4>Featured Rental Cars</h4>
+            <a href="Cars-Page/cars.php">
+                <button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+            </a>
+        </div>
+        <div class="cars">
+
+            <?php foreach ($cars as $car): ?>
+                    <div class="card5">
+                        <div style="height: 50%">
+                            <img src="<?= $car->imagePath ?>" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <div>
+                                <div class="card-title"><?= $car->name ?></div>
+                                <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
+                                <div class="card-details">
+                                    <div class="detail"><?= $car->details[0] ?></div>
+                                    <div class="detail"><?= $car->details[1] ?></div>
+                                    <div class="detail"><?= $car->details[2] ?></div>
+                                </div>
+                                <div class="price-section">
+                                    <div class="price-section2">
+                                        <div class="discount"><?= $car->discount ?>% Off</div>
+                                        <div class="price"> US$<?= $car->price ?> <span
+                                                class="old-price">US$<?= $car->oldPrice ?></span></div>
+                                    </div>
+                                    <div class="rating">
+                                        <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
+                                        <div class="score"><?= $car->reviewScore ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            <?php endforeach; ?>
+
+
+            <div class="routes-different routes-different-image responsive">
+                <img src="images/routes/tr-4.webp" alt="Discover deals">
+                <h4>
+                    Discover great deals on cars around the world <br>
+                    <a href="Cars-Page/cars.php"><button>Go Now</button></a>
+                </h4>
+            </div>
+
+
     </section>
 
     <section class="international-routes-container ">
