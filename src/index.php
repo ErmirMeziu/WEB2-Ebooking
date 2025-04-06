@@ -380,7 +380,7 @@
 
         $cars = [
             new Car("images/Cars/audiQ8/audiQ8-1.jpg", "Audi Q8", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 12, 450, 3219, 4.8),
-            new Car("images/Cars/bmw-520d/bmw-520d1.jpg", "BMW 520d xDrive", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 19, 370, 3014, 4.9),
+            new Car("images/Cars/bmw-520d/bmw-520d1.jpg", "BMW 520d xDrive", "SUV", 4, ["Automatic", "1 Large bag", "1 Small bag"], 19, 370, 3014, 4.9),
             new Car("images/Cars/gle400d/gle400D1.jpg", "Mercedes-Benz GLE 400d", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 20, 435, 3014, 4.4),
         ]
             ?>
@@ -405,9 +405,9 @@
                             <div class="card-title"><?= $car->name ?></div>
                             <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
                             <div class="card-details">
-                                <div class="detail"><?= $car->details[0] ?></div>
-                                <div class="detail"><?= $car->details[1] ?></div>
-                                <div class="detail"><?= $car->details[2] ?></div>
+                            <?php foreach ($car->details as $detail): ?>
+                                <div class="detail"><?= $detail ?></div>
+                            <?php endforeach; ?>
                             </div>
                             <div class="price-section">
                                 <div class="price-section2">
@@ -434,8 +434,7 @@
                     <a href="Cars-Page/cars.php"><button>Go Now</button></a>
                 </h4>
             </div>
-
-
+            </div>
     </section>
 
     <section class="international-routes-container ">

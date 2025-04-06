@@ -1063,7 +1063,8 @@ body {
 
     .card-container,
     .container4,
-    .routes {
+    .routes,
+    .cars {
         grid-template-columns: repeat(2, 1fr) !important;
         width: 75% !important;
         height: auto !important;
@@ -1127,6 +1128,7 @@ body {
     .container4,
     .sales-container,
     .routes,
+    .cars,
     .international-routes {
         width: 73% !important;
         grid-template-columns: repeat(2, 1fr) !important;
@@ -1220,7 +1222,8 @@ body {
     .container4,
     .sales-container,
     .international-routes,
-    .routes {
+    .routes,
+    .cars {
         display: flex;
         width: 65% !important;
         flex-direction: column !important;
@@ -1317,7 +1320,8 @@ body {
     .container4,
     .sales-container,
     .international-routes,
-    .routes {
+    .routes,
+    .cars {
         width: 80% !important;
     }
 
