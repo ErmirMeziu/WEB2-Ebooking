@@ -209,6 +209,14 @@ input, button {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2%;
     width: 87%;
+    padding-top: 90px;
+}
+.container12memshef {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2%;
+    width: 87%;
+    padding-top: 138px;
 }
 
 .card5 {
@@ -360,6 +368,7 @@ input, button {
 .button-class {
     background-color: #f5f5f5;
     height: auto;
+    padding-top: 50px;
     padding-bottom: 30px;
 }
 
@@ -375,7 +384,7 @@ input, button {
     margin: auto;
     color: white;
     cursor: pointer;
-    margin-top: 56px;
+    /* padding-top: 56px; */
     margin-bottom: 20px;
 }
 

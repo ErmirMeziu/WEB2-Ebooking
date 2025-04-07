@@ -150,14 +150,12 @@
         new Car(
             ["../images/Cars/gle400d/gle400D1.jpg", "../images/Cars/gle400d/gle400D2.jpg", "../images/Cars/gle400d/gle400D3.jpg"],"Mercedes-Benz GLE 400d", "SUV", 5,["Automatic", "1 Large bag", "1 Small bag", "Diesel"],20, 435, 3014, 4.4, "carspage6.php"
         )
-     
     ];
-
     ?>
 
     <section class="BH" style="margin-top: -70px;">
         <div class="container12 goTop">
-            <?php foreach ($cars as $car): ?>
+            <?php foreach ($cars as $index => $car): ?>
                 <div class="card5">
                     <div class="slider">
                         <div class="slides">
@@ -170,7 +168,7 @@
                     </div>
                     <div class="badge">600Kms included. After that $15/Kms</div>
                     <div class="card-body">
-                        <a href="<?= $car->link ?>" style="text-decoration: none; color: black;">
+                        <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
                             <div>
                                 <div class="card-title"><?= $car->name ?></div>
                                 <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
@@ -201,7 +199,7 @@
     </section>
     
     <section class="mimshef">
-        <div class="container12">
+        <div class="container12memshef">
             <div class="card5">
                 <div class="slider">
                     <div class="slides">
@@ -214,7 +212,7 @@
                 </div>
                 <div class="badge">600Kms included. After that $15/Kms</div>
                 <div class="card-body">
-                    <a href="carspage7.php" style="text-decoration: none; color: black;">
+                    <a href="cardetails.php?id=6" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">BMW X5 xDrive</div>
                             <p class="paragraph">SUV | AC | 5 Seats</p>
@@ -255,7 +253,7 @@
                 <div class="badge">600Kms included. After that $15/Kms</div>
 
                 <div class="card-body">
-                    <a href="carspage8.php" style="text-decoration: none; color: black;">
+                    <a href="cardetails.php?id=7" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Golf 8</div>
                             <p class="paragraph">Sedan | AC | 5 Seats</p>
@@ -296,7 +294,7 @@
                 <div class="badge">600Kms included. After that $15/Kms</div>
 
                 <div class="card-body">
-                    <a href="carspage9.php" style="text-decoration: none; color: black;">
+                    <a href="cardetails.php?id=8" style="text-decoration: none; color: black;">
                         <div>
                             <div class="card-title">Audi Q8</div>
                             <p class="paragraph">SUV | AC | 5 Seats</p>
