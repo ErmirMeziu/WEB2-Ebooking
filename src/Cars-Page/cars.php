@@ -94,16 +94,11 @@
         </h1>
         <p>Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
     </div>
-    <section style="background-color: #f5f5f5;">
-        <div class="filter-section">
-            <button id="filterAvailableBtn">Show Available Cars</button>
-        </div>
-    </section>
     <?php
 
     class Car
     {
-        public $imagePaths;  
+        public $imagePaths;
         public $name;
         public $type;
         public $numberOfSeats;
@@ -113,9 +108,8 @@
         public $price;
         public $numberOfReviews;
         public $reviewScore;
-        public $link;
 
-        public function __construct($imagePaths, $name, $type, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore, $link)
+        public function __construct($imagePaths, $name, $type, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore)
         {
             $this->imagePaths = $imagePaths;
             $this->name = $name;
@@ -127,33 +121,119 @@
             $this->price = $oldPrice - ($discount / 100 * $oldPrice);
             $this->numberOfReviews = $numberOfReviews;
             $this->reviewScore = $reviewScore;
-            $this->link = $link;
         }
     }
 
     $cars = [
         new Car(
-            ["../images/Cars/bmw-520d/bmw-520d1.jpg", "../images/Cars/bmw-520d/bmw-520d2.jpg", "../images/Cars/bmw-520d/bmw-520d3.jpg"],"BMW 520d xDrive","Sedan",5,["Automatic", "1 Large bag", "1 Small bag", "Benzin"],19,320,3014,4.9,"carspage1.php"
+            ["../images/Cars/bmw-520d/bmw-520d1.jpg", "../images/Cars/bmw-520d/bmw-520d2.jpg", "../images/Cars/bmw-520d/bmw-520d3.jpg"],
+            "BMW 520d xDrive",
+            "Sedan",
+            5,
+            ["Automatic", "1 Large bag", "1 Small bag", "Benzin"],
+            19,
+            320,
+            3014,
+            4.9,
         ),
         new Car(
-            ["../images/Cars/skoda-skala/skoda-skala1.jpg", "../images/Cars/skoda-skala/skoda-skala2.jpg", "../images/Cars/skoda-skala/skoda-skala3.jpg"],"Skoda Scala","Sedan",5,["Automatic", "1 Large bag", "2 Small bags", "Diesel"],20,80,3014, 4.8,"carspage2.php"
+            ["../images/Cars/skoda-skala/skoda-skala1.jpg", "../images/Cars/skoda-skala/skoda-skala2.jpg", "../images/Cars/skoda-skala/skoda-skala3.jpg"],
+            "Skoda Scala",
+            "Sedan",
+            5,
+            ["Automatic", "1 Large bag", "2 Small bags", "Diesel"],
+            20,
+            80,
+            3014,
+            "4.5"
         ),
         new Car(
-            ["../images/Cars/bmw-320d/bmw320d1.jpg", "../images/Cars/bmw-320d/bmw320d2.jpg", "../images/Cars/bmw-320d/bmw320d3.jpg"],"BMW 320d xDrive","Sedan",5,["Automatic", "1 Large bag", "3 Small bags", "Diesel"],30,140,3014,4.7,"carspage3.php"
+            ["../images/Cars/bmw-320d/bmw320d1.jpg", "../images/Cars/bmw-320d/bmw320d2.jpg", "../images/Cars/bmw-320d/bmw320d3.jpg"],
+            "BMW 320d xDrive",
+            "Sedan",
+            5,
+            ["Automatic", "1 Large bag", "3 Small bags", "Diesel"],
+            30,
+            140,
+            3014,
+            4.7,
         ),
         new Car(
-            ["../images/Cars/audiA4/audiA4-1.jpg", "../images/Cars/audiA4/audiA4-2.jpg", "../images/Cars/audiA4/audiA4-3.jpg"],"Audi A4", "Sedan", 5,["Automatic", "1 Large bag", "1 Small bag", "Diesel"], 20, 90, 3014, 4.6, "carspage4.php"
+            ["../images/Cars/audiA4/audiA4-1.jpg", "../images/Cars/audiA4/audiA4-2.jpg", "../images/Cars/audiA4/audiA4-3.jpg"],
+            "Audi A4",
+            "Sedan",
+            5,
+            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+            20,
+            90,
+            3014,
+            4.6,
         ),
         new Car(
-            ["../images/Cars/skoda-rapid/skoda-rapid1.jpg", "../images/Cars/skoda-rapid/skoda-rapid2.jpg", "../images/Cars/skoda-rapid/skoda-rapid3.jpg"],"Skoda Rapid", "Sedan", 5,["Automatic", "1 Large bag", "1 Small bag", "Diesel"],15, 80, 3014, 4.5, "carspage5.php"
+            ["../images/Cars/skoda-rapid/skoda-rapid1.jpg", "../images/Cars/skoda-rapid/skoda-rapid2.jpg", "../images/Cars/skoda-rapid/skoda-rapid3.jpg"],
+            "Skoda Rapid",
+            "Sedan",
+            5,
+            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+            15,
+            80,
+            3014,
+            4.5,
         ),
         new Car(
-            ["../images/Cars/gle400d/gle400D1.jpg", "../images/Cars/gle400d/gle400D2.jpg", "../images/Cars/gle400d/gle400D3.jpg"],"Mercedes-Benz GLE 400d", "SUV", 5,["Automatic", "1 Large bag", "1 Small bag", "Diesel"],20, 435, 3014, 4.4, "carspage6.php"
+            ["../images/Cars/gle400d/gle400D1.jpg", "../images/Cars/gle400d/gle400D2.jpg", "../images/Cars/gle400d/gle400D3.jpg"],
+            "Mercedes-Benz GLE 400d",
+            "SUV",
+            5,
+            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+            20,
+            435,
+            3014,
+            4.4,
+        )
+    ];
+
+    $hiddenCars = [
+        new Car(
+            ["../images/Cars/bmwX5/bmwX5-1.jpg", "../images/Cars/bmwX5/bmwX5-2.jpg", "../images/Cars/bmwX5/bmwX5-3.jpg"],
+            "BMW X5 xDrive",
+            "SUV",
+            5,
+            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+            15,
+            270,
+            3014,
+            4.5,
+        ),
+        new Car(
+            ["../images/Cars/golf8/g8-1.jpg", "../images/Cars/golf8/g8-2.jpg", "../images/Cars/golf8/g8-3.jpg"],
+            "Golf 8",
+            "Sedan",
+            5,
+            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+            20,
+            79,
+            3014,
+            4.6,
+        ),
+        new Car(
+            ["../images/Cars/audiQ8/audiQ8-1.jpg", "../images/Cars/audiQ8/audiQ8-2.jpg", "../images/Cars/audiQ8/audiQ8-3.jpg"],
+            "Audi Q8",
+            "SUV",
+            5,
+            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+            12,
+            450,
+            3014,
+            4.9,
         )
     ];
     ?>
 
-    <section class="BH" style="margin-top: -70px;">
+    <section class="car_container">
+        <div class="filter-section">
+            <button id="filterAvailableBtn">Show Available Cars</button>
+        </div>
         <div class="container12 goTop">
             <?php foreach ($cars as $index => $car): ?>
                 <div class="card5">
@@ -180,7 +260,8 @@
                                 <div class="price-section">
                                     <div class="price-section2">
                                         <div class="discount"><?= $car->discount ?>% Off</div>
-                                        <div class="price">US$<?= $car->price ?> <span class="old-price">US$<?= $car->oldPrice ?></span></div>
+                                        <div class="price">US$<?= $car->price ?> <span
+                                                class="old-price">US$<?= $car->oldPrice ?></span></div>
                                     </div>
                                     <div class="rating">
                                         <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
@@ -195,137 +276,58 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div>
-    </section>
-    
-    <section class="mimshef">
-        <div class="container12memshef">
-            <div class="card5">
-                <div class="slider">
-                    <div class="slides">
-                        <img class="slide" src="../images/Cars/bmwX5/bmwX5-1.jpg" alt="Image #1">
-                        <img class="slide" src="../images/Cars/bmwX5/bmwX5-2.jpg" alt="Image #2">
-                        <img class="slide" src="../images/Cars/bmwX5/bmwX5-3.jpg" alt="Image #3">
-                    </div>
-                    <button class="prev" onclick="prevSlide()">&#10094;</button>
-                    <button class="next" onclick="nextSlide()">&#10095;</button>
-                </div>
-                <div class="badge">600Kms included. After that $15/Kms</div>
-                <div class="card-body">
-                    <a href="cardetails.php?id=6" style="text-decoration: none; color: black;">
-                        <div>
-                            <div class="card-title">BMW X5 xDrive</div>
-                            <p class="paragraph">SUV | AC | 5 Seats</p>
-                            <div class="card-details">
-                                <div class="detail">Automatic</div>
-                                <div class="detail">1 Large bag</div>
-                                <div class="detail">1 Small bag</div>
-                                <div class="detail">Diesel</div>
-                            </div>
 
-                            <div class="price-section">
-                                <div class="price-section2">
-                                    <div class="discount">15% Off</div>
-                                    <div class="price">US$230<span class="old-price"> US$270</span></div>
-                                </div>
-                                <div class="rating">
-                                    <div class="reviews">Exceptional <br>3,014 reviews</div>
-                                    <div class="score">4.3</div>
-                                </div>
+            <div class="toHide">
+                <?php foreach ($hiddenCars as $i => $car):
+                    $index = count($cars) + $i;
+                    ?>
+
+                    <div class="card5 goTop">
+                        <div class="slider">
+                            <div class="slides">
+                                <?php foreach ($car->imagePaths as $imagePath): ?>
+                                    <img class="slide" src="<?= $imagePath ?>" alt="Image">
+                                <?php endforeach; ?>
                             </div>
-                            <div class="Detajet">
-                                <button style="width: 100%;">More</button>
-                            </div>
+                            <button class="prev" onclick="prevSlide()">&#10094;</button>
+                            <button class="next" onclick="nextSlide()">&#10095;</button>
                         </div>
-                    </a>
-                </div>
-            </div>
-            <div class="card5">
-                <div class="slider">
-                    <div class="slides">
-                        <img class="slide" src="../images/Cars/golf8/g8-1.jpg" alt="Image #1">
-                        <img class="slide" src="../images/Cars/golf8/g8-2.jpg" alt="Image #2">
-                        <img class="slide" src="../images/Cars/golf8/g8-3.jpg" alt="Image #3">
-                    </div>
-                    <button class="prev" onclick="prevSlide()">&#10094;</button>
-                    <button class="next" onclick="nextSlide()">&#10095;</button>
-                </div>
-                <div class="badge">600Kms included. After that $15/Kms</div>
-
-                <div class="card-body">
-                    <a href="cardetails.php?id=7" style="text-decoration: none; color: black;">
-                        <div>
-                            <div class="card-title">Golf 8</div>
-                            <p class="paragraph">Sedan | AC | 5 Seats</p>
-                            <div class="card-details">
-                                <div class="detail">Automatic</div>
-                                <div class="detail">1 Large bag</div>
-                                <div class="detail">1 Small bag</div>
-                                <div class="detail">Diesel</div>
-                            </div>
-                            <div class="price-section">
-                                <div class="price-section2">
-                                    <div class="discount">20% Off</div>
-                                    <div class="price">US$63 <span class="old-price">US$79</span></div>
+                        <div class="badge">600Kms included. After that $15/Kms</div>
+                        <div class="card-body">
+                            <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
+                                <div>
+                                    <div class="card-title"><?= $car->name ?></div>
+                                    <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
+                                    <div class="card-details">
+                                        <?php foreach ($car->details as $detail): ?>
+                                            <div class="detail"><?= $detail ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="price-section2">
+                                            <div class="discount"><?= $car->discount ?>% Off</div>
+                                            <div class="price">US$<?= $car->price ?> <span
+                                                    class="old-price">US$<?= $car->oldPrice ?></span></div>
+                                        </div>
+                                        <div class="rating">
+                                            <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
+                                            <div class="score"><?= $car->reviewScore ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="Detajet">
+                                        <button style="width: 100%;">More</button>
+                                    </div>
                                 </div>
-                                <div class="rating">
-                                    <div class="reviews">Exceptional <br>3,014 reviews</div>
-                                    <div class="score">4.6</div>
-                                </div>
-                            </div>
-                            <div class="Detajet">
-                                <button style="width: 100%;">More</button>
-                            </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="card5">
-                <div class="slider">
-                    <div class="slides">
-                        <img class="slide" src="../images/Cars/audiQ8/audiQ8-1.jpg" alt="Image #1">
-                        <img class="slide" src="../images/Cars/audiQ8/audiQ8-2.jpg" alt="Image #2">
-                        <img class="slide" src="../images/Cars/audiQ8/audiQ8-3.webp" alt="Image #3">
                     </div>
-                    <button class="prev" onclick="prevSlide()">&#10094;</button>
-                    <button class="next" onclick="nextSlide()">&#10095;</button>
-                </div>
-                <div class="badge">600Kms included. After that $15/Kms</div>
-
-                <div class="card-body">
-                    <a href="cardetails.php?id=8" style="text-decoration: none; color: black;">
-                        <div>
-                            <div class="card-title">Audi Q8</div>
-                            <p class="paragraph">SUV | AC | 5 Seats</p>
-                            <div class="card-details">
-                                <div class="detail">Automatic</div>
-                                <div class="detail">1 Large bag</div>
-                                <div class="detail">1 Small bag</div>
-                                <div class="detail">Diesel</div>
-                            </div>
-                            <div class="price-section">
-                                <div class="price-section2">
-                                    <div class="discount">12% Off</div>
-                                    <div class="price">US$396 <span class="old-price">US$450</span></div>
-                                </div>
-                                <div class="rating">
-                                    <div class="reviews">Exceptional <br>3,014 reviews</div>
-                                    <div class="score">4.9</div>
-                                </div>
-                            </div>
-                            <div class="Detajet">
-                                <button style="width: 100%;">More</button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
+                <?php endforeach; ?>
             </div>
         </div>
+
+        <button class="view-more">VIEW MORE</button></div>
     </section>
 
-    <div class="button-class"><button class="view-more">VIEW MORE</button></div>
     <abbr title="Go up button">
         <a href="#" class="gotopbtn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -334,7 +336,6 @@
             </svg>
         </a>
     </abbr>
-
 
     <footer style="margin-top: 50px; background-color: white;">
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
