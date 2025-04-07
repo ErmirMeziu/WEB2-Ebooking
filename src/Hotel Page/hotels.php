@@ -253,734 +253,403 @@
                     </form>
                     <input type="submit" value="Submit" id="submit" class="submit"> <!--Kushti (value)-->
                 </div>
-
             </div>
+
+            <?php
+            class HotelListing
+            {
+                public $name;
+                public $location;
+                public $imagePath;
+                public $stars;
+                public $features;
+                public $roomType;
+                public $lastBooked;
+                public $cancellationPolicy;
+                public $promo;
+                public $rating;
+                public $reviewCount;
+                public $originalPrice;
+                public $currentPrice;
+                public $taxInfo;
+                public $discount;
+                private $link;
+            
+                public function __construct($name, $location, $imagePath, $stars, $features, $roomType, $lastBooked, $cancellationPolicy, $promo, $rating, $reviewCount, $originalPrice, $currentPrice, $taxInfo, $discount,$link)
+                {
+                    $this->name = $name;
+                    $this->location = $location;
+                    $this->imagePath = $imagePath;
+                    $this->stars = $stars;
+                    $this->features = $features;
+                    $this->roomType = $roomType;
+                    $this->lastBooked = $lastBooked;
+                    $this->cancellationPolicy = $cancellationPolicy;
+                    $this->promo = $promo;
+                    $this->rating = $rating;
+                    $this->reviewCount = $reviewCount;
+                    $this->originalPrice = $originalPrice;
+                    $this->currentPrice = $currentPrice;
+                    $this->taxInfo = $taxInfo;
+                    $this->discount = $discount;
+                    $this->link = $link;
+
+                }
+                public function __getLink(){
+                    return $this->link;
+                }
+                public function repeated(){
+                    ?>
+                 <div class="box">
+                    <div class="section2">
+                        <div class="hotel-img">
+                            <a href="<?= $this->__getLink()?>" target="_blank"><img src="<?= $this->imagePath ?>"
+                                    alt="Picture of hotel">
+                            </a>
+                        </div>
+                        <div class="hotel-text">
+                            <div class="star">
+                                <?php for($i=0;$i<$this->stars;$i++):?>
+                                    <p><i class="fa-solid fa-star"></i></p>
+                                <?php endfor;?>
+                            </div>
+                            <p id="style-hotel-p"><?= $this->name ?></p>
+                            <p id="text5"><?= $this->location ?></p>
+                            <div class="hotel-offers">
+                                <?php foreach ($this->features as $feature): ?>
+                                    <p><?= $feature ?></p>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="middle-text">
+                                <p id="text6"><?= $this->roomType ?></p>
+                                <p id="text7"><?= $this->lastBooked ?></p>
+                            </div>
+                            <div class="bottom-text">
+                                <p id="text8"><?= $this->cancellationPolicy ?></p>
+                                <p id="text9"><?= $this->promo ?></p>
+                            </div>
+                        </div>
+                        <div class="hotel-button">
+                            <div class="parent">
+                                <div class="part1">
+                                    <p id="text10">Exceptional</p>
+                                    <p id="text11">
+                                        <output name="reviews-count" id="reviews-count"><?= number_format($this->reviewCount) ?></output> reviews
+                                    </p>
+                                </div>
+                                <button id="button"><?= $this->rating ?></button>
+                            </div>
+                            <div class="price-section">
+                                <div class="discount-badge">
+                                    <p><?= $this->discount ?></p>
+                                </div>
+                                <div class="price-details">
+                                    <p class="original-price">US$<?= $this->originalPrice ?></p>
+                                    <p class="current-price">$<?= $this->currentPrice ?></p>
+                                    <p class="additional-info"><?= $this->taxInfo ?></p>
+                                </div>
+                                <button class="availability-button">See Availability</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <?php
+                    
+                }
+            }
+
+            $hotelsPage1 = [
+                new HotelListing(
+                    "Hotel Chancellor@Orchard",
+                    "Waterloo and Southwark. 9.8 km from Delhi Airport",
+                    "../images/hotel-photo/hotel-1.jpg",
+                    5,
+                    ["Parking", "Wifi", "Eating", "Cooling", "Pet"],
+                    "Luxury Suite with Balcony",
+                    "Last booked 25min ago",
+                    "Free Cancellation, till 1 hour of Pick up",
+                    "Login & get additional \$15 Off Using Visa card",
+                    4.8,
+                    3014,
+                    120,
+                    102,
+                    "+ \$22 taxes & Fees<br>For 2 Nights",
+                    "15% Off",
+                    "hotel Chancellor.php"
+                ),
+                new HotelListing(
+                    "Dorsett Singapore", 
+                    "Waterloo and Southwark. 9.8 km from Delhi Airport.", 
+                    "../images/hotel-photo/hotel-2.jpg", 
+                    4, 
+                    ["Wifi", "Eating", "Pet"], 
+                    "Deluxe Suite with Partial Ocean View", 
+                    "Last booked 3 hours ago", 
+                    "Free Cancellation, till 1 hour of Pick up", 
+                    "Login & get additional \$15 Off Using Visa card", 
+                    3.6, 
+                    2514, 
+                    89, 
+                    80, 
+                    "+ \$42 taxes & Fees<br>For 4 Nights", 
+                    "7% Off",
+                    "hotel Dorsett.php"
+                ),
+                new HotelListing(
+                    "Royal Plaza on Scotts", 
+                    "Waterloo and Southwark. 9.8 km from Delhi Airport.", 
+                    "../images/hotel-photo/hotel-3.jpg", 
+                    5, 
+                    ["Wifi", "Eating", "Pet", "Laundry"], 
+                    "Superior King Room", 
+                    "Last booked a day ago", 
+                    "Free Cancellation, till 1 hour of Pick up", 
+                    "Login & get additional \$25 Off Using Visa card", 
+                    4.2, 
+                    1514, 
+                    101, 
+                    88, 
+                    "+ \$12 taxes & Fees<br>For 2 Nights", 
+                    "13% Off",
+                    "hotel royal plaza.php"
+                ),
+                new HotelListing(
+                    "Siloso Beach Resort - Sentosa", 
+                    "51 Imbiah Walk, Singapore 099538.", 
+                    "../images/hotel-photo/hotel-4.jpg", 
+                    3, 
+                    ["Wifi", "Eating", "Pet"], 
+                    "Basic King Room", 
+                    "Last booked a week ago", 
+                    "Free Cancellation, till 2 hour of Pick up", 
+                    "Login & get additional \$25 Off Using Visa card", 
+                    3.2, 
+                    514, 
+                    70, 
+                    65, 
+                    "+ \$32 taxes & Fees<br>For 3 Nights", 
+                    "25% Off",
+                    "siloso beach resort.php"
+                ),
+                new HotelListing(
+                    "Value Hotel Balestier", 
+                    "218 Balestier Rd, Singapore 329684.", 
+                    "../images/hotel-photo/hotel-5.jpg", 
+                    3, 
+                    ["Wifi", "Eating", "Laundry"], 
+                    "Standard Room", 
+                    "Last booked a day ago", 
+                    "Free Cancellation, till 4 hour of Pick up", 
+                    "Login & get additional \$7 Off Using Visa card", 
+                    4.4, 
+                    514, 
+                    80, 
+                    75, 
+                    "+ \$12 taxes & Fees<br>For 2 Nights", 
+                    "15% Off",
+                    ""
+                ),
+                new HotelListing(
+                    "Vigara Hotel Lavender",
+                    "Waterloo and Southwark. 9.8 km from Delhi Airport.",
+                    "../images/hotel-photo/hotel-6.jpg",
+                    5, // Full 5 stars
+                    ["Wifi", "Eating", "Pet", "Laundry"],
+                    "Superior King Room",
+                    "Last booked a day ago",
+                    "Free Cancellation, till 1 hour of Pick up",
+                    "Login & get additional \$25 Off Using Visa card",
+                    5.0, // Rating
+                    7514, // Reviews
+                    301, // Original Price
+                    280, // Current Price
+                    "+ \$12 taxes & Fees<br>For 2 Nights",
+                    "13% Off",
+                    ""
+                )
+                ];
+            $hotelsPage2 = [
+                new HotelListing(
+                    "Supreme Luxury",
+                    "Velika plaza BB, 85360 Ulcinj Montenegro.",
+                    "../images/hotel-photo/Supreme Luxury.jpg",
+                    3,
+                    ["Wifi", "View", "Parking", "Balcony"],
+                    "SUPREME Luxury features accommodation with balcony",
+                    "Last booked 1 hours ago",
+                    "Free Cancellation, till 1 hour of Pick up",
+                    "Login & get additional \$15 Off Using Visa card",
+                    8.9,
+                    125,
+                    89,
+                    80,
+                    "+ \$42 taxes & Fees<br>For 4 Nights",
+                    "7% Off",
+                    ""
+                ),
+                new HotelListing(
+                    "Meris",
+                    "ada bojana L58, 85360 Ulcinj, Montenegro.",
+                    "../images/hotel-photo/Meris.jpg",
+                    5,
+                    ["Wifi", "Eating", "See", "Balcony"],
+                    "Old Town Ulcinj is 17 km from the chalet",
+                    "Last booked a day ago",
+                    "Free Cancellation, till 1 hour of Pick up",
+                    "Login & get additional \$25 Off Using Visa card",
+                    9.8,
+                    29,
+                    121,
+                    90,
+                    "+ \$12 taxes & Fees<br>For 2 Nights",
+                    "13% Off",
+                    ""
+                ),
+                new HotelListing(
+                    "Hotel Kleopatra",
+                    "Pinjesh BB, 85360 Ulcinj, Montenegro.",
+                    "../images/hotel-photo/Hotel Kleopatra.jpg",
+                    3,
+                    ["Wifi", "Food", "Caffe"],
+                    "Guests can enjoy traditional cuisine",
+                    "Last booked a week ago",
+                    "Free Cancellation, till 2 hour of Pick up",
+                    "Login & get additional \$25 Off Using Visa card",
+                    8.0,
+                    171,
+                    50,
+                    35,
+                    "+ \$32 taxes & Fees<br>For 3 Nights",
+                    "22% Off",
+                    ""
+                ),
+                new HotelListing(
+                    "Apartments Mediteran",
+                    "Pinjes bb, 85360 Ulcinj, Montenegro",
+                    "../images/hotel-photo/Apartments Mediteran.jpg",
+                    4,
+                    ["Bath", "Eating", "Wifi"],
+                    "Standard Room",
+                    "Last booked a day ago",
+                    "Free Cancellation, till 4 hour of Pick up",
+                    "Login & get additional \$7 Off Using Visa card",
+                    8.7,
+                    235,
+                    90,
+                    65,
+                    "+ \$12 taxes & Fees<br>For 2 Nights",
+                    "15% Off",
+                    ""
+                ),
+                new HotelListing(
+                    "Apart-Hotel President",
+                    "MEHMET GJYLI 64, 85360 Ulcinj, Montenegro.",
+                    "../images/hotel-photo/Apart-Hotel.jpg",
+                    5,
+                    ["Wifi", "Eating", "Pet", "Laundry"],
+                    "Delux Double Room",
+                    "Last booked a hour ago",
+                    "Free Cancellation, till 1 hour of Pick up",
+                    "Login & get additional \$25 Off Using Visa card",
+                    9.0,
+                    566,
+                    301,
+                    270,
+                    "+ \$12 taxes & Fees<br>For 2 Nights",
+                    "13% Off",
+                    ""
+                ),
+            ];
+            $hotelsPage3 = [
+                new HotelListing(
+                    "Days Hotel",
+                    "One Deira Plaza Gold Souk Metro Station Al Corniche - 111 , 119303 Dubai.",
+                    "../images/hotel-photo/Days Hotel.jpg",
+                    3.5, // 3 full stars + 1 half star
+                    ["Bath", "View", "Wifi"],
+                    "Deluxe Queen with Skyline View",
+                    "Last booked a day ago",
+                    "Free Cancellation,till 4 hour of Pick up",
+                    "Login & get additional \$7 Off Using Visa card",
+                    8.1,
+                    14789,
+                    140,
+                    120,
+                    "+ \$12 taxes & Fees<br>For 2 Nights",
+                    "15% Off",
+                    ""
+                ),
+                new HotelListing(
+                    "Millennium Airport Hotel Dubai",
+                    "Airport Road, Casablanca Street, Al Garhoud, Garhoud, Dubai, United Arab Emirates",
+                    "../images/hotel-photo/Millennium.jpg",
+                    3.5, // 3 full stars + 1 half star
+                    ["Pet", "Wifi", "View"],
+                    "Deluxe Twin Room",
+                    "Last booked a hour ago",
+                    "Free Cancellation,till 4 hour of Pick up",
+                    "Login & get additional \$7 Off Using Visa card",
+                    8.2,
+                    10570,
+                    290,
+                    265,
+                    "+ \$42 taxes & Fees<br>For 2 Nights",
+                    "15% Off",
+                    ""
+                )
+                ];
+
+            ?>
+        <section>
             <div class="hotel-page page1" id="page1">
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <a href="hotel Chancellor.php" target="_blank"><img src="../images/hotel-photo/hotel-1.jpg"
-                                    alt="Picture of hotel"></a>
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Hotel Chancellor@Orchard</p>
-                            <p id="text5">Waterloo and Southwark. 9.8 km from Delhi Airport </p>
-                            <div class="hotel-offers">
-                                <p>Parking</p>
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>Cooling</p>
-                                <p>Pet</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Luxury Suite with Balcony</p>
-                                <p id="text7">Last booked 25min ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation, till 1 hour of Pick up</p>
-                                <p id="text9">Login & get additional $15 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">3,014</output> reviews
-                                    </p>
+            <?php $count = 0; ?>
+                <?php foreach ($hotelsPage1 as $hotel): ?>
+                    <?= $hotel->repeated();
+                    $count++ ;?>
+                    <?php
+                    if ($count == 2) {
+                        ?>
+                             <div class="advertisement">
+                                <div class="adv-img">
+                                    <p id="icon"><i class="fa-solid fa-gift fs-3 text-success"></i></p>
                                 </div>
-                                <button id="button">4.8</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>15% Off</p>
+                                <div class="text">
+                                    <p>Start Exploring The World</p>
+                                    <p id="text-child">Book Flights Effortless and Earn $50+ for each booking with Booking.com</p>
                                 </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$120</p>
-                                    <p class="current-price">$102</p>
-                                    <p class="additional-info">+ $22 taxes & Fees<br>For 2 Nights</p>
+                                <div id="adv-button">
+                                    <button>Get Started</button>
                                 </div>
-                                <button class="availability-button">See Availability</button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <a href="hotel Dorsett.php" target="_blank"><img src="../images/hotel-photo/hotel-2.jpg"
-                                    alt="Hotel"></a>
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star-half"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Dorsett Singapore</p>
-                            <p id="text5">Waterloo and Southwark. 9.8 km from Delhi Airport.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>Pet</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Deluxe Suite with Partial Ocean View</p>
-                                <p id="text7">Last booked 3hours ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation, till 1 hour of Pick up</p>
-                                <p id="text9">Login & get additional $15 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">2,514</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">3.6</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>7% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$89</p>
-                                    <p class="current-price">$80</p>
-                                    <p class="additional-info">+ $42 taxes & Fees<br>For 4 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="advertisement">
-                    <div class="adv-img">
-                        <p id="icon"><i class="fa-solid fa-gift fs-3 text-success"></i></p>
-                    </div>
-                    <div class="text">
-                        <p>Start Exploring The World</p>
-                        <p id="text-child">Book Flights Effortless and Earn $50+ for each booking with Booking.com</p>
-                    </div>
-                    <div id="adv-button">
-                        <button>Get Started</button>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <a href="hotel royal plaza.php" target="_blank"><img src="../images/hotel-photo/hotel-3.jpg"
-                                    alt="Hotel"></a>
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Royal Plaza on Scotts</p>
-                            <p id="text5">Waterloo and Southwark. 9.8 km from Delhi Airport.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>Pet</p>
-                                <p>Laundry</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Superior King Room</p>
-                                <p id="text7">Last booked a day ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 1 hour of Pick up</p>
-                                <p id="text9">Login & get additional $25 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">1,514</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">4.2</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>13% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$101</p>
-                                    <p class="current-price">$88</p>
-                                    <p class="additional-info">+ $12 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <a href="siloso beach resort.php" target="_blank"><img
-                                    src="../images/hotel-photo/hotel-4.jpg" alt="Hotel"></a>
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Siloso Beach Resort - Sentosa</p>
-                            <p id="text5">51 Imbiah Walk, Singapore 099538.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>Pet</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Basic King Room</p>
-                                <p id="text7">Last booked a week ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 2 hour of Pick up</p>
-                                <p id="text9">Login & get additional $25 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">514</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">3.2</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>25% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$70</p>
-                                    <p class="current-price">$65</p>
-                                    <p class="additional-info">+ $32 taxes & Fees<br>For 3 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/hotel-5.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star-half"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Value Hotel Balestier</p>
-                            <p id="text5">218 Balestier Rd, Singapore 329684.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>Laundry</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Standard Room</p>
-                                <p id="text7">Last booked a day ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 4 hour of Pick up</p>
-                                <p id="text9">Login & get additional $7 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">514</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">4.4</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>15% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$80</p>
-                                    <p class="current-price">$75</p>
-                                    <p class="additional-info">+ $12 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/hotel-6.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Vigara Hotel Lavender</p>
-                            <p id="text5">Waterloo and Southwark. 9.8 km from Delhi Airport.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>Pet</p>
-                                <p>Laundry</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Superior King Room</p>
-                                <p id="text7">Last booked a day ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 1 hour of Pick up</p>
-                                <p id="text9">Login & get additional $25 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">7,514</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">5.0</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>13% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$301</p>
-                                    <p class="current-price">$280</p>
-                                    <p class="additional-info">+ $12 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <?php
+                    }
+                    ?>
+                <?php endforeach; ?>
             </div>
 
             <div class="hotel-page page2" style="display: none;" id="page2">
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <a target="_blank"><img src="../images/hotel-photo/Supreme Luxury.jpg" alt="Hotel"></a>
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Supreme Luxury</p>
-                            <p id="text5">Velika plaza BB, 85360 Ulcinj Montenegro.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>View</p>
-                                <p>Parking</p>
-                                <p>Balcony</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">SUPREME Luxury features accommodation with balcony</p>
-                                <p id="text7">Last booked 1 hours ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation, till 1 hour of Pick up</p>
-                                <p id="text9">Login & get additional $15 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">125</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">8.9</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>7% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$89</p>
-                                    <p class="current-price">$80</p>
-                                    <p class="additional-info">+ $42 taxes & Fees<br>For 4 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/Meris.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Meris</p>
-                            <p id="text5">ada bojana L58, 85360 Ulcinj, Montenegro.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>See</p>
-                                <p>Balcony</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Old Town Ulcinj is 17 km from the chalet</p>
-                                <p id="text7">Last booked a day ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 1 hour of Pick up</p>
-                                <p id="text9">Login & get additional $25 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">29</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">9.8</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>13% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$121</p>
-                                    <p class="current-price">$90</p>
-                                    <p class="additional-info">+ $12 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/Hotel Kleopatra.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Hotel Kleopatra</p>
-                            <p id="text5">Pinjesh BB, 85360 Ulcinj, Montenegro.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Food</p>
-                                <p>Caffe</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Guests can enjoy traditional cuisine</p>
-                                <p id="text7">Last booked a week ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 2 hour of Pick up</p>
-                                <p id="text9">Login & get additional $25 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">171</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">8.0</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>22% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$50</p>
-                                    <p class="current-price">$35</p>
-                                    <p class="additional-info">+ $32 taxes & Fees<br>For 3 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/Apartments Mediteran.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star-half"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Apartments Mediteran</p>
-                            <p id="text5">Pinjes bb, 85360 Ulcinj, Montenegro</p>
-                            <div class="hotel-offers">
-                                <p>Bath</p>
-                                <p>Eating</p>
-                                <p>Wifi</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Standard Room</p>
-                                <p id="text7">Last booked a day ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 4 hour of Pick up</p>
-                                <p id="text9">Login & get additional $7 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1" style="margin-left: 20px;">
-                                    <p id="text10">Fabulous</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">235</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">8.7</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>15% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$90</p>
-                                    <p class="current-price">$65</p>
-                                    <p class="additional-info">+ $12 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/Apart-Hotel.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Apart-Hotel President</p>
-                            <p id="text5">MEHMET GJYLI 64, 85360 Ulcinj, Montenegro.</p>
-                            <div class="hotel-offers">
-                                <p>Wifi</p>
-                                <p>Eating</p>
-                                <p>Pet</p>
-                                <p>Laundry</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Delux Double Room</p>
-                                <p id="text7">Last booked a hour ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 1 hour of Pick up</p>
-                                <p id="text9">Login & get additional $25 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent" style="margin-left: 30px;">
-                                <div class="part1">
-                                    <p id="text10">Superb</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">566</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">9.0</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>13% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$301</p>
-                                    <p class="current-price">$270</p>
-                                    <p class="additional-info">+ $12 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <?php foreach ($hotelsPage2 as $hotel): ?>
+                    <?= $hotel->repeated();?>
+                <?php endforeach; ?>
             </div>
 
             <div class="hotel-page page3" style="display: none;" id="page2">
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/Days Hotel.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star-half"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Days Hotel</p>
-                            <p id="text5">One Deira Plaza Gold Souk Metro Station Al Corniche - 111 , 119303 Dubai.</p>
-                            <div class="hotel-offers">
-                                <p>Bath</p>
-                                <p>View</p>
-                                <p>Wifi</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Deluxe Queen with Skyline View</p>
-                                <p id="text7">Last booked a day ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 4 hour of Pick up</p>
-                                <p id="text9">Login & get additional $7 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1" style="margin-left: 20px;">
-                                    <p id="text10">Very Good</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">14,789</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">8.1</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>15% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$140</p>
-                                    <p class="current-price">$120</p>
-                                    <p class="additional-info">+ $12 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <img src="../images/hotel-photo/Millennium.jpg" alt="Hotel">
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star"></i></p>
-                                <p><i class="fa-solid fa-star-half"></i></p>
-                            </div>
-                            <p id="style-hotel-p">Millennium Airport Hotel Dubai</p>
-                            <p id="text5">Airport Road, Casablanca Street, Al Garhoud, Garhoud, Dubai, United Arab
-                                Emirates</p>
-                            <div class="hotel-offers">
-                                <p>Pet</p>
-                                <p>Wifi</p>
-                                <p>View</p>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6">Deluxe Twin Room</p>
-                                <p id="text7">Last booked a hour ago</p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8">Free Cancellation,till 4 hour of Pick up</p>
-                                <p id="text9">Login & get additional $7 Off Using Visa card</p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1" style="margin-left: 20px;">
-                                    <p id="text10">Very Good</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count">10,570</output> reviews
-                                    </p>
-                                </div>
-                                <button id="button">8.2</button>
-                            </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p>15% Off</p>
-                                </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$290</p>
-                                    <p class="current-price">$265</p>
-                                    <p class="additional-info">+ $42 taxes & Fees<br>For 2 Nights</p>
-                                </div>
-                                <button class="availability-button">See Availability</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <?php foreach ($hotelsPage3 as $hotel): ?>
+                    <?= $hotel->repeated() ?>
+                <?php endforeach; ?>
             </div>
 
             <div class="bottom" id="box-bottom">
-                <div class="bottom-part">
-                    <p><i class="fa-solid fa-arrow-left" id="left-arrow"></i></p>
-                    <a style="background-color: rgb(205,44,34); color: white; cursor: pointer" id="page1-btn"
-                        class="page-btn">1</a>
-                    <a id="page2-btn" class="page-btn">2</a>
-                    <a id="page3-btn" class="page-btn">3</a>
-                    <p><i class="fa-solid fa-arrow-right" id="right-arrow"></i></p>
+                    <div class="bottom-part">
+                        <p><i class="fa-solid fa-arrow-left" id="left-arrow"></i></p>
+                        <a style="background-color: rgb(205,44,34); color: white; cursor: pointer" id="page1-btn"
+                            class="page-btn">1</a>
+                        <a id="page2-btn" class="page-btn">2</a>
+                        <a id="page3-btn" class="page-btn">3</a>
+                        <p><i class="fa-solid fa-arrow-right" id="right-arrow"></i></p>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div> 
     </section>
 
     <footer style=" margin-top: 150px;">
