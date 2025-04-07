@@ -17,7 +17,7 @@ class ViewMoreToggle {
 
     toggleView() {
         this.toggleElement.classList.toggle('BH');
-        this.toggleElement.classList.toggle('mimshef-special');
+        this.toggleElement.classList.toggle('toHide-special');
 
         if (!this.isExpanded) {
             this.viewMoreButton.textContent = "VIEW LESS";
@@ -31,7 +31,7 @@ class ViewMoreToggle {
     }
 }
 
-new ViewMoreToggle('.mimshef', '.view-more', '.goTop');
+new ViewMoreToggle('.toHide', '.view-more', '.goTop');
 
 
 

@@ -814,8 +814,8 @@ html {
     visibility: hidden;
     position: fixed;
     opacity: 0;
-    width: 3rem;
-    height: 3rem;
+    width: 35px;
+    height: 35px;
     background: rgb(196, 41, 29);
     bottom: 40px;
     right: 24px;
@@ -830,7 +830,7 @@ html {
 }
 
 .gotopbtn svg {
-    height: 18px;
+    height: 14px;
 }
 
 .gotopbtn:hover {

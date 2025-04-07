@@ -139,6 +139,42 @@
     </section>
 
     <section class="rental">
+
+        <?php
+
+        class Rental
+        {
+            public $imagePath;
+            public $type;
+            public $name;
+            public $details;
+            public $discount;
+            public $price;
+            public $numberOfStars;
+            public $review;
+            public $numberOfReviews;
+
+            public function __construct($imagePath, $type, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
+            {
+                $this->imagePath = $imagePath;
+                $this->type = $type;
+                $this->name = $name;
+                $this->details = $details;
+                $this->discount = $discount;
+                $this->price = $price;
+                $this->numberOfStars = $numberOfStars;
+                $this->review = $review;
+                $this->numberOfReviews = $numberOfReviews;
+            }
+
+        }
+
+        $rentals = [
+            new Rental("images/property/property1.webp", "House", "Haven Group Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 15, 492, 5, 4.6, 142),
+            new Rental("images/property/property2.webp", "Villa", "Brick Lane Reality", ["3 Beds", "3 Baths", "2100 sqft"], 16, 430, 3, 4.3, 201),
+            new Rental("images/property/property3.webp", "Apartment", "Exclesior Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 11, 512, 4, 4.4, 101)
+        ]
+            ?>
         <div class="top">
             <h4>Featured Rental In Australia</h4>
             <a href="Hotel Page/hotels.php"><button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button></a>
@@ -151,102 +187,39 @@
                     <a href="Hotel Page/hotels.php"><button>Go Now</button></a>
                 </h4>
             </div>
-            <div class="card responsive">
-                <div class="image">
-                    <img src="images/property/property1.webp" alt="">
-                </div>
-                <div class="card-container1">
-                    <div class="head">
-                        <button>House</button>
-                        <h5>Brick Lane Reality</h5>
+            <?php foreach ($rentals as $rental): ?>
+
+                <div class="card responsive">
+                    <div class="image">
+                        <img src="<?= $rental->imagePath ?>" alt="">
                     </div>
-                    <div class="property-same" style="position: relative; top: 7px;">
-                        <div><a href=""> 3 Beds</a></div>
-                        <div><a href=""> 3 Baths</a></div>
-                        <div><a href=""> 2100 sqft</a></div>
-                    </div>
-                    <div class="end">
-                        <div class="left">
-                            <button>15% Off</button>
-                            <h4>From <b>$492</b></h4>
+                    <div class="card-container1">
+                        <div class="head">
+                            <button style="width: auto; padding: 3px 7px;"><?= $rental->type ?></button>
+                            <h5><?= $rental->name ?></h5>
                         </div>
-                        <div class="right">
-                            <p style="position: relative; top: 5px; right: 2px; ">
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                            </p>
-                            <h5>4.6 <span>(142 reviews)</span></h5>
+                        <div class="property-same" style="position: relative; top: 7px;">
+                            <?php foreach ($rental->details as $detail): ?>
+                                <div><a href=""> <?= $detail ?> </a></div>
+                            <?php endforeach; ?>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card responsive">
-                <div class="image">
-                    <img src="images/property/property2.webp" alt="">
-                </div>
-                <div class="card-container1">
-                    <div class="head">
-                        <button>Villa</button>
-                        <h5>Haven Group Real Estate</h5>
-                    </div>
-                    <div class="property-same" style="position: relative; top: 7px;">
-                        <div><a href=""> 3 Beds</a></div>
-                        <div><a href=""> 3 Baths</a></div>
-                        <div><a href=""> 2100 sqft</a></div>
-                    </div>
-                    <div class="end">
-                        <div class="left">
-                            <button>15% Off</button>
-                            <h4>From <b>$492</b></h4>
-                        </div>
-                        <div class="right">
-                            <p style="position: relative; top: 5px; right: 2px; ">
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                            </p>
-                            <h5>4.6 <span>(142 reviews)</span></h5>
+                        <div class="end">
+                            <div class="left">
+                                <button><?= $rental->discount ?>% Off</button>
+                                <h4>From <b>$<?= $rental->price ?></b></h4>
+                            </div>
+                            <div class="right">
+                                <p style="position: relative; top: 5px; right: 2px; ">
+                                    <?php for ($i = 0; $i < $rental->numberOfStars; $i++): ?>
+                                        <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                    <?php endfor; ?>
+                                </p>
+                                <h5> <?= $rental->review ?> <span>(<?= $rental->numberOfReviews ?> reviews)</span></h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card responsive">
-                <div class="image">
-                    <img src="images/property/property3.webp" alt="">
-                </div>
-                <div class="card-container1">
-                    <div class="head">
-                        <button style="width: 110px;">Apartment</button>
-                        <h5>Exclesior Real Estate</h5>
-                    </div>
-                    <div class="property-same" style="position: relative; top: 7px;">
-                        <div><a href=""> 3 Beds</a></div>
-                        <div><a href=""> 3 Baths</a></div>
-                        <div><a href=""> 2100 sqft</a></div>
-                    </div>
-                    <div class="end">
-                        <div class="left unik">
-                            <button>15% Off</button>
-                            <h4>From <b>$492</b></h4>
-                        </div>
-                        <div class="right">
-                            <p style="position: relative; top: 5px; right: 2px; ">
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                                <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
-                            </p>
-                            <h5>4.6 <span>(142 reviews)</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
@@ -405,9 +378,9 @@
                             <div class="card-title"><?= $car->name ?></div>
                             <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
                             <div class="card-details">
-                            <?php foreach ($car->details as $detail): ?>
-                                <div class="detail"><?= $detail ?></div>
-                            <?php endforeach; ?>
+                                <?php foreach ($car->details as $detail): ?>
+                                    <div class="detail"><?= $detail ?></div>
+                                <?php endforeach; ?>
                             </div>
                             <div class="price-section">
                                 <div class="price-section2">
@@ -421,11 +394,10 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
-
             <?php endforeach; ?>
-
 
             <div class="routes-different routes-different-image responsive">
                 <img src="images/routes/tr-4.webp" alt="Discover deals">
@@ -434,13 +406,13 @@
                     <a href="Cars-Page/cars.php"><button>Go Now</button></a>
                 </h4>
             </div>
-            </div>
+        </div>
     </section>
 
     <section class="international-routes-container ">
         <div class="top">
             <h4>All International Routes</h4>
-            <button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+            <!-- <button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button> -->
         </div>
 
         <div class="buttons">
