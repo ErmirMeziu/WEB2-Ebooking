@@ -148,8 +148,8 @@ function &getLoginLog()
 if (isset($_POST['register_email']) && isset($_POST['register_password'])) {
     $registerEmail = $_POST['register_email'];
     $registerPassword = $_POST['register_password'];
-    $registerName = $_POST['register_name'];
-    $registerSurname = $_POST['register_surname'];
+    $registerName = ucfirst(strtolower(trim($_POST['register_name'])));
+    $registerSurname = ucfirst(strtolower(trim($_POST['register_surname'])));
     $registerPhoneNumber = $_POST['register_phoneNumber'];
 
     if (validateEmail($registerEmail)) {
