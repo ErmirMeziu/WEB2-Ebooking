@@ -174,7 +174,7 @@
             $car = $cars[$id];
             $car->sortByCarId();
         } else {
-            echo "Car not found.";
+            var_dump("Car not found.");
             exit;
         }
     ?>
