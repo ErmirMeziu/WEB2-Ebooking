@@ -63,9 +63,16 @@ input {
 }
 
 
-.login-form,
-.register-form {
+.login-form {
     height: 480px;
+    font-size: 15px;
+    border-top: solid 0.1px rgb(173, 181, 189);
+    border-bottom: solid 0.1px rgb(173, 181, 189);
+    width: 100%;
+}
+
+.register-form {
+    height: 600px;
     font-size: 15px;
     border-top: solid 0.1px rgb(173, 181, 189);
     border-bottom: solid 0.1px rgb(173, 181, 189);
