@@ -145,7 +145,6 @@
         abstract class Rental
         {
             public $imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews;
-            protected $type;
             public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
             {
                 $this->imagePath = $imagePath;
@@ -162,42 +161,49 @@
         }
         class House extends Rental
         {
+            const TYPE = 'House';
+
             public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
             {
                 parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
-                $this->type = "House";
             }
+
             public function getRentalType()
             {
-                return $this->type;
+                return self::TYPE;
             }
         }
 
         class Villa extends Rental
         {
+            const TYPE = 'Villa';
+
             public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
             {
                 parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
-                $this->type = "Villa";
             }
+
             public function getRentalType()
             {
-                return $this->type;
+                return self::TYPE;
             }
         }
 
         class Apartment extends Rental
         {
+            const TYPE = 'Apartment';
+
             public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
             {
                 parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
-                $this->type = "Apartment";
             }
+
             public function getRentalType()
             {
-                return $this->type;
+                return self::TYPE;
             }
         }
+
 
         $rentals = [
             new House("images/property/property1.webp", "Haven Group Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 15, 492, 5, 4.6, 142),
