@@ -272,7 +272,7 @@
                 public $originalPrice;
                 public $currentPrice;
                 public $taxInfo;
-                public $discount;
+                protected $discount;
                 private $link;
             
                 public function __construct($name, $location, $imagePath, $stars, $features, $roomType, $lastBooked, $cancellationPolicy, $promo, $rating, $reviewCount, $originalPrice, $currentPrice, $taxInfo, $discount,$link)
@@ -297,6 +297,9 @@
                 }
                 public function __getLink(){
                     return $this->link;
+                }
+                public function __setLink($link){
+                 $this->link=$link;
                 }
                 public function repeated(){
                     ?>
