@@ -142,22 +142,13 @@
 
         <?php
 
-        class Rental
+        abstract class Rental
         {
-            public $imagePath;
-            public $type;
-            public $name;
-            public $details;
-            public $discount;
-            public $price;
-            public $numberOfStars;
-            public $review;
-            public $numberOfReviews;
-
-            public function __construct($imagePath, $type, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
+            public $imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews;
+            protected $type;
+            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
             {
                 $this->imagePath = $imagePath;
-                $this->type = $type;
                 $this->name = $name;
                 $this->details = $details;
                 $this->discount = $discount;
@@ -167,12 +158,51 @@
                 $this->numberOfReviews = $numberOfReviews;
             }
 
+            abstract public function getRentalType();
+        }
+        class House extends Rental
+        {
+            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
+            {
+                parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
+                $this->type = "House";
+            }
+            public function getRentalType()
+            {
+                return $this->type;
+            }
+        }
+
+        class Villa extends Rental
+        {
+            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
+            {
+                parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
+                $this->type = "Villa";
+            }
+            public function getRentalType()
+            {
+                return $this->type;
+            }
+        }
+
+        class Apartment extends Rental
+        {
+            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
+            {
+                parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
+                $this->type = "Apartment";
+            }
+            public function getRentalType()
+            {
+                return $this->type;
+            }
         }
 
         $rentals = [
-            new Rental("images/property/property1.webp", "House", "Haven Group Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 15, 492, 5, 4.6, 142),
-            new Rental("images/property/property2.webp", "Villa", "Brick Lane Reality", ["3 Beds", "3 Baths", "2100 sqft"], 16, 430, 3, 4.3, 201),
-            new Rental("images/property/property3.webp", "Apartment", "Exclesior Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 11, 512, 4, 4.4, 101)
+            new House("images/property/property1.webp", "Haven Group Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 15, 492, 5, 4.6, 142),
+            new Villa("images/property/property2.webp", "Brick Lane Reality", ["3 Beds", "3 Baths", "2100 sqft"], 16, 430, 3, 4.3, 201),
+            new House("images/property/property3.webp", "Exclesior Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 11, 512, 4, 4.4, 101)
         ]
             ?>
         <div class="top">
@@ -195,7 +225,7 @@
                     </div>
                     <div class="card-container1">
                         <div class="head">
-                            <button style="width: auto; padding: 3px 7px;"><?= $rental->type ?></button>
+                            <button style="width: auto; padding: 3px 7px;"><?= $rental->getRentalType() ?></button>
                             <h5><?= $rental->name ?></h5>
                         </div>
                         <div class="property-same" style="position: relative; top: 7px;">
@@ -322,39 +352,76 @@
 
     <section class="destinations">
         <?php
-        class Car
+        abstract class Car
         {
-            public $imagePath;
-            public $name;
-            public $type;
-            public $numberOfSeats;
-            public $details;
-            public $discount;
-            public $price;
-            public $oldPrice;
-            public $numberOfReviews;
-            public $reviewScore;
+            public $imagePath, $name, $numberOfSeats, $details, $discount, $price, $oldPrice, $numberOfReviews, $reviewScore;
+            protected $type;
 
-            public function __construct($imagePath, $name, $type, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore)
+            public function __construct($imagePath, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore)
             {
                 $this->imagePath = $imagePath;
                 $this->name = $name;
-                $this->type = $type;
                 $this->numberOfSeats = $numberOfSeats;
                 $this->details = $details;
                 $this->discount = $discount;
                 $this->oldPrice = $oldPrice;
-                $this->price = $oldPrice - $discount / 100 * $oldPrice;
-
                 $this->numberOfReviews = $numberOfReviews;
                 $this->reviewScore = $reviewScore;
+                $this->calculatePrice();
+            }
+
+            private function calculatePrice()
+            {
+                $this->price = $this->oldPrice - $this->discount / 100 * $this->oldPrice;
+            }
+
+            public function setDiscount($discount)
+            {
+                $this->discount = $discount;
+                $this->calculatePrice();
+            }
+
+            abstract public function getCarType();
+
+
+            public function __destruct()
+            {
+                echo "The car object {$this->name} is being destroyed.\n";
+            }
+
+        }
+
+        class SUV extends Car
+        {
+            public function __construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore, $fourWheelDrive = true)
+            {
+                parent::__construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore);
+                $this->type = "SUV";
+            }
+            public function getCarType()
+            {
+                return $this->type;
+            }
+
+        }
+
+        class Sedan extends Car
+        {
+            public function __construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore, $fourWheelDrive = true)
+            {
+                parent::__construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore);
+                $this->type = "Sedan";
+            }
+            public function getCarType()
+            {
+                return $this->type;
             }
         }
 
         $cars = [
-            new Car("images/Cars/audiQ8/audiQ8-1.jpg", "Audi Q8", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 12, 450, 3219, 4.8),
-            new Car("images/Cars/bmw-520d/bmw-520d1.jpg", "BMW 520d xDrive", "SUV", 4, ["Automatic", "1 Large bag", "1 Small bag"], 19, 370, 3014, 4.9),
-            new Car("images/Cars/gle400d/gle400D1.jpg", "Mercedes-Benz GLE 400d", "SUV", 5, ["Automatic", "1 Large bag", "1 Small bag"], 20, 435, 3014, 4.4),
+            new SUV("images/Cars/audiQ8/audiQ8-1.jpg", "Audi Q8", 5, ["Automatic", "1 Large bag", "1 Small bag"], 12, 450, 3219, 4.8),
+            new Sedan("images/Cars/bmw-520d/bmw-520d1.jpg", "BMW 520d xDrive", 4, ["Automatic", "1 Large bag", "1 Small bag"], 19, 370, 3014, 4.9),
+            new SUV("images/Cars/gle400d/gle400D1.jpg", "Mercedes-Benz GLE 400d", 5, ["Automatic", "1 Large bag", "1 Small bag"], 20, 435, 3014, 4.4)
         ]
             ?>
 
@@ -376,7 +443,7 @@
                     <div class="card-body">
                         <div>
                             <div class="card-title"><?= $car->name ?></div>
-                            <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
+                            <p class="paragraph"><?= $car->getCarType() ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
                             <div class="card-details">
                                 <?php foreach ($car->details as $detail): ?>
                                     <div class="detail"><?= $detail ?></div>
@@ -394,7 +461,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             <?php endforeach; ?>
