@@ -186,7 +186,7 @@
                 ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
                 20,
                 79,
-                3014,
+                3039,
                 4.6,
             ),
             new CarList(
@@ -212,7 +212,7 @@
                 <div class="card5">
                     <div class="slider">
                         <div class="slides">
-                            <?php foreach ($car->images as $img): ?>
+                            <?php foreach ($car->getImages() as $img): ?>
                                 <a href="cardetails.php?id=<?= $index ?>"><img class="slide" src="<?= $img ?>" alt="Image"></a>
                             <?php endforeach; ?>
                         </div>
@@ -223,7 +223,7 @@
                     <div class="card-body">
                         <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
                             <div>
-                                <div class="card-title"><?= $car->name ?></div>
+                                <div class="card-title"><?= $car->getName() ?></div>
                                 <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
                                 <div class="card-details">
                                     <?php foreach ($car->details as $detail): ?>
@@ -258,7 +258,7 @@
                     <div class="card5 goTop">
                         <div class="slider">
                             <div class="slides">
-                                <?php foreach ($car->images as $img): ?>
+                            <?php foreach ($car->getImages() as $img): ?>
                                     <a href="cardetails.php?id=<?= $index ?>"><img class="slide" src="<?= $img ?>" alt="Image"></a>
                                 <?php endforeach; ?>
                             </div>
@@ -269,7 +269,10 @@
                         <div class="card-body">
                             <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
                                 <div>
-                                    <div class="card-title"><?= $car->name ?></div>
+                                <?php if ($car->numberOfReviews === 3039) {
+                                        $car->setName($car->getName() . " Automatic");
+                                    } ?>
+                                    <div class="card-title"><?= $car->getName() ?></div>
                                     <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
                                     <div class="card-details">
                                         <?php foreach ($car->details as $detail): ?>

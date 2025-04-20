@@ -220,7 +220,7 @@
     <br>
     <hr style="background-color: lightgray;height: 2px;">
     <div class="price4">
-        <h1><?= $car->name ?></h1>
+        <h1><?= $car->getname() ?></h1>
         <h1><span id="dailyCost"><?= $car->price ?></span>€ / <span style="color: orange;">DAY</span></h1>
     </div>
 
@@ -235,7 +235,7 @@
     <section class="all">
         <div class="container20">
             <div class="slide20">
-                <?php foreach($car->images as $image): ?>
+                <?php foreach($car->getimages() as $image): ?>
                     <div class="item" style="background-image: url(<?= $image ?>);"></div>
                 <?php endforeach; ?>
             </div>
