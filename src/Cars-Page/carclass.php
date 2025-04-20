@@ -1,12 +1,28 @@
 <?php
     class Car {
-        public $name;
+        private $name;
         public $price;
-        public $images;
+        private $images;
 
         public function __construct($name, $price, $images) {
             $this->name = $name;
             $this->price = $price;
+            $this->images = $images;
+        }
+
+        public function getName() {
+            return $this->name;
+        }
+
+        public function getImages() {
+            return $this->images;
+        }
+
+        public function setName($name) {
+            $this->name = $name;
+        }
+
+        public function setImages($images) {
             $this->images = $images;
         }
     }
