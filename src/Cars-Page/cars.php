@@ -95,139 +95,112 @@
         <p>Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
     </div>
     <?php
+        require_once __DIR__ . '/carclass.php';
 
-    class Car
-    {
-        public $imagePaths;
-        public $name;
-        public $type;
-        public $numberOfSeats;
-        public $details;
-        public $discount;
-        public $oldPrice;
-        public $price;
-        public $numberOfReviews;
-        public $reviewScore;
+        $cars = [
+            new CarList(
+                ["../images/Cars/bmw-520d/bmw-520d1.jpg", "../images/Cars/bmw-520d/bmw-520d2.jpg", "../images/Cars/bmw-520d/bmw-520d3.jpg"],
+                "BMW 520d xDrive",
+                "Sedan",
+                5,
+                ["Automatic", "1 Large bag", "1 Small bag", "Benzin"],
+                19,
+                320,
+                3014,
+                4.9,
+            ),
+            new CarList(
+                ["../images/Cars/skoda-skala/skoda-skala1.jpg", "../images/Cars/skoda-skala/skoda-skala2.jpg", "../images/Cars/skoda-skala/skoda-skala3.jpg"],
+                "Skoda Scala",
+                "Sedan",
+                5,
+                ["Automatic", "1 Large bag", "2 Small bags", "Diesel"],
+                20,
+                80,
+                3014,
+                4.5
+            ),
+            new CarList(
+                ["../images/Cars/bmw-320d/bmw320d1.jpg", "../images/Cars/bmw-320d/bmw320d2.jpg", "../images/Cars/bmw-320d/bmw320d3.jpg"],
+                "BMW 320d xDrive",
+                "Sedan",
+                5,
+                ["Automatic", "1 Large bag", "3 Small bags", "Diesel"],
+                30,
+                140,
+                3014,
+                4.7,
+            ),
+            new CarList(
+                ["../images/Cars/audiA4/audiA4-1.jpg", "../images/Cars/audiA4/audiA4-2.jpg", "../images/Cars/audiA4/audiA4-3.jpg"],
+                "Audi A4",
+                "Sedan",
+                5,
+                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+                20,
+                90,
+                3014,
+                4.6,
+            ),
+            new CarList(
+                ["../images/Cars/skoda-rapid/skoda-rapid1.jpg", "../images/Cars/skoda-rapid/skoda-rapid2.jpg", "../images/Cars/skoda-rapid/skoda-rapid3.jpg"],
+                "Skoda Rapid",
+                "Sedan",
+                5,
+                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+                15,
+                80,
+                3014,
+                4.5,
+            ),
+            new CarList(
+                ["../images/Cars/gle400d/gle400D1.jpg", "../images/Cars/gle400d/gle400D2.jpg", "../images/Cars/gle400d/gle400D3.jpg"],
+                "Mercedes-Benz GLE 400d",
+                "SUV",
+                5,
+                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+                20,
+                435,
+                3014,
+                4.4,
+            )
+        ];
 
-        public function __construct($imagePaths, $name, $type, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore)
-        {
-            $this->imagePaths = $imagePaths;
-            $this->name = $name;
-            $this->type = $type;
-            $this->numberOfSeats = $numberOfSeats;
-            $this->details = $details;
-            $this->discount = $discount;
-            $this->oldPrice = $oldPrice;
-            $this->price = $oldPrice - ($discount / 100 * $oldPrice);
-            $this->numberOfReviews = $numberOfReviews;
-            $this->reviewScore = $reviewScore;
-        }
-    }
-
-    $cars = [
-        new Car(
-            ["../images/Cars/bmw-520d/bmw-520d1.jpg", "../images/Cars/bmw-520d/bmw-520d2.jpg", "../images/Cars/bmw-520d/bmw-520d3.jpg"],
-            "BMW 520d xDrive",
-            "Sedan",
-            5,
-            ["Automatic", "1 Large bag", "1 Small bag", "Benzin"],
-            19,
-            320,
-            3014,
-            4.9,
-        ),
-        new Car(
-            ["../images/Cars/skoda-skala/skoda-skala1.jpg", "../images/Cars/skoda-skala/skoda-skala2.jpg", "../images/Cars/skoda-skala/skoda-skala3.jpg"],
-            "Skoda Scala",
-            "Sedan",
-            5,
-            ["Automatic", "1 Large bag", "2 Small bags", "Diesel"],
-            20,
-            80,
-            3014,
-            "4.5"
-        ),
-        new Car(
-            ["../images/Cars/bmw-320d/bmw320d1.jpg", "../images/Cars/bmw-320d/bmw320d2.jpg", "../images/Cars/bmw-320d/bmw320d3.jpg"],
-            "BMW 320d xDrive",
-            "Sedan",
-            5,
-            ["Automatic", "1 Large bag", "3 Small bags", "Diesel"],
-            30,
-            140,
-            3014,
-            4.7,
-        ),
-        new Car(
-            ["../images/Cars/audiA4/audiA4-1.jpg", "../images/Cars/audiA4/audiA4-2.jpg", "../images/Cars/audiA4/audiA4-3.jpg"],
-            "Audi A4",
-            "Sedan",
-            5,
-            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-            20,
-            90,
-            3014,
-            4.6,
-        ),
-        new Car(
-            ["../images/Cars/skoda-rapid/skoda-rapid1.jpg", "../images/Cars/skoda-rapid/skoda-rapid2.jpg", "../images/Cars/skoda-rapid/skoda-rapid3.jpg"],
-            "Skoda Rapid",
-            "Sedan",
-            5,
-            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-            15,
-            80,
-            3014,
-            4.5,
-        ),
-        new Car(
-            ["../images/Cars/gle400d/gle400D1.jpg", "../images/Cars/gle400d/gle400D2.jpg", "../images/Cars/gle400d/gle400D3.jpg"],
-            "Mercedes-Benz GLE 400d",
-            "SUV",
-            5,
-            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-            20,
-            435,
-            3014,
-            4.4,
-        )
-    ];
-
-    $hiddenCars = [
-        new Car(
-            ["../images/Cars/bmwX5/bmwX5-1.jpg", "../images/Cars/bmwX5/bmwX5-2.jpg", "../images/Cars/bmwX5/bmwX5-3.jpg"],
-            "BMW X5 xDrive",
-            "SUV",
-            5,
-            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-            15,
-            270,
-            3014,
-            4.5,
-        ),
-        new Car(
-            ["../images/Cars/golf8/g8-1.jpg", "../images/Cars/golf8/g8-2.jpg", "../images/Cars/golf8/g8-3.jpg"],
-            "Golf 8",
-            "Sedan",
-            5,
-            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-            20,
-            79,
-            3014,
-            4.6,
-        ),
-        new Car(
-            ["../images/Cars/audiQ8/audiQ8-1.jpg", "../images/Cars/audiQ8/audiQ8-2.jpg", "../images/Cars/audiQ8/audiQ8-3.jpg"],
-            "Audi Q8",
-            "SUV",
-            5,
-            ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-            12,
-            450,
-            3014,
-            4.9,
-        )
-    ];
+        $hiddenCars = [
+            new CarList(
+                ["../images/Cars/bmwX5/bmwX5-1.jpg", "../images/Cars/bmwX5/bmwX5-2.jpg", "../images/Cars/bmwX5/bmwX5-3.jpg"],
+                "BMW X5 xDrive",
+                "SUV",
+                5,
+                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+                15,
+                270,
+                3014,
+                4.5,
+            ),
+            new CarList(
+                ["../images/Cars/golf8/g8-1.jpg", "../images/Cars/golf8/g8-2.jpg", "../images/Cars/golf8/g8-3.jpg"],
+                "Golf 8",
+                "Sedan",
+                5,
+                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+                20,
+                79,
+                3014,
+                4.6,
+            ),
+            new CarList(
+                ["../images/Cars/audiQ8/audiQ8-1.jpg", "../images/Cars/audiQ8/audiQ8-2.jpg", "../images/Cars/audiQ8/audiQ8-3.jpg"],
+                "Audi Q8",
+                "SUV",
+                5,
+                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
+                12,
+                450,
+                3014,
+                4.9,
+            )
+        ];
     ?>
 
     <section class="car_container">
@@ -239,8 +212,8 @@
                 <div class="card5">
                     <div class="slider">
                         <div class="slides">
-                            <?php foreach ($car->imagePaths as $imagePath): ?>
-                                <img class="slide" src="<?= $imagePath ?>" alt="Image">
+                            <?php foreach ($car->images as $img): ?>
+                                <a href="cardetails.php?id=<?= $index ?>"><img class="slide" src="<?= $img ?>" alt="Image"></a>
                             <?php endforeach; ?>
                         </div>
                         <button class="prev" onclick="prevSlide()">&#10094;</button>
@@ -251,7 +224,7 @@
                         <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
                             <div>
                                 <div class="card-title"><?= $car->name ?></div>
-                                <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
+                                <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
                                 <div class="card-details">
                                     <?php foreach ($car->details as $detail): ?>
                                         <div class="detail"><?= $detail ?></div>
@@ -285,8 +258,8 @@
                     <div class="card5 goTop">
                         <div class="slider">
                             <div class="slides">
-                                <?php foreach ($car->imagePaths as $imagePath): ?>
-                                    <img class="slide" src="<?= $imagePath ?>" alt="Image">
+                                <?php foreach ($car->images as $img): ?>
+                                    <a href="cardetails.php?id=<?= $index ?>"><img class="slide" src="<?= $img ?>" alt="Image"></a>
                                 <?php endforeach; ?>
                             </div>
                             <button class="prev" onclick="prevSlide()">&#10094;</button>
@@ -297,7 +270,7 @@
                             <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
                                 <div>
                                     <div class="card-title"><?= $car->name ?></div>
-                                    <p class="paragraph"><?= $car->type ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
+                                    <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
                                     <div class="card-details">
                                         <?php foreach ($car->details as $detail): ?>
                                             <div class="detail"><?= $detail ?></div>

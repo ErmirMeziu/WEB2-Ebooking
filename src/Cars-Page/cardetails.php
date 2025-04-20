@@ -37,23 +37,10 @@
 <body>
     
     <?php
-        class Car {
-            public $id, $name, $price, $images, $seats, $suitcase, $features, $morefeatures;
-
-            public function __construct($id, $name, $price, $images, $seats, $suitcase, $features, $morefeatures) {
-                $this->id = $id;
-                $this->name = $name;
-                $this->price = $price;
-                $this->images = $images;
-                $this->seats = $seats;
-                $this->suitcase = $suitcase;
-                $this->features = $features;
-                $this->morefeatures = $morefeatures;
-            }
-        }
+        require_once __DIR__ . '/carclass.php';
 
         $cars = [
-            new Car(0, "BMW 520d xDrive", 259.2, 
+            new CarDetails(0, "BMW 520d xDrive", 259.2, 
                 [
                     "../images/Cars/bmw-520d/bmw-520d1.jpg",
                     "../images/Cars/bmw-520d/bmw-520d2.jpg",
@@ -61,13 +48,13 @@
                 ],
                 5, 2,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Radio", "Air Condition"]
             ),
-            new Car(1, "Skoda Scala", 64,
+            new CarDetails(1, "Skoda Scala", 64,
                 [
                     "../images/Cars/skoda-skala/skoda-skala1.jpg",
                     "../images/Cars/skoda-skala/skoda-skala2.jpg",
@@ -75,13 +62,13 @@
                 ],
                 4, 1,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Radio", "Air Condition"]
             ),
-            new Car(2, "BMW 320d xDrive", 98,
+            new CarDetails(2, "BMW 320d xDrive", 98,
                 [
                     "../images/Cars/bmw-320d/bmw320d1.jpg",
                     "../images/Cars/bmw-320d/bmw320d2.jpg",
@@ -89,13 +76,13 @@
                 ],
                 5, 2, 
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Radio", "Air Condition"]
             ),
-            new Car(3, "Audi A4", 72,
+            new CarDetails(3, "Audi A4", 72,
                 [
                     "../images/Cars/audiA4/audiA4-1.jpg",
                     "../images/Cars/audiA4/audiA4-2.jpg",
@@ -103,13 +90,13 @@
                 ],
                 5, 2,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Air Condition"]
             ),
-            new Car(4, "Skoda Rapid", 68,
+            new CarDetails(4, "Skoda Rapid", 68,
                 [
                     "../images/Cars/skoda-rapid/skoda-rapid1.jpg",
                     "../images/Cars/skoda-rapid/skoda-rapid2.jpg",
@@ -117,13 +104,13 @@
                 ],
                 5, 2,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Air Condition"]
             ),
-            new Car(5, "Mercedes-Benz GLE 400d", 348,
+            new CarDetails(5, "Mercedes-Benz GLE 400d", 348,
                 [
                     "../images/Cars/gle400d/gle400D1.jpg",
                     "../images/Cars/gle400d/gle400D2.jpg",
@@ -131,13 +118,13 @@
                 ],
                 5, 2,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Radio", "Air Condition"]
             ),
-            new Car(6, "BMW X5 xDrive", 230,
+            new CarDetails(6, "BMW X5 xDrive", 229.5,
                 [
                     "../images/Cars/bmwX5/bmwX5-1.jpg",
                     "../images/Cars/bmwX5/bmwX5-2.jpg",
@@ -145,13 +132,13 @@
                 ],
                 5, 2,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Radio", "Air Condition"]
             ),
-            new Car(7, "Golf 8", 63,
+            new CarDetails(7, "Golf 8", 63.2,
                 [
                     "../images/Cars/golf8/g8-1.jpg",
                     "../images/Cars/golf8/g8-2.jpg",
@@ -159,13 +146,13 @@
                 ],
                 5, 2,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Airbag", "Bluetooth", "Radio", "Air Condition"]
             ),
-            new Car(8, "Audi Q8", 396,
+            new CarDetails(8, "Audi Q8", 3966,
                 [
                     "../images/Cars/audiQ8/audiQ8-1.jpg",
                     "../images/Cars/audiQ8/audiQ8-2.jpg",
@@ -173,22 +160,23 @@
                 ],
                 5, 2,
                 [
-                    ["../images/Cars/AirConditioning.png", "Air Conditioning"],
-                    ["../images/Cars/Doors.png", "5 Doors"],
-                    ["../images/Cars/Automatike.webp", "Transmission Automatic"],
+                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
+                    "5 Doors" => "../images/Cars/Doors.png",
+                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
                 ],
                 ["Bluetooth", "Air Condition"]
             )
         ];        
-        
-        $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
-        if (!isset($cars[$id])) {
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        
+        if (isset($cars[$id])) {
+            $car = $cars[$id];
+            $car->sortByCarId();
+        } else {
             echo "Car not found.";
             exit;
         }
-
-        $car = $cars[$id];
     ?>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
@@ -247,9 +235,9 @@
     <section class="all">
         <div class="container20">
             <div class="slide20">
-                <?php for ($i = 0; $i < count($car->images); $i++): ?>
-                    <div class="item" style="background-image: url(<?= $car->images[$i] ?>);"></div>
-                <?php endfor; ?>
+                <?php foreach($car->images as $image): ?>
+                    <div class="item" style="background-image: url(<?= $image ?>);"></div>
+                <?php endforeach; ?>
             </div>
             <div class="button">
                 <button class="prev2"><i class="fa-solid fa-arrow-left"></i></button>
@@ -259,12 +247,12 @@
         <div class="right2">
             <div class="car-features">
                 <h3>Car features</h3>
-                <?php for($i = 0; $i < count($car->features); $i++): ?>
+                <?php foreach($car->features as $name => $img): ?>
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <img src="<?= $car->features[$i][0] ?>" alt="" width="30" height="30" style="margin-right: 10px;">
-                        <p style="margin: 0;"><?= $car->features[$i][1] ?></p>
+                        <img src="<?= $img ?>" alt="<?= $name ?>" width="30" height="30" style="margin-right: 10px;">
+                        <p style="margin: 0;"><?= $name ?></p>
                     </div>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </div>
             <div class="Capacity">
                 <h3>Capacity</h3>
@@ -274,9 +262,9 @@
             <div class="Extra">
                 <h3>Extra</h3>
                 <div class="extra-button">
-                    <?php for($i = 0; $i < count($car->morefeatures); $i++): ?>
-                        <button><?= $car->morefeatures[$i] ?></button>
-                <?php endfor; ?>
+                    <?php foreach ($car->morefeatures as $more): ?>
+                        <button><?= $more ?></button>
+                    <?php endforeach; ?>
                 </div>
                 <div class="rezervo">
                     <p>Press the button to book it!</p>
