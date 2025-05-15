@@ -31,8 +31,52 @@
             color: rgb(215, 44, 33);
         }
     </style>
-
 </head>
+
+<?php
+    require_once __DIR__ . '/carclass.php';
+    include '../db.php'; 
+
+    function addcars($conn, $visible) {
+        $cars = [];
+        $query = "SELECT * FROM cars WHERE $visible";
+        $result = $conn->query($query);
+
+        while ($eachrow = $result->fetch_assoc()) {
+            $carid = $eachrow['id'];
+
+            $details = [];
+            $eachdetail = $conn->query("SELECT details FROM cardetails WHERE carid = $carid");
+            while ($d = $eachdetail->fetch_assoc()) {
+                $details[] = $d['details'];
+            }
+
+            $images = [];
+            $eachimage = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
+            while ($img = $eachimage->fetch_assoc()) {
+                $images[] = $img['imgurl'];
+            }
+
+            $cars[] = (object)[
+                'id' => $eachrow['id'] - 1,
+                'name' => $eachrow['name'],
+                'type' => $eachrow['type'],
+                'seats' => $eachrow['seats'],
+                'price' => $eachrow['price'],
+                'oldPrice' => $eachrow['oldprice'],
+                'discount' => $eachrow['discount'],
+                'reviews' => $eachrow['reviews'],
+                'reviewScore' => $eachrow['reviewscore'],
+                'details' => $details,
+                'images' => $images
+            ];
+        }
+        return $cars;
+    }
+
+    $cars = addcars($conn, "id <= 6");
+    $hiddenCars = addcars($conn, "id > 6");
+?>
 
 <body>
     <header>
@@ -88,132 +132,22 @@
     </section>
 
     <div class="text">
-
         <h1>
             Out Awesome Vehicles
         </h1>
         <p>Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
     </div>
-    <?php
-        require_once __DIR__ . '/carclass.php';
-
-        $cars = [
-            new CarList(
-                ["../images/Cars/bmw-520d/bmw-520d1.jpg", "../images/Cars/bmw-520d/bmw-520d2.jpg", "../images/Cars/bmw-520d/bmw-520d3.jpg"],
-                "BMW 520d xDrive",
-                "Sedan",
-                5,
-                ["Automatic", "1 Large bag", "1 Small bag", "Benzin"],
-                19,
-                320,
-                3014,
-                4.9,
-            ),
-            new CarList(
-                ["../images/Cars/skoda-skala/skoda-skala1.jpg", "../images/Cars/skoda-skala/skoda-skala2.jpg", "../images/Cars/skoda-skala/skoda-skala3.jpg"],
-                "Skoda Scala",
-                "Sedan",
-                5,
-                ["Automatic", "1 Large bag", "2 Small bags", "Diesel"],
-                20,
-                80,
-                3014,
-                4.5
-            ),
-            new CarList(
-                ["../images/Cars/bmw-320d/bmw320d1.jpg", "../images/Cars/bmw-320d/bmw320d2.jpg", "../images/Cars/bmw-320d/bmw320d3.jpg"],
-                "BMW 320d xDrive",
-                "Sedan",
-                5,
-                ["Automatic", "1 Large bag", "3 Small bags", "Diesel"],
-                30,
-                140,
-                3014,
-                4.7,
-            ),
-            new CarList(
-                ["../images/Cars/audiA4/audiA4-1.jpg", "../images/Cars/audiA4/audiA4-2.jpg", "../images/Cars/audiA4/audiA4-3.jpg"],
-                "Audi A4",
-                "Sedan",
-                5,
-                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-                20,
-                90,
-                3014,
-                4.6,
-            ),
-            new CarList(
-                ["../images/Cars/skoda-rapid/skoda-rapid1.jpg", "../images/Cars/skoda-rapid/skoda-rapid2.jpg", "../images/Cars/skoda-rapid/skoda-rapid3.jpg"],
-                "Skoda Rapid",
-                "Sedan",
-                5,
-                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-                15,
-                80,
-                3014,
-                4.5,
-            ),
-            new CarList(
-                ["../images/Cars/gle400d/gle400D1.jpg", "../images/Cars/gle400d/gle400D2.jpg", "../images/Cars/gle400d/gle400D3.jpg"],
-                "Mercedes-Benz GLE 400d",
-                "SUV",
-                5,
-                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-                20,
-                435,
-                3014,
-                4.4,
-            )
-        ];
-
-        $hiddenCars = [
-            new CarList(
-                ["../images/Cars/bmwX5/bmwX5-1.jpg", "../images/Cars/bmwX5/bmwX5-2.jpg", "../images/Cars/bmwX5/bmwX5-3.jpg"],
-                "BMW X5 xDrive",
-                "SUV",
-                5,
-                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-                15,
-                270,
-                3014,
-                4.5,
-            ),
-            new CarList(
-                ["../images/Cars/golf8/g8-1.jpg", "../images/Cars/golf8/g8-2.jpg", "../images/Cars/golf8/g8-3.jpg"],
-                "Golf 8",
-                "Sedan",
-                5,
-                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-                20,
-                79,
-                3039,
-                4.6,
-            ),
-            new CarList(
-                ["../images/Cars/audiQ8/audiQ8-1.jpg", "../images/Cars/audiQ8/audiQ8-2.jpg", "../images/Cars/audiQ8/audiQ8-3.jpg"],
-                "Audi Q8",
-                "SUV",
-                5,
-                ["Automatic", "1 Large bag", "1 Small bag", "Diesel"],
-                12,
-                450,
-                3014,
-                4.9,
-            )
-        ];
-    ?>
 
     <section class="car_container">
-        <div class="filter-section">
-            <button id="filterAvailableBtn">Show Available Cars</button>
-        </div>
         <div class="container12 goTop">
-            <?php foreach ($cars as $index => $car): ?>
+            <?php foreach ($cars as $car): ?>
                 <div class="card5">
                     <div class="slider">
                         <div class="slides">
-                            <?php foreach ($car->getImages() as $img): ?>
-                                <a href="cardetails.php?id=<?= $index ?>"><img class="slide" src="<?= $img ?>" alt="Image"></a>
+                            <?php foreach ($car->images as $img): ?>
+                                <a href="cardetails.php?id=<?= $car->id?>">
+                                    <img class="slide" src="<?= $img ?>" alt="Image">
+                                </a>
                             <?php endforeach; ?>
                         </div>
                         <button class="prev" onclick="prevSlide()">&#10094;</button>
@@ -221,9 +155,9 @@
                     </div>
                     <div class="badge">600Kms included. After that $15/Kms</div>
                     <div class="card-body">
-                        <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
+                        <a href="cardetails.php?id=<?= $car->id?>" style="text-decoration: none; color: black;">
                             <div>
-                                <div class="card-title"><?= $car->getName() ?></div>
+                                <div class="card-title"><?= $car->name ?></div>
                                 <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
                                 <div class="card-details">
                                     <?php foreach ($car->details as $detail): ?>
@@ -233,11 +167,12 @@
                                 <div class="price-section">
                                     <div class="price-section2">
                                         <div class="discount"><?= $car->discount ?>% Off</div>
-                                        <div class="price">US$<?= $car->price ?> <span
-                                                class="old-price">US$<?= $car->oldPrice ?></span></div>
+                                        <div class="price">US$<?= $car->price ?> 
+                                            <span class="old-price">US$<?= $car->oldPrice ?></span>
+                                        </div>
                                     </div>
                                     <div class="rating">
-                                        <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
+                                        <div class="reviews">Exceptional <br><?= $car->reviews ?> reviews</div>
                                         <div class="score"><?= $car->reviewScore ?></div>
                                     </div>
                                 </div>
@@ -251,15 +186,14 @@
             <?php endforeach; ?>
 
             <div class="toHide">
-                <?php foreach ($hiddenCars as $i => $car):
-                    $index = count($cars) + $i;
-                    ?>
-
+                <?php foreach ($hiddenCars as $car): ?>
                     <div class="card5 goTop">
                         <div class="slider">
                             <div class="slides">
-                            <?php foreach ($car->getImages() as $img): ?>
-                                    <a href="cardetails.php?id=<?= $index ?>"><img class="slide" src="<?= $img ?>" alt="Image"></a>
+                                <?php foreach ($car->images as $img): ?>
+                                    <a href="cardetails.php?id=<?= $car->id?>">
+                                        <img class="slide" src="<?= $img ?>" alt="Image">
+                                    </a>
                                 <?php endforeach; ?>
                             </div>
                             <button class="prev" onclick="prevSlide()">&#10094;</button>
@@ -267,12 +201,9 @@
                         </div>
                         <div class="badge">600Kms included. After that $15/Kms</div>
                         <div class="card-body">
-                            <a href="cardetails.php?id=<?= $index ?>" style="text-decoration: none; color: black;">
+                            <a href="cardetails.php?id=<?= $car->id?>" style="text-decoration: none; color: black;">
                                 <div>
-                                <?php if ($car->numberOfReviews === 3039) {
-                                        $car->setName($car->getName() . " Automatic");
-                                    } ?>
-                                    <div class="card-title"><?= $car->getName() ?></div>
+                                    <div class="card-title"><?= $car->name ?></div>
                                     <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
                                     <div class="card-details">
                                         <?php foreach ($car->details as $detail): ?>
@@ -282,11 +213,12 @@
                                     <div class="price-section">
                                         <div class="price-section2">
                                             <div class="discount"><?= $car->discount ?>% Off</div>
-                                            <div class="price">US$<?= $car->price ?> <span
-                                                    class="old-price">US$<?= $car->oldPrice ?></span></div>
+                                            <div class="price">US$<?= $car->price ?>
+                                                <span class="old-price">US$<?= $car->oldPrice ?></span>
+                                            </div>
                                         </div>
                                         <div class="rating">
-                                            <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
+                                            <div class="reviews">Exceptional <br><?= $car->reviews ?> reviews</div>
                                             <div class="score"><?= $car->reviewScore ?></div>
                                         </div>
                                     </div>
@@ -299,7 +231,6 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div>
 
         <button class="view-more">VIEW MORE</button></div>
     </section>

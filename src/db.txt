@@ -1,0 +1,25 @@
+CREATE TABLE `cars` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(50),
+  `seats` INT,
+  `price` DECIMAL(10,2),
+  `oldprice` DECIMAL(10,2),
+  `discount` INT,
+  `reviews` INT,
+  `reviewscore` DECIMAL(3,1)
+);
+
+CREATE TABLE `carimages` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `carid` INT NOT NULL,
+  `imgurl` VARCHAR(255) NOT NULL,
+  FOREIGN KEY (`carid`) REFERENCES `cars`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `cardetails` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `carid` INT NOT NULL,
+  `details` VARCHAR(255) NOT NULL,
+  FOREIGN KEY (`carid`) REFERENCES `cars`(`id`) ON DELETE CASCADE
+);
