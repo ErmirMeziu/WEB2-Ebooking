@@ -74,14 +74,15 @@
     </header>
 
     <section id="all">
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/register.php'); ?>
 
         <script>
             setTimeout(() => {
                 const script = document.createElement('script');
                 script.src = '/WEB2-Ebooking/src/script/login-register.js';
                 document.body.appendChild(script);
-            }, 50);
+            }, 500);
         </script>
     </section>
 

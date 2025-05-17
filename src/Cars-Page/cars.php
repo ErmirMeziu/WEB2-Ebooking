@@ -34,48 +34,49 @@
 </head>
 
 <?php
-    require_once __DIR__ . '/carclass.php';
-    include '../db.php'; 
+require_once __DIR__ . '/carclass.php';
+include '../db.php';
 
-    function addcars($conn, $visible) {
-        $cars = [];
-        $query = "SELECT * FROM cars WHERE $visible";
-        $result = $conn->query($query);
+function addcars($conn, $visible)
+{
+    $cars = [];
+    $query = "SELECT * FROM cars WHERE $visible";
+    $result = $conn->query($query);
 
-        while ($eachrow = $result->fetch_assoc()) {
-            $carid = $eachrow['id'];
+    while ($eachrow = $result->fetch_assoc()) {
+        $carid = $eachrow['id'];
 
-            $details = [];
-            $eachdetail = $conn->query("SELECT details FROM cardetails WHERE carid = $carid");
-            while ($d = $eachdetail->fetch_assoc()) {
-                $details[] = $d['details'];
-            }
-
-            $images = [];
-            $eachimage = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
-            while ($img = $eachimage->fetch_assoc()) {
-                $images[] = $img['imgurl'];
-            }
-
-            $cars[] = (object)[
-                'id' => $eachrow['id'],
-                'name' => $eachrow['name'],
-                'type' => $eachrow['type'],
-                'seats' => $eachrow['seats'],
-                'price' => $eachrow['price'],
-                'oldPrice' => $eachrow['oldprice'],
-                'discount' => $eachrow['discount'],
-                'reviews' => $eachrow['reviews'],
-                'reviewScore' => $eachrow['reviewscore'],
-                'details' => $details,
-                'images' => $images
-            ];
+        $details = [];
+        $eachdetail = $conn->query("SELECT details FROM cardetails WHERE carid = $carid");
+        while ($d = $eachdetail->fetch_assoc()) {
+            $details[] = $d['details'];
         }
-        return $cars;
-    }
 
-    $cars = addcars($conn, "id <= 6");
-    $hiddenCars = addcars($conn, "id > 6");
+        $images = [];
+        $eachimage = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
+        while ($img = $eachimage->fetch_assoc()) {
+            $images[] = $img['imgurl'];
+        }
+
+        $cars[] = (object) [
+            'id' => $eachrow['id'],
+            'name' => $eachrow['name'],
+            'type' => $eachrow['type'],
+            'seats' => $eachrow['seats'],
+            'price' => $eachrow['price'],
+            'oldPrice' => $eachrow['oldprice'],
+            'discount' => $eachrow['discount'],
+            'reviews' => $eachrow['reviews'],
+            'reviewScore' => $eachrow['reviewscore'],
+            'details' => $details,
+            'images' => $images
+        ];
+    }
+    return $cars;
+}
+
+$cars = addcars($conn, "id <= 6");
+$hiddenCars = addcars($conn, "id > 6");
 ?>
 
 <body>
@@ -84,14 +85,15 @@
     </header>
 
     <section id="all">
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/register.php'); ?>
 
         <script>
             setTimeout(() => {
                 const script = document.createElement('script');
                 script.src = '/WEB2-Ebooking/src/script/login-register.js';
                 document.body.appendChild(script);
-            }, 50);
+            }, 500);
         </script>
     </section>
 
@@ -145,7 +147,7 @@
                     <div class="slider">
                         <div class="slides">
                             <?php foreach ($car->images as $img): ?>
-                                <a href="cardetails.php?id=<?= $car->id?>">
+                                <a href="cardetails.php?id=<?= $car->id ?>">
                                     <img class="slide" src="<?= $img ?>" alt="Image">
                                 </a>
                             <?php endforeach; ?>
@@ -155,7 +157,7 @@
                     </div>
                     <div class="badge">600Kms included. After that $15/Kms</div>
                     <div class="card-body">
-                        <a href="cardetails.php?id=<?= $car->id?>" style="text-decoration: none; color: black;">
+                        <a href="cardetails.php?id=<?= $car->id ?>" style="text-decoration: none; color: black;">
                             <div>
                                 <div class="card-title"><?= $car->name ?></div>
                                 <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
@@ -167,7 +169,7 @@
                                 <div class="price-section">
                                     <div class="price-section2">
                                         <div class="discount"><?= $car->discount ?>% Off</div>
-                                        <div class="price">US$<?= $car->price ?> 
+                                        <div class="price">US$<?= $car->price ?>
                                             <span class="old-price">US$<?= $car->oldPrice ?></span>
                                         </div>
                                     </div>
@@ -191,7 +193,7 @@
                         <div class="slider">
                             <div class="slides">
                                 <?php foreach ($car->images as $img): ?>
-                                    <a href="cardetails.php?id=<?= $car->id?>">
+                                    <a href="cardetails.php?id=<?= $car->id ?>">
                                         <img class="slide" src="<?= $img ?>" alt="Image">
                                     </a>
                                 <?php endforeach; ?>
@@ -201,7 +203,7 @@
                         </div>
                         <div class="badge">600Kms included. After that $15/Kms</div>
                         <div class="card-body">
-                            <a href="cardetails.php?id=<?= $car->id?>" style="text-decoration: none; color: black;">
+                            <a href="cardetails.php?id=<?= $car->id ?>" style="text-decoration: none; color: black;">
                                 <div>
                                     <div class="card-title"><?= $car->name ?></div>
                                     <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
@@ -232,7 +234,8 @@
                 <?php endforeach; ?>
             </div>
 
-        <button class="view-more">VIEW MORE</button></div>
+            <button class="view-more">VIEW MORE</button>
+        </div>
     </section>
 
     <abbr title="Go up button">

@@ -72,7 +72,7 @@ input {
 }
 
 .register-form {
-    height: 600px;
+    height: 500px;
     font-size: 15px;
     border-top: solid 0.1px rgb(173, 181, 189);
     border-bottom: solid 0.1px rgb(173, 181, 189);
@@ -91,7 +91,7 @@ input {
 
 
 .register-form {
-    padding: 24px 16px;
+    padding: 10px 16px;
 }
 
 
@@ -103,8 +103,8 @@ input {
 
 .register-form form {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap: 10%;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 6%;
 }
 
 .login-input {

@@ -34,9 +34,10 @@
         }
     </style>
 </head>
+
 <body>
-    
-<?php
+
+    <?php
     require_once __DIR__ . '/carclass.php';
     require_once '../db.php';
 
@@ -83,20 +84,21 @@
         $features,
         $morefeatures
     );
-?>
+    ?>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/register.php'); ?>
 
         <script>
             setTimeout(() => {
                 const script = document.createElement('script');
                 script.src = '/WEB2-Ebooking/src/script/login-register.js';
                 document.body.appendChild(script);
-            }, 50);
+            }, 500);
         </script>
     </section>
 
@@ -130,18 +132,10 @@
         <h1><span id="dailyCost"><?= $car->price ?></span>€ / <span style="color: orange;">DAY</span></h1>
     </div>
 
-    <div class="video-overlay"></div>
-    <div class="video">
-        <video width="100%" height="100%" controls>
-            <source src="<?= $car->video ?>" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
     <section class="all">
         <div class="container20">
             <div class="slide20">
-                <?php foreach($car->getimages() as $image): ?>
+                <?php foreach ($car->getimages() as $image): ?>
                     <div class="item" style="background-image: url(<?= $image ?>);"></div>
                 <?php endforeach; ?>
             </div>
@@ -153,7 +147,7 @@
         <div class="right2">
             <div class="car-features">
                 <h3>Car features</h3>
-                <?php foreach($car->features as $name => $img): ?>
+                <?php foreach ($car->features as $name => $img): ?>
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
                         <img src="<?= $img ?>" alt="<?= $name ?>" width="30" height="30" style="margin-right: 10px;">
                         <p style="margin: 0;"><?= $name ?></p>
@@ -187,9 +181,10 @@
             </div>
         </div>
     </section>
-    
+
     <footer style="margin-top: 100px;">
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 </body>
+
 </html>

@@ -34,20 +34,20 @@
 </head>
 
 <body class="body">
-
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
 
     <section id="all">
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login_register.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/register.php'); ?>
 
         <script>
             setTimeout(() => {
                 const script = document.createElement('script');
                 script.src = '/WEB2-Ebooking/src/script/login-register.js';
                 document.body.appendChild(script);
-            }, 50);
+            }, 500);
         </script>
     </section>
 
@@ -274,8 +274,8 @@
                 public $taxInfo;
                 protected $discount;
                 private $link;
-            
-                public function __construct($name, $location, $imagePath, $stars, $features, $roomType, $lastBooked, $cancellationPolicy, $promo, $rating, $reviewCount, $originalPrice, $currentPrice, $taxInfo, $discount,$link)
+
+                public function __construct($name, $location, $imagePath, $stars, $features, $roomType, $lastBooked, $cancellationPolicy, $promo, $rating, $reviewCount, $originalPrice, $currentPrice, $taxInfo, $discount, $link)
                 {
                     $this->name = $name;
                     $this->location = $location;
@@ -295,69 +295,73 @@
                     $this->link = $link;
 
                 }
-                public function __getLink(){
+                public function __getLink()
+                {
                     return $this->link;
                 }
-                public function __setLink($link){
-                 $this->link=$link;
+                public function __setLink($link)
+                {
+                    $this->link = $link;
                 }
-                public function repeated(){
+                public function repeated()
+                {
                     ?>
-                 <div class="box">
-                    <div class="section2">
-                        <div class="hotel-img">
-                            <a href="<?= $this->__getLink()?>" target="_blank"><img src="<?= $this->imagePath ?>"
-                                    alt="Picture of hotel">
-                            </a>
-                        </div>
-                        <div class="hotel-text">
-                            <div class="star">
-                                <?php for($i=0;$i<$this->stars;$i++):?>
-                                    <p><i class="fa-solid fa-star"></i></p>
-                                <?php endfor;?>
+                    <div class="box">
+                        <div class="section2">
+                            <div class="hotel-img">
+                                <a href="<?= $this->__getLink() ?>" target="_blank"><img src="<?= $this->imagePath ?>"
+                                        alt="Picture of hotel">
+                                </a>
                             </div>
-                            <p id="style-hotel-p"><?= $this->name ?></p>
-                            <p id="text5"><?= $this->location ?></p>
-                            <div class="hotel-offers">
-                                <?php foreach ($this->features as $feature): ?>
-                                    <p><?= $feature ?></p>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="middle-text">
-                                <p id="text6"><?= $this->roomType ?></p>
-                                <p id="text7"><?= $this->lastBooked ?></p>
-                            </div>
-                            <div class="bottom-text">
-                                <p id="text8"><?= $this->cancellationPolicy ?></p>
-                                <p id="text9"><?= $this->promo ?></p>
-                            </div>
-                        </div>
-                        <div class="hotel-button">
-                            <div class="parent">
-                                <div class="part1">
-                                    <p id="text10">Exceptional</p>
-                                    <p id="text11">
-                                        <output name="reviews-count" id="reviews-count"><?= number_format($this->reviewCount) ?></output> reviews
-                                    </p>
+                            <div class="hotel-text">
+                                <div class="star">
+                                    <?php for ($i = 0; $i < $this->stars; $i++): ?>
+                                        <p><i class="fa-solid fa-star"></i></p>
+                                    <?php endfor; ?>
                                 </div>
-                                <button id="button"><?= $this->rating ?></button>
+                                <p id="style-hotel-p"><?= $this->name ?></p>
+                                <p id="text5"><?= $this->location ?></p>
+                                <div class="hotel-offers">
+                                    <?php foreach ($this->features as $feature): ?>
+                                        <p><?= $feature ?></p>
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="middle-text">
+                                    <p id="text6"><?= $this->roomType ?></p>
+                                    <p id="text7"><?= $this->lastBooked ?></p>
+                                </div>
+                                <div class="bottom-text">
+                                    <p id="text8"><?= $this->cancellationPolicy ?></p>
+                                    <p id="text9"><?= $this->promo ?></p>
+                                </div>
                             </div>
-                            <div class="price-section">
-                                <div class="discount-badge">
-                                    <p><?= $this->discount ?></p>
+                            <div class="hotel-button">
+                                <div class="parent">
+                                    <div class="part1">
+                                        <p id="text10">Exceptional</p>
+                                        <p id="text11">
+                                            <output name="reviews-count"
+                                                id="reviews-count"><?= number_format($this->reviewCount) ?></output> reviews
+                                        </p>
+                                    </div>
+                                    <button id="button"><?= $this->rating ?></button>
                                 </div>
-                                <div class="price-details">
-                                    <p class="original-price">US$<?= $this->originalPrice ?></p>
-                                    <p class="current-price">$<?= $this->currentPrice ?></p>
-                                    <p class="additional-info"><?= $this->taxInfo ?></p>
+                                <div class="price-section">
+                                    <div class="discount-badge">
+                                        <p><?= $this->discount ?></p>
+                                    </div>
+                                    <div class="price-details">
+                                        <p class="original-price">US$<?= $this->originalPrice ?></p>
+                                        <p class="current-price">$<?= $this->currentPrice ?></p>
+                                        <p class="additional-info"><?= $this->taxInfo ?></p>
+                                    </div>
+                                    <button class="availability-button">See Availability</button>
                                 </div>
-                                <button class="availability-button">See Availability</button>
                             </div>
                         </div>
                     </div>
-                </div>
                     <?php
-                    
+
                 }
             }
 
@@ -381,74 +385,74 @@
                     "hotel Chancellor.php"
                 ),
                 new HotelListing(
-                    "Dorsett Singapore", 
-                    "Waterloo and Southwark. 9.8 km from Delhi Airport.", 
-                    "../images/hotel-photo/hotel-2.jpg", 
-                    4, 
-                    ["Wifi", "Eating", "Pet"], 
-                    "Deluxe Suite with Partial Ocean View", 
-                    "Last booked 3 hours ago", 
-                    "Free Cancellation, till 1 hour of Pick up", 
-                    "Login & get additional \$15 Off Using Visa card", 
-                    3.6, 
-                    2514, 
-                    89, 
-                    80, 
-                    "+ \$42 taxes & Fees<br>For 4 Nights", 
+                    "Dorsett Singapore",
+                    "Waterloo and Southwark. 9.8 km from Delhi Airport.",
+                    "../images/hotel-photo/hotel-2.jpg",
+                    4,
+                    ["Wifi", "Eating", "Pet"],
+                    "Deluxe Suite with Partial Ocean View",
+                    "Last booked 3 hours ago",
+                    "Free Cancellation, till 1 hour of Pick up",
+                    "Login & get additional \$15 Off Using Visa card",
+                    3.6,
+                    2514,
+                    89,
+                    80,
+                    "+ \$42 taxes & Fees<br>For 4 Nights",
                     "7% Off",
                     "hotel Dorsett.php"
                 ),
                 new HotelListing(
-                    "Royal Plaza on Scotts", 
-                    "Waterloo and Southwark. 9.8 km from Delhi Airport.", 
-                    "../images/hotel-photo/hotel-3.jpg", 
-                    5, 
-                    ["Wifi", "Eating", "Pet", "Laundry"], 
-                    "Superior King Room", 
-                    "Last booked a day ago", 
-                    "Free Cancellation, till 1 hour of Pick up", 
-                    "Login & get additional \$25 Off Using Visa card", 
-                    4.2, 
-                    1514, 
-                    101, 
-                    88, 
-                    "+ \$12 taxes & Fees<br>For 2 Nights", 
+                    "Royal Plaza on Scotts",
+                    "Waterloo and Southwark. 9.8 km from Delhi Airport.",
+                    "../images/hotel-photo/hotel-3.jpg",
+                    5,
+                    ["Wifi", "Eating", "Pet", "Laundry"],
+                    "Superior King Room",
+                    "Last booked a day ago",
+                    "Free Cancellation, till 1 hour of Pick up",
+                    "Login & get additional \$25 Off Using Visa card",
+                    4.2,
+                    1514,
+                    101,
+                    88,
+                    "+ \$12 taxes & Fees<br>For 2 Nights",
                     "13% Off",
                     "hotel royal plaza.php"
                 ),
                 new HotelListing(
-                    "Siloso Beach Resort - Sentosa", 
-                    "51 Imbiah Walk, Singapore 099538.", 
-                    "../images/hotel-photo/hotel-4.jpg", 
-                    3, 
-                    ["Wifi", "Eating", "Pet"], 
-                    "Basic King Room", 
-                    "Last booked a week ago", 
-                    "Free Cancellation, till 2 hour of Pick up", 
-                    "Login & get additional \$25 Off Using Visa card", 
-                    3.2, 
-                    514, 
-                    70, 
-                    65, 
-                    "+ \$32 taxes & Fees<br>For 3 Nights", 
+                    "Siloso Beach Resort - Sentosa",
+                    "51 Imbiah Walk, Singapore 099538.",
+                    "../images/hotel-photo/hotel-4.jpg",
+                    3,
+                    ["Wifi", "Eating", "Pet"],
+                    "Basic King Room",
+                    "Last booked a week ago",
+                    "Free Cancellation, till 2 hour of Pick up",
+                    "Login & get additional \$25 Off Using Visa card",
+                    3.2,
+                    514,
+                    70,
+                    65,
+                    "+ \$32 taxes & Fees<br>For 3 Nights",
                     "25% Off",
                     "siloso beach resort.php"
                 ),
                 new HotelListing(
-                    "Value Hotel Balestier", 
-                    "218 Balestier Rd, Singapore 329684.", 
-                    "../images/hotel-photo/hotel-5.jpg", 
-                    3, 
-                    ["Wifi", "Eating", "Laundry"], 
-                    "Standard Room", 
-                    "Last booked a day ago", 
-                    "Free Cancellation, till 4 hour of Pick up", 
-                    "Login & get additional \$7 Off Using Visa card", 
-                    4.4, 
-                    514, 
-                    80, 
-                    75, 
-                    "+ \$12 taxes & Fees<br>For 2 Nights", 
+                    "Value Hotel Balestier",
+                    "218 Balestier Rd, Singapore 329684.",
+                    "../images/hotel-photo/hotel-5.jpg",
+                    3,
+                    ["Wifi", "Eating", "Laundry"],
+                    "Standard Room",
+                    "Last booked a day ago",
+                    "Free Cancellation, till 4 hour of Pick up",
+                    "Login & get additional \$7 Off Using Visa card",
+                    4.4,
+                    514,
+                    80,
+                    75,
+                    "+ \$12 taxes & Fees<br>For 2 Nights",
                     "15% Off",
                     ""
                 ),
@@ -470,7 +474,7 @@
                     "13% Off",
                     ""
                 )
-                ];
+            ];
             $hotelsPage2 = [
                 new HotelListing(
                     "Supreme Luxury",
@@ -600,49 +604,50 @@
                     "15% Off",
                     ""
                 )
-                ];
+            ];
 
             ?>
-        <section>
-            <div class="hotel-page page1" id="page1">
-            <?php $count = 0; ?>
-                <?php foreach ($hotelsPage1 as $hotel): ?>
-                    <?= $hotel->repeated();
-                    $count++ ;?>
-                    <?php
-                    if ($count == 2) {
-                        ?>
-                             <div class="advertisement">
+            <section>
+                <div class="hotel-page page1" id="page1">
+                    <?php $count = 0; ?>
+                    <?php foreach ($hotelsPage1 as $hotel): ?>
+                        <?= $hotel->repeated();
+                        $count++; ?>
+                        <?php
+                        if ($count == 2) {
+                            ?>
+                            <div class="advertisement">
                                 <div class="adv-img">
                                     <p id="icon"><i class="fa-solid fa-gift fs-3 text-success"></i></p>
                                 </div>
                                 <div class="text">
                                     <p>Start Exploring The World</p>
-                                    <p id="text-child">Book Flights Effortless and Earn $50+ for each booking with Booking.com</p>
+                                    <p id="text-child">Book Flights Effortless and Earn $50+ for each booking with Booking.com
+                                    </p>
                                 </div>
                                 <div id="adv-button">
                                     <button>Get Started</button>
                                 </div>
                             </div>
-                        <?php
-                    }
-                    ?>
-                <?php endforeach; ?>
-            </div>
+                            <?php
+                        }
+                        ?>
+                    <?php endforeach; ?>
+                </div>
 
-            <div class="hotel-page page2" style="display: none;" id="page2">
-                <?php foreach ($hotelsPage2 as $hotel): ?>
-                    <?= $hotel->repeated();?>
-                <?php endforeach; ?>
-            </div>
+                <div class="hotel-page page2" style="display: none;" id="page2">
+                    <?php foreach ($hotelsPage2 as $hotel): ?>
+                        <?= $hotel->repeated(); ?>
+                    <?php endforeach; ?>
+                </div>
 
-            <div class="hotel-page page3" style="display: none;" id="page2">
-            <?php foreach ($hotelsPage3 as $hotel): ?>
-                    <?= $hotel->repeated() ?>
-                <?php endforeach; ?>
-            </div>
+                <div class="hotel-page page3" style="display: none;" id="page2">
+                    <?php foreach ($hotelsPage3 as $hotel): ?>
+                        <?= $hotel->repeated() ?>
+                    <?php endforeach; ?>
+                </div>
 
-            <div class="bottom" id="box-bottom">
+                <div class="bottom" id="box-bottom">
                     <div class="bottom-part">
                         <p><i class="fa-solid fa-arrow-left" id="left-arrow"></i></p>
                         <a style="background-color: rgb(205,44,34); color: white; cursor: pointer" id="page1-btn"
@@ -652,7 +657,7 @@
                         <p><i class="fa-solid fa-arrow-right" id="right-arrow"></i></p>
                     </div>
                 </div>
-            </div> 
+        </div>
     </section>
 
     <footer style=" margin-top: 150px;">

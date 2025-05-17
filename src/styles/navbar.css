@@ -16,7 +16,7 @@ body {
 
 header {
     display: grid;
-    grid-template-columns: 1fr 4.5fr 1fr;
+    grid-template-columns: 1fr 6fr 3fr;
     height: 76px;
     width: 100%;
     padding: 13px 0px;
@@ -84,6 +84,23 @@ header .langu-menu {
     margin-right: 40px;
     color: white;
     height: 45px;
+}
+
+.log-out {
+    font-size: 16px;
+    font-family: 'Poppins';
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    width: 85px;
+    height: 37px;
+    background-color: rgb(196, 41, 29);
+    color: white;
+    letter-spacing: .8px;
+    text-align: center;
+    align-content: center;
+    text-decoration: none;
+    margin-left: 20px;
 }
 
 .login-register #sign-in {
