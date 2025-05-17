@@ -36,148 +36,54 @@
 </head>
 <body>
     
-    <?php
-        require_once __DIR__ . '/carclass.php';
+<?php
+    require_once __DIR__ . '/carclass.php';
+    require_once '../db.php';
 
-        $cars = [
-            new CarDetails(0, "BMW 520d xDrive", 259.2, 
-                [
-                    "../images/Cars/bmw-520d/bmw-520d1.jpg",
-                    "../images/Cars/bmw-520d/bmw-520d2.jpg",
-                    "../images/Cars/bmw-520d/bmw-520d3.jpg"
-                ],
-                5, 2,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Radio", "Air Condition"]
-            ),
-            new CarDetails(1, "Skoda Scala", 64,
-                [
-                    "../images/Cars/skoda-skala/skoda-skala1.jpg",
-                    "../images/Cars/skoda-skala/skoda-skala2.jpg",
-                    "../images/Cars/skoda-skala/skoda-skala3.jpg"
-                ],
-                4, 1,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Radio", "Air Condition"]
-            ),
-            new CarDetails(2, "BMW 320d xDrive", 98,
-                [
-                    "../images/Cars/bmw-320d/bmw320d1.jpg",
-                    "../images/Cars/bmw-320d/bmw320d2.jpg",
-                    "../images/Cars/bmw-320d/bmw320d3.jpg"
-                ],
-                5, 2, 
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Radio", "Air Condition"]
-            ),
-            new CarDetails(3, "Audi A4", 72,
-                [
-                    "../images/Cars/audiA4/audiA4-1.jpg",
-                    "../images/Cars/audiA4/audiA4-2.jpg",
-                    "../images/Cars/audiA4/audiA4-3.jpg"
-                ],
-                5, 2,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Air Condition"]
-            ),
-            new CarDetails(4, "Skoda Rapid", 68,
-                [
-                    "../images/Cars/skoda-rapid/skoda-rapid1.jpg",
-                    "../images/Cars/skoda-rapid/skoda-rapid2.jpg",
-                    "../images/Cars/skoda-rapid/skoda-rapid3.jpg"
-                ],
-                5, 2,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Air Condition"]
-            ),
-            new CarDetails(5, "Mercedes-Benz GLE 400d", 348,
-                [
-                    "../images/Cars/gle400d/gle400D1.jpg",
-                    "../images/Cars/gle400d/gle400D2.jpg",
-                    "../images/Cars/gle400d/gle400D3.jpg"
-                ],
-                5, 2,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Radio", "Air Condition"]
-            ),
-            new CarDetails(6, "BMW X5 xDrive", 229.5,
-                [
-                    "../images/Cars/bmwX5/bmwX5-1.jpg",
-                    "../images/Cars/bmwX5/bmwX5-2.jpg",
-                    "../images/Cars/bmwX5/bmwX5-3.jpg"
-                ],
-                5, 2,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Radio", "Air Condition"]
-            ),
-            new CarDetails(7, "Golf 8", 63.2,
-                [
-                    "../images/Cars/golf8/g8-1.jpg",
-                    "../images/Cars/golf8/g8-2.jpg",
-                    "../images/Cars/golf8/g8-3.jpg"
-                ],
-                5, 2,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Airbag", "Bluetooth", "Radio", "Air Condition"]
-            ),
-            new CarDetails(8, "Audi Q8", 3966,
-                [
-                    "../images/Cars/audiQ8/audiQ8-1.jpg",
-                    "../images/Cars/audiQ8/audiQ8-2.jpg",
-                    "../images/Cars/audiQ8/audiQ8-3.webp"
-                ],
-                5, 2,
-                [
-                    "Air Conditioning" => "../images/Cars/AirConditioning.png",
-                    "5 Doors" => "../images/Cars/Doors.png",
-                    "Transmission Automatic" => "../images/Cars/Automatike.webp"
-                ],
-                ["Bluetooth", "Air Condition"]
-            )
-        ];        
+    $carid = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
+    $stmt->bind_param("i", $carid);
+    $stmt->execute();
+    $carData = $stmt->get_result()->fetch_assoc();
 
-        $id = isset($_GET['id']) ? $_GET['id'] : 0;
-        
-        if (isset($cars[$id])) {
-            $car = $cars[$id];
-            $car->sortByCarId();
-        } else {
-            var_dump("Car not found.");
-            exit;
-        }
-    ?>
+    if (!$carData) {
+        die("Car not found.");
+    }
+
+    $stmt = $conn->prepare("SELECT * FROM car_specs WHERE car_id = ?");
+    $stmt->bind_param("i", $carid);
+    $stmt->execute();
+    $specs = $stmt->get_result()->fetch_assoc();
+
+    $images = [];
+    $result = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
+    while ($img = $result->fetch_assoc()) {
+        $images[] = $img['imgurl'];
+    }
+
+    $features = [
+        $specs['air_conditioning'] => "../images/Cars/AirConditioning.png",
+        $specs['number_of_doors'] . " Doors" => "../images/Cars/Doors.png",
+        $specs['transmission_type'] => "../images/Cars/Automatike.webp"
+    ];
+
+    $morefeatures = [];
+    $result = $conn->query("SELECT name FROM carextras WHERE car_id = $carid");
+    while ($row = $result->fetch_assoc()) {
+        $morefeatures[] = $row['name'];
+    }
+
+    $car = new CarDetails(
+        $carid,
+        $carData['name'],
+        $carData['price'],
+        $images,
+        $specs['passenger_capacity'] ?? 0,
+        $specs['suitcase_capacity'] ?? 0,
+        $features,
+        $morefeatures
+    );
+?>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
