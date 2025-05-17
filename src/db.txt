@@ -23,3 +23,21 @@ CREATE TABLE `cardetails` (
   `details` VARCHAR(255) NOT NULL,
   FOREIGN KEY (`carid`) REFERENCES `cars`(`id`) ON DELETE CASCADE
 );
+
+CREATE TABLE carextras (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    car_id INT NOT NULL,
+    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
+);
+
+CREATE TABLE car_specs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    car_id INT NOT NULL UNIQUE,
+    air_conditioning VARCHAR(50),
+    number_of_doors INT,
+    transmission_type VARCHAR(50),
+    passenger_capacity INT,
+    suitcase_capacity INT,
+    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
+);

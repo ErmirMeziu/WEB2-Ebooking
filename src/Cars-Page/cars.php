@@ -58,7 +58,7 @@
             }
 
             $cars[] = (object)[
-                'id' => $eachrow['id'] - 1,
+                'id' => $eachrow['id'],
                 'name' => $eachrow['name'],
                 'type' => $eachrow['type'],
                 'seats' => $eachrow['seats'],

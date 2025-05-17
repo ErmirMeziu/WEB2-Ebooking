@@ -54,27 +54,5 @@
             $this->features = $features;
             $this->morefeatures = $morefeatures;
         }
-
-        public function sortByCarId() {
-            switch ($this->id) {
-                case 0: sort($this->morefeatures); 
-                        ksort($this->features); 
-                        break;
-                case 3: sort($this->morefeatures); 
-                        asort($this->features); 
-                        break;
-                case 4: rsort($this->morefeatures); 
-                        ksort($this->features); 
-                        break;
-                case 7: sort($this->morefeatures); 
-                        arsort($this->features); 
-                        break;
-                case 8: rsort($this->morefeatures); 
-                        krsort($this->features); 
-                        break;
-                default: 
-                        break;
-            }
-        }
     }
 ?>
