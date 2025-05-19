@@ -1,7 +1,12 @@
 <?php
 include '../db.php';
 session_start();
-$user_id = $_SESSION['user_id'] ?? 1;
+
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+    header('Location: /login.php');
+    exit;
+}
 
 $sql = "SELECT name, surname, email, phone, birthdate, gender, bio FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
@@ -42,7 +47,6 @@ $stmt->close();
     <div class="container">
         <main class="main-content">
 
-            <!-- Personal Info -->
             <section class="card">
                 <h3>👤 Personal Info</h3>
 
@@ -76,17 +80,18 @@ $stmt->close();
                 </form>
             </section>
 
-            <!-- Update Password -->
             <section class="card">
                 <h3>🔒 Update Password</h3>
                 <form method="POST" action="update_password.php" class="update-password">
                     <input type="password" name="old_password" placeholder="Old Password" required />
                     <input type="password" name="new_password" placeholder="New Password" required />
                     <input type="password" name="confirm_password" placeholder="Confirm Password" required />
-                    <button class="btn-red" type="submit">Change Password</button>
+                    <div>
+                        <button class="btn-red update-password" type="submit">Change Password</button>
+                        <span class="message"></span>
+                    </div>
                 </form>
             </section>
-
         </main>
     </div>
 
@@ -96,3 +101,58 @@ $stmt->close();
 </body>
 
 </html>
+
+<script>
+    document.querySelector('.update-password').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const old_password = form.old_password.value.trim();
+        const new_password = form.new_password.value.trim();
+        const confirm_password = form.confirm_password.value.trim();
+        const messageSpan = form.querySelector('.message');
+
+        if (new_password.length < 8) {
+            messageSpan.style.color = 'red';
+            messageSpan.textContent = 'New password must be at least 8 characters.';
+            return;
+        }
+
+        if (new_password !== confirm_password) {
+            messageSpan.style.color = 'red';
+            messageSpan.textContent = 'New password and confirm password do not match.';
+            return;
+        }
+
+        if (old_password === new_password) {
+            messageSpan.style.color = 'red';
+            messageSpan.textContent = 'New password cannot be the same as old password.';
+            return;
+        }
+
+        fetch('update_password.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                old_password,
+                new_password,
+                confirm_password
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    messageSpan.style.color = 'green';
+                    form.reset();
+                } else {
+                    messageSpan.style.color = 'red';
+                }
+                messageSpan.textContent = data.message;
+            })
+            .catch(err => {
+                messageSpan.style.color = 'red';
+                messageSpan.textContent = 'Something went wrong. Please try again.';
+                console.error(err);
+            });
+    });
+</script>

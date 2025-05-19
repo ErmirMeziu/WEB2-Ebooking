@@ -10,33 +10,34 @@ insert into cars (id, name, type, seats, price, oldprice, discount, reviews, rev
 (9, 'Audi Q8', 'SUV', 5, 396.00, 450.00, 12, NULL, 4.9);
 
 insert into carimages (id, carid, imgurl) values
-(1, 1, '../images/Cars/bmw-520d/bmw-520d1.jpg'),
-(2, 1, '../images/Cars/bmw-520d/bmw-520d2.jpg'),
-(3, 1, '../images/Cars/bmw-520d/bmw-520d3.jpg'),
-(4, 2, '../images/Cars/skoda-skala/skoda-skala1.jpg'),
-(5, 2, '../images/Cars/skoda-skala/skoda-skala2.jpg'),
-(6, 2, '../images/Cars/skoda-skala/skoda-skala3.jpg'),
-(7, 3, '../images/Cars/bmw-320d/bmw320d1.jpg'),
-(8, 3, '../images/Cars/bmw-320d/bmw320d2.jpg'),
-(9, 3, '../images/Cars/bmw-320d/bmw320d3.jpg'),
-(10, 4, '../images/Cars/audiA4/audiA4-1.jpg'),
-(11, 4, '../images/Cars/audiA4/audiA4-2.jpg'),
-(12, 4, '../images/Cars/audiA4/audiA4-3.jpg'),
-(13, 5, '../images/Cars/skoda-rapid/skoda-rapid1.jpg'),
-(14, 5, '../images/Cars/skoda-rapid/skoda-rapid2.jpg'),
-(15, 5, '../images/Cars/skoda-rapid/skoda-rapid3.jpg'),
-(16, 6, '../images/Cars/gle400d/gle400d1.jpg'),
-(17, 6, '../images/Cars/gle400d/gle400d2.jpg'),
-(18, 6, '../images/Cars/gle400d/gle400d3.jpg'),
-(19, 7, '../images/Cars/bmwX5/bmwX5-1.jpg'),
-(20, 7, '../images/Cars/bmwX5/bmwX5-2.jpg'),
-(21, 7, '../images/Cars/bmwX5/bmwX5-3.jpg'),
-(22, 8, '../images/Cars/golf8/g8-1.jpg'),
-(23, 8, '../images/Cars/golf8/g8-2.jpg'),
-(24, 8, '../images/Cars/golf8/g8-3.jpg'),
-(25, 9, '../images/Cars/audiQ8/audiQ8-1.jpg'),
-(26, 9, '../images/Cars/audiQ8/audiQ8-2.jpg'),
-(27, 9, '../images/Cars/audiQ8/audiQ8-3.webp');
+(1, 1, '/WEB2-Ebooking/src/images/Cars/bmw-520d/bmw-520d1.jpg'),
+(2, 1, '/WEB2-Ebooking/src/images/Cars/bmw-520d/bmw-520d2.jpg'),
+(3, 1, '/WEB2-Ebooking/src/images/Cars/bmw-520d/bmw-520d3.jpg'),
+(4, 2, '/WEB2-Ebooking/src/images/Cars/skoda-skala/skoda-skala1.jpg'),
+(5, 2, '/WEB2-Ebooking/src/images/Cars/skoda-skala/skoda-skala2.jpg'),
+(6, 2, '/WEB2-Ebooking/src/images/Cars/skoda-skala/skoda-skala3.jpg'),
+(7, 3, '/WEB2-Ebooking/src/images/Cars/bmw-320d/bmw320d1.jpg'),
+(8, 3, '/WEB2-Ebooking/src/images/Cars/bmw-320d/bmw320d2.jpg'),
+(9, 3, '/WEB2-Ebooking/src/images/Cars/bmw-320d/bmw320d3.jpg'),
+(10, 4, '/WEB2-Ebooking/src/images/Cars/audiA4/audiA4-1.jpg'),
+(11, 4, '/WEB2-Ebooking/src/images/Cars/audiA4/audiA4-2.jpg'),
+(12, 4, '/WEB2-Ebooking/src/images/Cars/audiA4/audiA4-3.jpg'),
+(13, 5, '/WEB2-Ebooking/src/images/Cars/skoda-rapid/skoda-rapid1.jpg'),
+(14, 5, '/WEB2-Ebooking/src/images/Cars/skoda-rapid/skoda-rapid2.jpg'),
+(15, 5, '/WEB2-Ebooking/src/images/Cars/skoda-rapid/skoda-rapid3.jpg'),
+(16, 6, '/WEB2-Ebooking/src/images/Cars/gle400d/gle400d1.jpg'),
+(17, 6, '/WEB2-Ebooking/src/images/Cars/gle400d/gle400d2.jpg'),
+(18, 6, '/WEB2-Ebooking/src/images/Cars/gle400d/gle400d3.jpg'),
+(19, 7, '/WEB2-Ebooking/src/images/Cars/bmwX5/bmwX5-1.jpg'),
+(20, 7, '/WEB2-Ebooking/src/images/Cars/bmwX5/bmwX5-2.jpg'),
+(21, 7, '/WEB2-Ebooking/src/images/Cars/bmwX5/bmwX5-3.jpg'),
+(22, 8, '/WEB2-Ebooking/src/images/Cars/golf8/g8-1.jpg'),
+(23, 8, '/WEB2-Ebooking/src/images/Cars/golf8/g8-2.jpg'),
+(24, 8, '/WEB2-Ebooking/src/images/Cars/golf8/g8-3.jpg'),
+(25, 9, '/WEB2-Ebooking/src/images/Cars/audiQ8/audiQ8-1.jpg'),
+(26, 9, '/WEB2-Ebooking/src/images/Cars/audiQ8/audiQ8-2.jpg'),
+(27, 9, '/WEB2-Ebooking/src/images/Cars/audiQ8/audiQ8-3.webp');
+
 
 insert into cardetails (id, carid, details) values
 (1, 1, 'Automatic'),
@@ -109,3 +110,8 @@ INSERT INTO carextras (id, name, car_id) VALUES
 (30, 'Air Conditioning', 8),
 (31, 'Air Conditioning', 9),
 (32, 'Air Conditioning', 9);
+
+INSERT INTO rentals (type, imagePath, name, detail1, detail2, detail3, discount, price, numberOfStars, review, numberOfReviews) VALUES
+('House', '/WEB2-Ebooking/src/images/property/property1.webp', 'Haven Group Real Estate', '3 Beds', '3 Baths', '2100 sqft', 15, 492.00, 5, 4.6, 142),
+('Villa', '/WEB2-Ebooking/src/images/property/property2.webp', 'Brick Lane Reality', '3 Beds', '3 Baths', '2100 sqft', 16, 430.00, 3, 4.3, 201),
+('House', '/WEB2-Ebooking/src/images/property/property3.webp', 'Exclesior Real Estate', '3 Beds', '3 Baths', '2100 sqft', 11, 512.00, 4, 4.4, 101);

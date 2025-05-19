@@ -36,6 +36,110 @@
     </style>
 </head>
 
+<?php
+require_once __DIR__ . '/Cars-Page/carclass.php';
+include 'db.php';
+
+function getThreeCars($conn)
+{
+    $cars = [];
+    $result = $conn->query("SELECT * FROM cars LIMIT 3");
+
+    while ($row = $result->fetch_assoc()) {
+        $carid = $row['id'];
+
+        // Merr detajet
+        $details = [];
+        $detailResult = $conn->query("SELECT details FROM cardetails WHERE carid = $carid");
+        while ($d = $detailResult->fetch_assoc()) {
+            $details[] = $d['details'];
+        }
+
+        // Merr imazhet
+        $images = [];
+        $imageResult = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
+        while ($img = $imageResult->fetch_assoc()) {
+            $images[] = $img['imgurl'];
+        }
+
+        // Krijo objektin CarList
+        $car = new CarList(
+            $images,
+            $row['name'],
+            $row['type'],
+            $row['seats'],
+            $details,
+            $row['discount'],
+            $row['oldprice'],
+            $row['reviews'],
+            $row['reviewscore']
+        );
+
+        $cars[] = $car;
+    }
+
+    return $cars;
+}
+
+$cars = getThreeCars($conn);
+
+function getRentalsFromDB($conn)
+{
+    $rentals = [];
+
+    $result = $conn->query("SELECT * FROM rentals LIMIT 3");
+
+    while ($row = $result->fetch_assoc()) {
+        $details = array_filter([$row['detail1'], $row['detail2'], $row['detail3']]);
+
+        switch ($row['type']) {
+            case 'House':
+                $rentals[] = new House(
+                    $row['imagePath'],
+                    $row['name'],
+                    $details,
+                    $row['discount'],
+                    $row['price'],
+                    $row['numberOfStars'],
+                    $row['review'],
+                    $row['numberOfReviews']
+                );
+                break;
+            case 'Villa':
+                $rentals[] = new Villa(
+                    $row['imagePath'],
+                    $row['name'],
+                    $details,
+                    $row['discount'],
+                    $row['price'],
+                    $row['numberOfStars'],
+                    $row['review'],
+                    $row['numberOfReviews']
+                );
+                break;
+            case 'Apartment':
+                $rentals[] = new Apartment(
+                    $row['imagePath'],
+                    $row['name'],
+                    $details,
+                    $row['discount'],
+                    $row['price'],
+                    $row['numberOfStars'],
+                    $row['review'],
+                    $row['numberOfReviews']
+                );
+                break;
+        }
+    }
+
+    return $rentals;
+}
+
+$rentals = getRentalsFromDB($conn);
+
+?>
+
+
 <body>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
@@ -137,9 +241,7 @@
     </section>
 
     <section class="rental">
-
         <?php
-
         abstract class Rental
         {
             public $imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews;
@@ -157,6 +259,7 @@
 
             abstract public function getRentalType();
         }
+
         class House extends Rental
         {
             const TYPE = 'House';
@@ -202,13 +305,8 @@
             }
         }
 
+        ?>
 
-        $rentals = [
-            new House("images/property/property1.webp", "Haven Group Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 15, 492, 5, 4.6, 142),
-            new Villa("images/property/property2.webp", "Brick Lane Reality", ["3 Beds", "3 Baths", "2100 sqft"], 16, 430, 3, 4.3, 201),
-            new House("images/property/property3.webp", "Exclesior Real Estate", ["3 Beds", "3 Baths", "2100 sqft"], 11, 512, 4, 4.4, 101)
-        ]
-            ?>
         <div class="top">
             <h4>Featured Rental In Australia</h4>
             <a href="Hotel Page/hotels.php"><button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button></a>
@@ -221,34 +319,37 @@
                     <a href="Hotel Page/hotels.php"><button>Go Now</button></a>
                 </h4>
             </div>
-            <?php foreach ($rentals as $rental): ?>
 
+            <?php foreach ($rentals as $rental): ?>
                 <div class="card responsive">
                     <div class="image">
-                        <img src="<?= $rental->imagePath ?>" alt="">
+                        <img src="<?= htmlspecialchars($rental->imagePath) ?>" alt="">
                     </div>
                     <div class="card-container1">
                         <div class="head">
-                            <button style="width: auto; padding: 3px 7px;"><?= $rental->getRentalType() ?></button>
-                            <h5><?= $rental->name ?></h5>
+                            <button
+                                style="width: auto; padding: 3px 7px;"><?= htmlspecialchars($rental->getRentalType()) ?></button>
+                            <h5><?= htmlspecialchars($rental->name) ?></h5>
                         </div>
                         <div class="property-same" style="position: relative; top: 7px;">
                             <?php foreach ($rental->details as $detail): ?>
-                                <div><a href=""> <?= $detail ?> </a></div>
+                                <div><a href=""><?= htmlspecialchars($detail) ?></a></div>
                             <?php endforeach; ?>
                         </div>
                         <div class="end">
                             <div class="left">
-                                <button><?= $rental->discount ?>% Off</button>
-                                <h4>From <b>$<?= $rental->price ?></b></h4>
+                                <button><?= htmlspecialchars($rental->discount) ?>% Off</button>
+                                <h4>From <b>$<?= htmlspecialchars($rental->price) ?></b></h4>
                             </div>
                             <div class="right">
-                                <p style="position: relative; top: 5px; right: 2px; ">
+                                <p style="position: relative; top: 5px; right: 2px;">
                                     <?php for ($i = 0; $i < $rental->numberOfStars; $i++): ?>
                                         <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
                                     <?php endfor; ?>
                                 </p>
-                                <h5> <?= $rental->review ?> <span>(<?= $rental->numberOfReviews ?> reviews)</span></h5>
+                                <h5><?= htmlspecialchars($rental->review) ?>
+                                    <span>(<?= htmlspecialchars($rental->numberOfReviews) ?> reviews)</span>
+                                </h5>
                             </div>
                         </div>
                     </div>
@@ -256,6 +357,7 @@
             <?php endforeach; ?>
         </div>
     </section>
+
 
     <section>
         <div class="top">
@@ -355,81 +457,6 @@
     </section>
 
     <section class="destinations">
-        <?php
-        abstract class Cars
-        {
-            public $imagePath, $name, $numberOfSeats, $details, $discount, $price, $oldPrice, $numberOfReviews, $reviewScore;
-            protected $type;
-
-            public function __construct($imagePath, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore)
-            {
-                $this->imagePath = $imagePath;
-                $this->name = $name;
-                $this->numberOfSeats = $numberOfSeats;
-                $this->details = $details;
-                $this->discount = $discount;
-                $this->oldPrice = $oldPrice;
-                $this->numberOfReviews = $numberOfReviews;
-                $this->reviewScore = $reviewScore;
-                $this->calculatePrice();
-            }
-
-            private function calculatePrice()
-            {
-                $this->price = $this->oldPrice - $this->discount / 100 * $this->oldPrice;
-            }
-
-            public function setDiscount($discount)
-            {
-                $this->discount = $discount;
-                $this->calculatePrice();
-            }
-
-            abstract public function getCarType();
-
-
-            public function __destruct()
-            {
-                echo "The car object {$this->name} is being destroyed.\n";
-            }
-
-        }
-
-        class SUV extends Cars
-        {
-            public function __construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore, $fourWheelDrive = true)
-            {
-                parent::__construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore);
-                $this->type = "SUV";
-            }
-            public function getCarType()
-            {
-                return $this->type;
-            }
-
-        }
-
-        class Sedan extends Cars
-        {
-            public function __construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore, $fourWheelDrive = true)
-            {
-                parent::__construct($imagePaths, $name, $numberOfSeats, $details, $discount, $oldPrice, $numberOfReviews, $reviewScore);
-                $this->type = "Sedan";
-            }
-            public function getCarType()
-            {
-                return $this->type;
-            }
-        }
-
-        $cars = [
-            new SUV("images/Cars/audiQ8/audiQ8-1.jpg", "Audi Q8", 5, ["Automatic", "1 Large bag", "1 Small bag"], 12, 450, 3219, 4.8),
-            new Sedan("images/Cars/bmw-520d/bmw-520d1.jpg", "BMW 520d xDrive", 4, ["Automatic", "1 Large bag", "1 Small bag"], 19, 370, 3014, 4.9),
-            new SUV("images/Cars/gle400d/gle400D1.jpg", "Mercedes-Benz GLE 400d", 5, ["Automatic", "1 Large bag", "1 Small bag"], 20, 435, 3014, 4.4)
-        ]
-            ?>
-
-
         <div class="top">
             <h4>Featured Rental Cars</h4>
             <a href="Cars-Page/cars.php">
@@ -437,7 +464,6 @@
             </a>
         </div>
         <div class="cars">
-
             <?php foreach ($cars as $car): ?>
                 <div class="card5">
                     <div style="height: 50%">
@@ -446,18 +472,21 @@
 
                     <div class="card-body">
                         <div>
-                            <div class="card-title"><?= $car->name ?></div>
+                            <div class="card-title"><?= $car->getName() ?></div>
                             <p class="paragraph"><?= $car->getCarType() ?> | AC | <?= $car->numberOfSeats ?> Seats</p>
                             <div class="card-details">
-                                <?php foreach ($car->details as $detail): ?>
-                                    <div class="detail"><?= $detail ?></div>
-                                <?php endforeach; ?>
+                                <?php
+                                for ($i = 0; $i < 3 && $i < count($car->details); $i++): ?>
+                                    <div class="detail"><?= htmlspecialchars($car->details[$i]) ?></div>
+                                <?php endfor; ?>
                             </div>
                             <div class="price-section">
                                 <div class="price-section2">
                                     <div class="discount"><?= $car->discount ?>% Off</div>
-                                    <div class="price" style="font-size: 18px;"> US$<?= $car->price ?> <span
-                                            class="old-price">US$<?= $car->oldPrice ?></span></div>
+                                    <div class="price" style="font-size: 18px;">
+                                        US$<?= $car->price ?>
+                                        <span class="old-price">US$<?= $car->oldPrice ?></span>
+                                    </div>
                                 </div>
                                 <div class="rating">
                                     <div class="reviews">Exceptional <br><?= $car->numberOfReviews ?> reviews</div>
@@ -465,7 +494,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             <?php endforeach; ?>

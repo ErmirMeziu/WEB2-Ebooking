@@ -34,10 +34,13 @@ if (!$stmt) {
 $stmt->bind_param("ssssssi", $name, $surname, $phone, $birthdate, $gender, $bio, $user_id);
 
 if ($stmt->execute()) {
+
+    $_SESSION['user_name'] = $name;
     $_SESSION['msg'] = "Profile updated successfully!";
 } else {
     $_SESSION['msg'] = "Error updating profile: " . $stmt->error;
 }
+
 
 $stmt->close();
 $conn->close();
