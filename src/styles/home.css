@@ -789,7 +789,8 @@ button {
     border: 1px solid #ddd;
 }
 
-.international-routes-container .all-flights td:hover {
+.international-routes-container .all-flights td:hover,
+.international-routes-container .all-flights th:hover {
     background-color: #e0e0e0;
     cursor: pointer;
 }

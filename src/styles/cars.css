@@ -98,6 +98,43 @@ button {
     margin-right: 7px;
 }
 
+/* new */
+
+.adCar {
+    position: absolute;
+    right: 6.5%;
+    top: 12.5px;
+}
+
+.adCar button {
+    font-family: 'Poppins';
+    border: none;
+    border-radius: 5px;
+    height: 45px;
+    min-width: 45px;
+    padding: 0px 5px;
+    background-color: rgb(255, 230, 229);
+    color: rgb(215, 44, 34);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.addCar:hover {
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+.deleteCar:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.top {
+    margin-bottom: 55px;
+}
+
 /*offers- sales*/
 .sales-container {
     width: 87%;
@@ -209,6 +246,7 @@ button {
     flex-wrap: wrap;
     width: 87%;
     gap: 15px;
+    margin-top: 12.5px;
 }
 
 .card5 {

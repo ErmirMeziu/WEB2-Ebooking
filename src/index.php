@@ -55,14 +55,12 @@ function getThreeCars($conn)
             $details[] = $d['details'];
         }
 
-        // Merr imazhet
         $images = [];
         $imageResult = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
         while ($img = $imageResult->fetch_assoc()) {
             $images[] = $img['imgurl'];
         }
 
-        // Krijo objektin CarList
         $car = new CarList(
             $images,
             $row['name'],
@@ -358,64 +356,6 @@ $rentals = getRentalsFromDB($conn);
         </div>
     </section>
 
-
-    <section>
-        <div class="top">
-            <h4>Browse Popular Destinations</h4>
-            <button>More<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
-
-        </div>
-        <div class="container4">
-            <div class="card1 responsive">
-                <img src="images/destinations/Los Angelos.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-
-                        <h2>Los Angeles</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card1 responsive">
-                <img src="images/destinations/Chicago.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-                        <h2>Chicago</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card1 responsive">
-                <img src="images/destinations/Las Vegas.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-                        <h2>Las Vegas</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card1 responsive">
-
-                <img src="images/destinations/New Orleans.webp" alt="">
-                <div class="container2">
-                    <div class="text1">
-                        <h2>New Orleans</h2>
-                    </div>
-                    <div class="button3">
-                        <button>Discover</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="app">
         <nav class="app-container">
             <nav class="left">
@@ -515,7 +455,7 @@ $rentals = getRentalsFromDB($conn);
         </div>
 
         <div class="buttons">
-            <button>Flights To Popular Countries</button>
+            <button class="button-different">Flights To Popular Countries</button>
             <button class="button-different">Flights To Popular Destinations</button>
             <button class="button-different">Popular Flights</button>
             <button class="button-different">Popular Airlines</button>

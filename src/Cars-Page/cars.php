@@ -140,8 +140,23 @@ $hiddenCars = addcars($conn, "id > 6");
         <p>Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
     </div>
 
-    <section class="car_container">
+    <section class="car_container" style="position: relative">
+        <?php
+        if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
+            echo '
+            <div class="top">
+            <div class="adCar">
+                <a href=""><button class="addCar"><i class="fa-solid fa-plus"></i></button></a>';
+
+            echo '
+                <a href=""><button class="deleteCar"><i class="fa-solid fa-minus"></i></button></a>
+            </div>
+            </div>';
+        }
+        ?>
+
         <div class="container12 goTop">
+
             <?php foreach ($cars as $car): ?>
                 <div class="card5">
                     <div class="slider">

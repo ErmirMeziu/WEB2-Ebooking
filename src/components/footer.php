@@ -1,46 +1,62 @@
+<?php
+$footerLinks = [
+    "The Navigation" => [
+        "Talent Marketplace",
+        "Payroll Services",
+        "Direct Contracts",
+        "Hire Worldwide",
+        "Hire in the USA"
+    ],
+    "Our Resources" => [
+        "Free Business Tools",
+        "Affiliate Program",
+        "Success Stories",
+        "Upwork Reviews",
+        "Help & Support"
+    ],
+    "The Company" => [
+        "About Us",
+        "Leadership",
+        "Contact Us",
+        "Investor Relations",
+        "Trust, Safety & Security"
+    ]
+];
+
+$partners = [
+    "mytrip.webp",
+    "tripadv.webp",
+    "goibibo.webp"
+];
+
+$terms = ["Terms of Service", "Privacy Policy", "Cookies"];
+?>
+
 <div class="footer-container">
     <div class="footer-section">
         <img src="/WEB2-Ebooking/src/images/footer-photos/logo.webp" alt="">
         <p>We make your dream more beautiful & enjoyable with lots of happiness.</p>
         <div class="social-links">
-            <a href=""><i class='bx bxl-facebook-circle'></i></a>
-            <a href=""><i class='bx bxl-linkedin-square'></i></i></a>
-            <a href=""><i class='bx bxl-github'></i></a>
-            <a href=""><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+            <a href="#"><i class='bx bxl-github'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
         </div>
     </div>
+
     <div class="footer-list">
-        <div class="footer-section">
-            <h3>The Navigation</h3>
-            <ul>
-                <li><a href="#">Talent Marketplace</a></li>
-                <li><a href="#">Payroll Services</a></li>
-                <li><a href="#">Direct Contracts</a></li>
-                <li><a href="#">Hire Worldwide</a></li>
-                <li><a href="#">Hire in the USA</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Our Resources</h3>
-            <ul>
-                <li><a href="#">Free Business Tools</a></li>
-                <li><a href="#">Affiliate Program</a></li>
-                <li><a href="#">Success Stories</a></li>
-                <li><a href="#">Upwork Reviews</a></li>
-                <li><a href="#">Help & Support</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>The Company</h3>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Leadership</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Investor Relations</a></li>
-                <li><a href="#">Trust, Safety & Security</a></li>
-            </ul>
-        </div>
+        <?php foreach ($footerLinks as $sectionTitle => $links): ?>
+            <div class="footer-section">
+                <h3><?= htmlspecialchars($sectionTitle) ?></h3>
+                <ul>
+                    <?php foreach ($links as $link): ?>
+                        <li><a href="#"><?= htmlspecialchars($link) ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endforeach; ?>
     </div>
+
     <div class="footer-section">
         <h3>Payment Methods</h3>
         <div class="paymentmethods">
@@ -48,22 +64,22 @@
         </div>
         <h3>Our Partners</h3>
         <div class="ourpartners">
-            <div class="partner1">
-                <a><img src="/WEB2-Ebooking/src/images/footer-photos/mytrip.webp" alt=""></a>
-            </div>
-            <div class="partner1">
-                <a><img src="/WEB2-Ebooking/src/images/footer-photos/tripadv.webp" alt=""></a>
-            </div>
-            <div class="partner1">
-                <a><img src="/WEB2-Ebooking/src/images/footer-photos/goibibo.webp" alt=""></a>
-            </div>
+            <?php foreach ($partners as $partner): ?>
+                <div class="partner1">
+                    <a><img src="/WEB2-Ebooking/src/images/footer-photos/<?= $partner ?>" alt=""></a>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
+
 <hr>
+
 <div class="footer-bottom">
-    <div class="copy"> &copy; <u>2024 GeoTrip. Design by GeoTrip </u></div>
+    <div class="copy">&copy; <u>2024 GeoTrip. Design by GeoTrip</u></div>
     <div class="Terms">
-        <a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookies</a>
+        <?php foreach ($terms as $term): ?>
+            <a href="#"><?= htmlspecialchars($term) ?></a>
+        <?php endforeach; ?>
     </div>
 </div>

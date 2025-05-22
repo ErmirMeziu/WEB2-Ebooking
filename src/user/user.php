@@ -48,7 +48,7 @@ $stmt->close();
         <main class="main-content">
 
             <section class="card">
-                <h3>👤 Personal Info</h3>
+                <h3>Personal Info</h3>
 
                 <form method="POST" action="update_profile.php" class="profile-form">
                     <div class="form-grid">
@@ -81,7 +81,7 @@ $stmt->close();
             </section>
 
             <section class="card">
-                <h3>🔒 Update Password</h3>
+                <h3>Update Password</h3>
                 <form method="POST" action="update_password.php" class="update-password">
                     <input type="password" name="old_password" placeholder="Old Password" required />
                     <input type="password" name="new_password" placeholder="New Password" required />

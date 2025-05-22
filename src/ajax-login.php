@@ -29,6 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['user_id'] = $id;
                 $_SESSION['user_name'] = $name;
+                $_SESSION['user_email'] = $inputEmail;
+
+                $_SESSION['is_admin'] = str_ends_with(strtolower($inputEmail), '@admin.com');
+
                 $response['success'] = true;
                 $response['message'] = "Login successful.";
             } else {
