@@ -101,36 +101,21 @@
             }, 500);
         </script>
     </section>
-
-    <div class="container15">
-        <div class="pick">
-            <p>Pick up location</p>
-            <h3>Los Angeles International Airport</h3>
-            <input type="date" id="pickup-input">
-            <h5 id="pickup-date"></h5>
-        </div>
-        <div class="pick">
-            <p>Drop off location</p>
-            <h3>Los Angeles International Airport</h3>
-            <input type="date" id="dropoff-input">
-            <h5 id="dropoff-date"></h5>
-        </div>
-        <div class="pick">
-            <p>Duration</p>
-            <h4 id="duration">0 Day(s)</h4>
-        </div>
-        <div class="pick">
-            <p>Total</p>
-            <h4 id="total-cost">00.00 €</h4>
-        </div>
-    </div>
-
-    <br>
-    <hr style="background-color: lightgray;height: 2px;">
-    <div class="price4">
-        <h1><?= $car->getname() ?></h1>
-        <h1><span id="dailyCost"><?= $car->price ?></span>€ / <span style="color: orange;">DAY</span></h1>
-    </div>
+        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
+            <div class="price4">
+                <div style="display: flex; justify-content: space-between;">
+                    <h1><?= $car->getname() ?></h1>
+                    <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to remove this car?');">
+                        <input type="hidden" name="car_id" value="<?= $carid ?>">
+                        <button type="submit" class="btnrezervo" style="background-color: #c4291d;">Remove Car</button>
+                    </form>
+                </div>
+            </div>
+        <?php } else { ?>
+            <div class="price4">
+                <h1><?= $car->getname() ?></h1>
+            </div>
+        <?php } ?>
 
     <section class="all">
         <div class="container20">
@@ -167,17 +152,20 @@
                     <?php endforeach; ?>
                 </div>
                 <div class="rezervo">
-                    <p>Press the button to book it!</p>
+                    <div>
+                        <h3 style="color: #393939;">Price</h3>
+                        <b style="color: #393939;"><span id="dailyCost"><?= $car->price ?></span>€ / <span style="color: orange;">DAY</span></b>
+                    </div>
                     <button class="btnrezervo" onclick="rezervo()">Book Now</button>
                 </div>
-                <div id="modal" class="modal">
+                <!-- <div id="modal" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal()">&times;</span>
                         <h2>Booking completed successfully!</h2>
                         <p>Thank you for booking.</p>
                         <button class="btn-ok" onclick="closeModal()">OK</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

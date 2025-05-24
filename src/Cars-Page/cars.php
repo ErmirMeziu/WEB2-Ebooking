@@ -146,7 +146,7 @@ $hiddenCars = addcars($conn, "id > 6");
             echo '
             <div class="top">
             <div class="adCar">
-                <a href=""><button class="addCar"><i class="fa-solid fa-plus"></i></button></a>';
+                <a href="/WEB2-Ebooking/src/Cars-Page/addcar.php"><button class="addCar"><i class="fa-solid fa-plus"></i></button></a>';
 
             echo '
                 <a href=""><button class="deleteCar"><i class="fa-solid fa-minus"></i></button></a>
@@ -193,9 +193,21 @@ $hiddenCars = addcars($conn, "id > 6");
                                         <div class="score"><?= $car->reviewScore ?></div>
                                     </div>
                                 </div>
-                                <div class="Detajet">
-                                    <button style="width: 100%;">More</button>
-                                </div>
+                                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
+                                        <div class="Detajet">
+                                            <button style="width: 80%;">More</button>
+                                            <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');" style="width: 20%;">
+                                                <input type="hidden" name="car_id" value="<?= $car->id ?>">
+                                                <button type="submit" style="width: 100%; background-color: #e74c3c;">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="Detajet">
+                                            <button style="width: 100%;">More</button>
+                                        </div>
+                                    <?php } ?>
                             </div>
                         </a>
                     </div>
@@ -239,9 +251,21 @@ $hiddenCars = addcars($conn, "id > 6");
                                             <div class="score"><?= $car->reviewScore ?></div>
                                         </div>
                                     </div>
-                                    <div class="Detajet">
-                                        <button style="width: 100%;">More</button>
-                                    </div>
+                                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
+                                        <div class="Detajet">
+                                            <button style="width: 80%;">More</button>
+                                            <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');" style="width: 20%;">
+                                                <input type="hidden" name="car_id" value="<?= $car->id ?>">
+                                                <button type="submit" style="width: 100%; background-color: #e74c3c;">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="Detajet">
+                                            <button style="width: 100%;">More</button>
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </a>
                         </div>
