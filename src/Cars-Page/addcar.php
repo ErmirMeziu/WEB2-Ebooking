@@ -203,7 +203,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
                 <button type="button" class="add-btn" id="add-detail">Add Detail</button>
             </div>
             <div class="form-group">
-                <label>Extras <i class="fa-solid fa-plus"></i></label>
+                <label>Extras</label>
                 <div class="multi-input" id="extra-inputs">
                     <div class="input-group">
                         <select name="extras[]" class="extra-select" required>
@@ -232,7 +232,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
                 <label for="suitcase_capacity">Suitcase Capacity</label>
                 <input type="number" name="suitcase_capacity" id="suitcase_capacity" value="2" min="1" required>
             </div>
-            <button type="submit">Add Car <i class="fa-solid fa-plus"></i></button>
+            <button type="submit">Add Car</button>
         </form>
     </section>
 

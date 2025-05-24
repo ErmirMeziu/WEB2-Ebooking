@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 
-
     <script src="../script/cars.js" defer></script>
 
     <style>
@@ -34,10 +33,10 @@
 </head>
 
 <?php
-    require_once __DIR__ . '/carclass.php';
-    include '../db.php';
-    
-    $cars = allcars($conn);
+require_once __DIR__ . '/carclass.php';
+include '../db.php';
+
+$cars = allcars($conn);
 ?>
 
 <body>
@@ -90,12 +89,9 @@
             echo '
             <div class="top">
             <div class="adCar">
-                <a href="/WEB2-Ebooking/src/Cars-Page/addcar.php"><button class="addCar"><i class="fa-solid fa-plus"></i></button></a>';
-
-            echo '
-                <a href=""><button class="deleteCar"><i class="fa-solid fa-minus"></i></button></a>
-            </div>
-            </div>';
+                <a href="/WEB2-Ebooking/src/Cars-Page/addcar.php"><button class="addCar">Add new car</button></a>
+                </div>
+                </div>';
         }
         ?>
         <div class="container12">
@@ -109,8 +105,8 @@
                                 </a>
                             <?php endforeach; ?>
                         </div>
-                        <button class="prev" onclick="prevSlide()">&#10094;</button>
-                        <button class="next" onclick="nextSlide()">&#10095;</button>
+                        <button class="prev" onclick="prevSlide()">❮</button>
+                        <button class="next" onclick="nextSlide()">❯</button>
                     </div>
                     <div class="badge">600Kms included. After that $15/Kms</div>
                     <div class="card-body">
@@ -135,32 +131,46 @@
                                         <div class="score"><?= $car->reviewScore ?></div>
                                     </div>
                                 </div>
-                                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
-                                    <div class="Detajet">
-                                        <button style="width: 80%;">More</button>
-                                        <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to remove this car?');" style="width: 20%;">
-                                            <input type="hidden" name="car_id" value="<?= $car->id ?>">
-                                            <button type="submit" style="width: 100%; background-color: #e74c3c;">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="Detajet">
-                                        <button style="width: 100%;">More</button>
-                                    </div>
-                                <?php } ?>
                             </div>
                         </a>
+                        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
+                            <div class="Detajet">
+                                <a href="cardetails.php?id=<?= $car->id ?>" style="width: 70%;">
+                                    <button class="more-btn">More</button>
+                                </a>
+                                <a href="updatecar.php?id=<?= $car->id ?>" style="width: 15%;">
+                                    <button class="update-btn" title="Update Car">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </a>
+                                <form action="removecar.php" method="POST" style="width: 15%;"
+                                    onsubmit="return confirm('Are you sure you want to remove this car?');">
+                                    <input type="hidden" name="car_id" value="<?= $car->id ?>">
+                                    <button type="submit" class="delete-btn" title="Delete Car">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        <?php } else { ?>
+                            <div class="Detajet">
+                                <a href="cardetails.php?id=<?= $car->id ?>" style="width: 100%;">
+                                    <button class="more-btn">More</button>
+                                </a>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-        <abbr title="Go up button"><a href="#" class="gotopbtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" /></svg></a></abbr>
+        <abbr title="Go up button"><a href="#" class="gotopbtn"><svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512">
+                    <path fill="#ffffff"
+                        d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+                </svg></a></abbr>
 
-    <footer style="margin-top: 30px; background-color: white;">
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
-    </footer>
+        <footer style="margin-top: 30px; background-color: white;">
+            <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
+        </footer>
 </body>
 
 </html>

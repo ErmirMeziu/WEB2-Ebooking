@@ -111,7 +111,7 @@ button {
     border-radius: 5px;
     height: 45px;
     min-width: 45px;
-    padding: 0px 5px;
+    padding: 0px 10px;
     background-color: rgb(255, 230, 229);
     color: rgb(215, 44, 34);
     font-size: 14px;
@@ -616,20 +616,100 @@ html {
     transition: opacity 1s ease;
 }
 
+/* Detajet section */
+.Detajet {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Button styles */
+.Detajet button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.update-btn,
+.delete-btn {
+    padding: 12px 8px;
+}
+
+/* More button */
+.more-btn {
+    color: white;
+    border-radius: 40px !important;
+}
+
+.more-btn:hover {
+    background-color: #1557b0;
+}
+
+/* Update button */
+.update-btn {
+    background-color: #1a73e8 !important;
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: #45a049;
+}
+
+/* Delete button */
+.delete-btn {
+    background-color: #e74c3c !important;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b !important;
+}
+
+.Detajet a,
+.Detajet form {
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.Detajet button[title] {
+    position: relative;
+}
+
+.Detajet button[title]:hover:after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
 @media (max-width: 540px) {
-    .container12{   
+    .container12 {
         grid-template-columns: repeat(1, 1fr);
     }
 }
 
 @media (min-width: 541px) and (max-width: 1023px) {
-    .container12{
+    .container12 {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
 }
+
 @media (min-width: 1024px) {
-    .container12{
+    .container12 {
         grid-template-columns: repeat(3, 1fr);
     }
 

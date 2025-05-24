@@ -348,6 +348,166 @@ body {
     color: #721c24;
 }
 
+.booking-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.booking-image {
+    flex: 0 0 auto;
+}
+
+.booking-details {
+    flex: 1;
+}
+
+.remove-btn-container {
+    flex: 0 0 auto;
+}
+
+/* Variables for consistent theming */
+:root {
+    --primary-color: #4CAF50;
+    --primary-hover: #45a049;
+    --text-color: #052449;
+    --error-color: #e74c3c;
+    --error-hover: #c0392b;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --background-color: #f9f9f9;
+}
+
+/* Card container */
+#booked-cars {
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin: 20px 0;
+}
+
+/* Section title */
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* No rentals message */
+.no-rentals {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Booking list */
+.booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Booking item */
+.booking-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease-in-out;
+}
+
+.booking-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Car image */
+.booking-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking-image img {
+    width: 300px;
+    height: 220px;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+/* Booking info */
+.booking-info {
+    flex: 1;
+}
+
+.car-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.car-name a {
+    color: #1a73e8;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.car-name a:hover {
+    color: #1557b0;
+}
+
+.info-item {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.info-item span {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Remove button */
+.remove-btn-container {
+    flex: 0 0 auto;
+}
+
+.remove-btn {
+    background-color: var(--error-color);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+}
+
+.remove-btn:hover {
+    background-color: var(--error-hover);
+}
+
+@media (max-width: 600px) {
+    .booking-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .booking-image {
+        margin-bottom: 10px;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-panel {
         width: 200px;

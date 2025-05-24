@@ -244,7 +244,7 @@ if ($section === 'cars') {
                 </div>
             <?php elseif ($section === 'cars'): ?>
                 <div class="card" id="booked-cars">
-                    <h3><?php echo $is_admin ? 'All Car Rentals' : 'Booked Cars'; ?></h3>
+                    <h3 class="section-title"><?php echo $is_admin ? 'All Car Rentals' : 'Booked Cars'; ?></h3>
                     <?php if ($delete_message): ?>
                         <div
                             class="delete-message <?php echo strpos($delete_message, 'successfully') !== false ? 'success' : 'error'; ?>">
@@ -252,25 +252,56 @@ if ($section === 'cars') {
                         </div>
                     <?php endif; ?>
                     <?php if (empty($booked_cars)): ?>
-                        <p>No car rentals found.</p>
+                        <p class="no-rentals">No car rentals found.</p>
                     <?php else: ?>
                         <div class="booking-list">
-                            <?php foreach ($booked_cars as $car): ?>
+                            <?php
+                            include '../db.php';
+                            foreach ($booked_cars as $car):
+                                $stmt = $conn->prepare("SELECT imgurl FROM carimages WHERE carid = ? LIMIT 1");
+                                $stmt->bind_param("i", $car['car_id']);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $image = $result->fetch_assoc();
+                                $stmt->close();
+
+                                $user_phone = '';
+                                if ($is_admin && isset($car['user_id'])) {
+                                    $stmt = $conn->prepare("SELECT phone FROM users WHERE id = ?");
+                                    $stmt->bind_param("i", $car['user_id']);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+                                    $user = $result->fetch_assoc();
+                                    $user_phone = $user['phone'] ?? 'N/A';
+                                    $stmt->close();
+                                }
+                                ?>
                                 <div class="booking-item">
-                                    <div class="booking-details">
-                                        <h4><a href="/WEB2-Ebooking/src/Cars-page/cardetails.php?id=<?php echo $car['car_id']; ?>">
-                                                <?php echo htmlspecialchars($car['name']); ?>
-                                            </a></h4>
-                                        <?php if ($is_admin): ?>
-                                            <p>User: <?php echo htmlspecialchars($car['user_name'] . ' ' . $car['user_surname']); ?></p>
+                                    <div class="booking-image">
+                                        <?php if ($image && !empty($image['imgurl'])): ?>
+                                            <img src="<?php echo htmlspecialchars($image['imgurl']); ?>"
+                                                alt="<?php echo htmlspecialchars($car['name']); ?>">
+                                        <?php else: ?>
+                                            <img src="/WEB2-Ebooking/src/images/Cars/placeholder.jpg" alt="No image available">
                                         <?php endif; ?>
-                                        <p>Type: <?php echo htmlspecialchars($car['type']); ?></p>
-                                        <p>Price per day: $<?php echo number_format($car['price'], 2); ?></p>
-                                        <p>Rental Start:
-                                            <?php echo htmlspecialchars(date('F j, Y', strtotime($car['rental_start']))); ?>
-                                        </p>
-                                        <p>Rental End:
-                                            <?php echo htmlspecialchars(date('F j, Y', strtotime($car['rental_end']))); ?>
+                                    </div>
+                                    <div class="booking-info">
+                                        <h4 class="car-name">
+                                            <a href="/WEB2-Ebooking/src/Cars-page/cardetails.php?id=<?php echo $car['car_id']; ?>">
+                                                <?php echo htmlspecialchars($car['name']); ?>
+                                            </a>
+                                        </h4>
+                                        <?php if ($is_admin): ?>
+                                            <p class="info-item"><span>User:</span>
+                                                <?php echo htmlspecialchars($car['user_name'] . ' ' . $car['user_surname']); ?></p>
+                                            <p class="info-item"><span>Phone:</span> <?php echo htmlspecialchars($user_phone); ?></p>
+                                        <?php endif; ?>
+                                        <p class="info-item"><span>Type:</span> <?php echo htmlspecialchars($car['type']); ?></p>
+                                        <p class="info-item"><span>Price per day:</span>
+                                            $<?php echo number_format($car['price'], 2); ?></p>
+                                        <p class="info-item"><span>Rental Start-End:</span>
+                                            <?php echo htmlspecialchars(date('M d, Y', strtotime($car['rental_start']))); ?> -
+                                            <?php echo htmlspecialchars(date('M d, Y', strtotime($car['rental_end']))); ?>
                                         </p>
                                     </div>
                                     <div class="remove-btn-container">
