@@ -10,6 +10,8 @@
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="styles/navbar.css" />
     <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="stylesheet" href="styles/site_review.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,6 +24,8 @@
 
     <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
     <script src="script/home.js" defer></script>
+    <script src="script/site_review.js" defer></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
@@ -54,11 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
         $stmt->execute();
         $stmt->close();
 
-   
+
         header('Location: index.php?review_success=1');
         exit;
     } else {
-   
+
         header('Location: index.php?error=1');
         exit;
     }
@@ -474,227 +478,92 @@ $rentals = getRentalsFromDB($conn);
             </div>
         </div>
     </section>
-<section class="site-review-form">
-    <h3 class="form-title">Leave a Review for Our Website</h3>
-    <?php if (isset($_SESSION['user_id'])): ?>
-        <form id="site-review-form">
-            <div class="rating-container">
-                <label for="rating">Rating:</label>
-                <div class="star-rating">
-                    <?php for ($i = 1; $i <= 5; $i++): ?>
-                        <span class="star" data-value="<?= $i ?>">★</span>
-                    <?php endfor; ?>
-                    <input type="hidden" id="rating" name="rating" required>
-                </div>
+
+    <section id="reviews-section" class="reviews-wrapper">
+        <button id="toggle-review-form" class="toggle-form-btn">Add a Review</button>
+
+        <div id="review-modal" class="review-modal hidden">
+            <div class="modal-content">
+                <span id="close-modal" class="close-btn">&times;</span>
+
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <form id="site-review-form">
+                        <h4>Submit Your Review</h4>
+
+                        <div class="rating-container">
+                            <label for="rating">Rating:</label>
+                            <div class="star-rating">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <span class="star" data-value="<?= $i ?>">★</span>
+                                <?php endfor; ?>
+                                <input type="hidden" id="rating" name="rating" required>
+                            </div>
+                        </div>
+
+                        <label for="comment">Your Review:</label>
+                        <textarea id="comment" name="comment" required placeholder="Share your experience..."
+                            rows="5"></textarea>
+
+                        <button type="submit" class="submit-btn">Submit Review</button>
+                    </form>
+                    <p id="review-message"></p>
+                <?php else: ?>
+                    <p class="login-message">Please <a>log in</a> to leave a
+                        review.</p>
+                <?php endif; ?>
             </div>
-
-            <label for="comment">Your Review:</label>
-            <textarea id="comment" name="comment" required placeholder="Write your experience..." rows="5"></textarea>
-
-            <button type="submit">Submit Review</button>
-        </form>
-        <p id="review-message"></p>
-    <?php else: ?>
-        <p>Please <a href="/WEB2-Ebooking/src/ajax-login.php">log in</a> to leave a review.</p>
-    <?php endif; ?>
-</section>
-
-<section id="reviews-section">
-    <h3 class="reviews-title">What Our Users Say</h3>
-    <?php
-  $result = $conn->query("
-    SELECT sr.rating, sr.comment, sr.created_at, u.name
-    FROM site_reviews sr
-    JOIN users u ON sr.user_id = u.id
-    WHERE sr.status = 'approved'
-    ORDER BY sr.created_at DESC
-");
-
-    if ($result && $result->num_rows > 0):
-        while ($row = $result->fetch_assoc()):
-    ?>
-       <div class="review-card">
-            <div class="review-header">
-                <div class="review-name"><?php echo htmlspecialchars($row['name']); ?></div>
-                <div class="review-rating"><?php echo htmlspecialchars($row['rating']); ?> ★</div>
-            </div>
-            <div class="review-comment">"<?php echo htmlspecialchars($row['comment']); ?>"</div>
-            <div class="review-date"><?php echo htmlspecialchars($row['created_at']); ?></div>
         </div>
-    <?php
-        endwhile;
-    else:
-        echo "<p>No reviews yet. Be the first to review!</p>";
-    endif;
-    ?>
-</section>
+        <h3 class="reviews-title">Loving Reviews By Our Customers</h3>
+        <p class="reviews-subtitle">Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
+        <div class="reviews-grid">
+            <?php
+            $result = $conn->query("
+            SELECT sr.rating, sr.comment, sr.created_at, u.name
+            FROM site_reviews sr
+            JOIN users u ON sr.user_id = u.id
+            WHERE sr.status = 'approved'
+            ORDER BY sr.created_at DESC
+        ");
 
-<abbr title="Go up button">
-    <a href="#" class="gotopbtn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-            <path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
-        </svg>
-    </a>
-</abbr>
+            if ($result && $result->num_rows > 0):
+                while ($row = $result->fetch_assoc()):
+                    ?>
+                    <div class="review-card">
+                        <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                        <div class="review-header">
+                            <div class="review-photo">
+                                <i class="fas fa-user-circle fa-3x"></i>
+                            </div>
+                            <div class="review-meta">
+                                <h4 class="review-name"><?php echo htmlspecialchars($row['name']); ?></h4>
+                                <p class="review-country">United States</p>
+                                <div class="review-stars">
+                                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                                        <i class="fas fa-star <?= $i <= $row['rating'] ? 'filled' : '' ?>"></i>
+                                    <?php endfor; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-comment"><?php echo htmlspecialchars($row['comment']); ?></p>
+                    </div>
+                    <?php
+                endwhile;
+            else:
+                echo "<p class='no-reviews'>No reviews yet. Be the first to share your thoughts!</p>";
+            endif;
+            ?>
+        </div>
+    </section>
 
-<footer>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
-</footer>
+    <abbr title="Go up button">
+        <a href="#" class="gotopbtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path fill="#ffffff"
+                    d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+            </svg>
+        </a>
+    </abbr>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-<script>
-$(document).ready(function() {
-    $('.star').on('click', function() {
-        const ratingValue = $(this).data('value');
-        $('#rating').val(ratingValue);
-        $('.star').removeClass('selected');
-        $(this).addClass('selected');
-        $(this).prevAll().addClass('selected');
-    });
-
-    $('#site-review-form').on('submit', function(e) {
-        e.preventDefault();
-
-        var rating = $('#rating').val();
-        var comment = $('#comment').val();
-
-        $.ajax({
-            url: '/WEB2-Ebooking/src/user/submit_site_review.php',
-            method: 'POST',
-            dataType: 'json',
-            data: { rating: rating, comment: comment },
-            success: function(response) {
-                if (response.success) {
-                    $('#review-message').text(response.message).css('color', 'green');
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1000);
-                } else {
-                    $('#review-message').text(response.message).css('color', 'red');
-                    setTimeout(function() {
-                        $('#review-message').text('');
-                    }, 3000);
-                }
-            },
-            error: function(xhr, status, error) {
-                $('#review-message').text('An error occurred: ' + error).css('color', 'red');
-                setTimeout(function() {
-                    $('#review-message').text('');
-                }, 3000);
-            }
-        });
-    });
-});
-</script>
-
-<style>
-.site-review-form {
-    background: #f9f9f9;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 12px;
-    max-width: 600px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', sans-serif;
-}
-
-.form-title {
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-    color: #222;
-}
-
-.rating-container {
-    margin-bottom: 12px;
-}
-
-.star-rating .star {
-    font-size: 1.5rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.star-rating .star.selected {
-    color: #ff9800;
-}
-
-textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    resize: vertical;
-    font-family: inherit;
-    font-size: 1rem;
-    margin-bottom: 12px;
-}
-
-button[type="submit"] {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-button[type="submit"]:hover {
-    background-color: #218838;
-}
-
-#reviews-section {
-    width: 87%;
-    margin: auto;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-.reviews-title {
-    width: 100%;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.review-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    padding: 16px;
-    width: 300px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.review-header {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #333;
-}
-
-.review-rating {
-    color: #ff9800;
-}
-
-.review-comment {
-    margin-top: 12px;
-    font-size: 0.95rem;
-    color: #555;
-}
-
-.review-date {
-    margin-top: auto;
-    font-size: 0.8rem;
-    color: #aaa;
-    text-align: right;
-}
-</style>
+    <footer>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
+    </footer>

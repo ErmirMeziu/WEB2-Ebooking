@@ -1,0 +1,233 @@
+.reviews-wrapper {
+    position: relative;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f1f7fc;
+}
+
+#toggle-review-form {
+    position: absolute;
+    top: 20px;
+    right: 6.5%;
+    background-color: #c4281e;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8em;
+    transition: background 0.3s ease;
+}
+
+#toggle-review-form:hover {
+    background-color: #a81f17;
+}
+
+.reviews-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #0e1f51;
+}
+
+.reviews-subtitle {
+    margin: 10px 0 30px;
+    color: #6e6e6e;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.review-card {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 380px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.review-photo {
+    margin-right: 15px;
+    color: #c4281e;
+}
+
+.review-meta h4 {
+    margin: 0;
+    font-weight: bold;
+    color: #0e1f51;
+}
+
+.review-country {
+    margin: 2px 0;
+    color: #888;
+}
+
+.review-stars i {
+    color: #ffc107;
+    margin-right: 2px;
+}
+
+.review-stars i.filled {
+    color: #ffc107;
+}
+
+.review-comment {
+    color: #333;
+    font-size: 0.95em;
+    margin-top: 10px;
+}
+
+.quote-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #ffcdd2;
+    font-size: 1.5em;
+}
+
+/* =======================
+   Review Modal Styling
+========================== */
+.review-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* E zezë e lehtë */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.review-modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease-in-out;
+    text-align: left;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5em;
+    color: #c4281e;
+    cursor: pointer;
+}
+
+/* =======================
+   Form Elements
+========================== */
+#site-review-form h4 {
+    margin-bottom: 20px;
+    color: #0e1f51;
+    font-size: 1.3em;
+}
+
+.rating-container {
+    margin-bottom: 20px;
+}
+
+.rating-container label {
+    display: block;
+    font-weight: bold;
+    color: #0e1f51;
+    margin-bottom: 5px;
+}
+
+.star-rating {
+    display: flex;
+    gap: 8px;
+    justify-content: start;
+}
+
+.star-rating .star {
+    font-size: 1.8em;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating .star.hovered,
+.star-rating .star.selected {
+    color: #ffc107;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 1em;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #c4281e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    width: 100%;
+    font-size: 1em;
+}
+
+.submit-btn:hover {
+    background-color: #a81f17;
+}
+
+#review-message {
+    margin-top: 15px;
+    font-size: 1em;
+    color: green;
+    text-align: center;
+}
+
+/* =======================
+   Login Message
+========================== */
+.login-message {
+    color: #333;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+.login-message a {
+    color: #c4281e;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-message a:hover {
+    text-decoration: underline;
+}

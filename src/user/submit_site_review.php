@@ -10,30 +10,39 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user_id = $_SESSION['user_id'];
-    $rating = floatval($_POST['rating']);
+    $user_id = intval($_SESSION['user_id']);
+    $rating = intval($_POST['rating']);
     $comment = trim($_POST['comment']);
 
-    if ($rating < 1 || $rating > 5 || empty($comment)) {
-        echo json_encode(['success' => false, 'message' => 'Invalid rating or comment.']);
+    if ($rating < 1 || $rating > 5) {
+        echo json_encode(['success' => false, 'message' => 'Rating must be between 1 and 5.']);
+        exit;
+    }
+    if (empty($comment)) {
+        echo json_encode(['success' => false, 'message' => 'Comment cannot be empty.']);
         exit;
     }
 
     $stmt = $conn->prepare("INSERT INTO site_reviews (user_id, rating, comment, status) VALUES (?, ?, ?, 'pending')");
     if (!$stmt) {
-        echo json_encode(['success' => false, 'message' => 'Database prepare failed: ' . $conn->error]);
+        error_log("Database prepare failed: " . $conn->error);
+        echo json_encode(['success' => false, 'message' => 'Database error occurred.']);
         exit;
     }
-    $stmt->bind_param("ids", $user_id, $rating, $comment);
+    $stmt->bind_param("iis", $user_id, $rating, $comment);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Review submitted successfully!']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to submit review: ' . $stmt->error]);
+        error_log("Failed to submit review: " . $stmt->error);
+        echo json_encode(['success' => false, 'message' => 'Failed to submit review.']);
     }
 
     $stmt->close();
     $conn->close();
     exit;
 }
+
+echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+exit;
 ?>

@@ -30,19 +30,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/db.php');
                         <p id="message1" class="font" style="color:red; position: absolute; top: -23px; left: 50%; transform: translateX(-50%);
                                   font-size: 13px; width: 300px;"></p>
                     </div>
-
-                    <div class="check">
-                        <div class="remember">
-                            <input type="checkbox" name="remember-me" id="remember-me">
-                            <label for="remember-me" style="cursor: pointer;" class="font">Remember me</label>
-                        </div>
-                        <div><a href="#" class="font">Forgot password?</a></div>
-                    </div>
                 </form>
             </div>
             <div class="divider">
                 <p class="font change-responsive"
-                    style="font-weight: 300; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
+                    style="font-weight: 300; font-size: 14px; margin-top: -10px; margin-bottom: 10px;">
                     -------------
                     <span class="font">Sign In With More Methods</span>
                     -------------

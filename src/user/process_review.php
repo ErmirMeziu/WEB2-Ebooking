@@ -2,7 +2,7 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/db.php';
 
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin']) {
     die("Access denied");
 }
 

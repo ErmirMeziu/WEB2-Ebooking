@@ -179,43 +179,6 @@ if ($section === 'cars') {
             position: relative !important;
             background-color: #041625 !important;
         }
-        .reviews-container {
-            margin-top: 20px;
-        }
-        .review-card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        .review-card p {
-            margin: 5px 0;
-        }
-        .action-approve, .action-unapprove, .action-delete {
-            color: #007bff;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        .action-approve:hover, .action-unapprove:hover, .action-delete:hover {
-            text-decoration: underline;
-        }
-        .action-delete {
-            color: #dc3545;
-        }
-        .delete-message {
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
-        .delete-message.success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .delete-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
     </style>
 </head>
 
@@ -242,8 +205,8 @@ if ($section === 'cars') {
                     <li><a href="?section=reviews" class="<?php echo $section === 'reviews' ? 'active' : ''; ?>"><i
                                 class="fas fa-star"></i> <?php echo $is_admin ? 'All Reviews' : 'My Reviews'; ?></a>
                     </li>
-                    <li><a href="/WEB2-Ebooking/src/components/logout.php"><i class="fas fa-sign-out-alt"></i>
-                            Logout</a></li>
+                    <!-- <li><a href="/WEB2-Ebooking/src/components/logout.php"><i class="fas fa-sign-out-alt"></i>
+                            Logout</a></li> -->
                 </ul>
             </div>
         </div>
@@ -375,12 +338,14 @@ if ($section === 'cars') {
                                             <p class="info-item"><span>Phone:</span> <?php echo htmlspecialchars($user_phone); ?></p>
                                         <?php endif; ?>
                                         <p class="info-item"><span>Type:</span> <?php echo htmlspecialchars($car['type']); ?></p>
-                                        <p class="info-item"><span>Price per day:</span> <?php echo number_format($car['price'], 2); ?>€</p>
+                                        <p class="info-item"><span>Price per day:</span>
+                                            <?php echo number_format($car['price'], 2); ?>€</p>
                                         <p class="info-item"><span>Rental Period:</span>
                                             <?php echo htmlspecialchars(date('M d, Y', strtotime($car['rental_start']))); ?> -
                                             <?php echo htmlspecialchars(date('M d, Y', strtotime($car['rental_end']))); ?>
                                         </p>
-                                        <p class="info-item"><span>Total Price:</span> <?php echo number_format($car['total_price'], 2);?>€</p>
+                                        <p class="info-item"><span>Total Price:</span>
+                                            <?php echo number_format($car['total_price'], 2); ?>€</p>
                                     </div>
                                     <div class="remove-btn-container">
                                         <form method="POST" action="?section=cars"
@@ -418,7 +383,9 @@ if ($section === 'cars') {
                             } else {
                                 while ($row = $result->fetch_assoc()): ?>
                                     <div class="review-card">
-                                        <p><strong><?php echo htmlspecialchars($row['name']); ?></strong> rated <?php echo $row['rating']; ?> ★ (<?php echo htmlspecialchars($row['status']); ?>)</p>
+                                        <p><strong><?php echo htmlspecialchars($row['name']); ?></strong> rated
+                                            <?php echo $row['rating']; ?> ★
+                                        </p>
                                         <p><?php echo htmlspecialchars($row['comment']); ?></p>
                                         <p><small><?php echo $row['created_at']; ?></small></p>
                                         <?php if ($row['status'] === 'pending'): ?>
@@ -430,7 +397,8 @@ if ($section === 'cars') {
                                             <form method="POST" action="?section=reviews" style="display: inline;">
                                                 <input type="hidden" name="action" value="delete_review">
                                                 <input type="hidden" name="review_id" value="<?php echo $row['id']; ?>">
-                                                <button type="submit" class="action-delete" onclick="return confirm('Are you sure you want to delete this review?');">Delete</button>
+                                                <button type="submit" class="action-delete"
+                                                    onclick="return confirm('Are you sure you want to delete this review?');">Delete</button>
                                             </form>
                                         <?php elseif ($row['status'] === 'approved'): ?>
                                             <form method="POST" action="?section=reviews" style="display: inline;">
@@ -441,7 +409,8 @@ if ($section === 'cars') {
                                             <form method="POST" action="?section=reviews" style="display: inline;">
                                                 <input type="hidden" name="action" value="delete_review">
                                                 <input type="hidden" name="review_id" value="<?php echo $row['id']; ?>">
-                                                <button type="submit" class="action-delete" onclick="return confirm('Are you sure you want to delete this review?');">Delete</button>
+                                                <button type="submit" class="action-delete"
+                                                    onclick="return confirm('Are you sure you want to delete this review?');">Delete</button>
                                             </form>
                                         <?php endif; ?>
                                     </div>
@@ -451,9 +420,9 @@ if ($section === 'cars') {
                             ?>
                         <?php else: ?>
                             <?php
-                            $stmt = $conn->prepare("SELECT sr.rating, sr.comment, sr.created_at, sr.status 
-                                                   FROM site_reviews sr 
-                                                   WHERE sr.user_id = ? 
+                            $stmt = $conn->prepare("SELECT sr.rating, sr.comment, sr.created_at, sr.status
+                                                   FROM site_reviews sr
+                                                   WHERE sr.user_id = ?
                                                    ORDER BY sr.created_at DESC");
                             $stmt->bind_param("i", $user_id);
                             $stmt->execute();
@@ -463,7 +432,8 @@ if ($section === 'cars') {
                             } else {
                                 while ($row = $result->fetch_assoc()): ?>
                                     <div class="review-card">
-                                        <p>You rated <?php echo $row['rating']; ?> ★ (<?php echo htmlspecialchars($row['status']); ?>)</p>
+                                        <p>You rated <?php echo $row['rating']; ?> ★
+                                        </p>
                                         <p><?php echo htmlspecialchars($row['comment']); ?></p>
                                         <p><small><?php echo $row['created_at']; ?></small></p>
                                     </div>

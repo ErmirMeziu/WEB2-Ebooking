@@ -25,10 +25,10 @@ $navbarItems = [
 
 <div class="login-register">
     <?php if (isset($_SESSION['user_name'])): ?>
-        <a href="/WEB2-Ebooking/src/user/user.php" style="text-decoration: none; color: white;">
-            <p style="margin-right: 20px; display: inline">Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?></p>
-            <i class="fa-solid fa-user" style="color: white; font-size: 25px"></i>
-        </a>
+        <p style="margin-right: 20px;">Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?></p>
+        <a href="/WEB2-Ebooking/src/user/user.php"><i class="fa-solid fa-user"
+                style="color: white; font-size: 25px"></i></a>
+        <a href="/WEB2-Ebooking/src/components/logout.php" class="log-out">Log Out</i></a>
     <?php else: ?>
         <button class="sign-in1" id="sign-in">Sign in/Sign up</button>
     <?php endif; ?>
