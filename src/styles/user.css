@@ -1,0 +1,404 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+
+.booking-item h4 a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.booking-item h4 a:hover {
+    text-decoration: underline;
+}
+
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.booking-details {
+    flex-grow: 1;
+}
+
+.remove-form {
+    margin-left: 10px;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
+}
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 60px);
+    /* Adjust for header/footer height */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-panel {
+    width: 280px;
+    background-color: #041625;
+    color: #fff;
+    padding: 24px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px 10px;
+}
+
+.nav-panel-header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.nav-panel-header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-panel-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-panel-nav li {
+    margin-bottom: 12px;
+}
+
+.nav-panel-nav a {
+    color: #e0e6ed;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.nav-panel-nav a i {
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+.nav-panel-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-panel-nav a.active {
+    background-color: #d32f2f;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin: 20px 10px;
+}
+
+.card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+}
+
+.card h3 {
+    margin: 0 0 16px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #041625;
+}
+
+.profile-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.profile-form input,
+.profile-form select,
+.profile-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d9dfe7;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fafbfc;
+    transition: border-color 0.3s ease;
+}
+
+.profile-form input:focus,
+.profile-form select:focus,
+.profile-form textarea:focus {
+    outline: none;
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+.profile-form textarea {
+    grid-column: span 2;
+    min-height: 120px;
+    resize: vertical;
+}
+
+.profile-form .form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.update-password {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 420px;
+}
+
+.update-password input {
+    padding: 12px;
+    border: 1px solid #d9dfe7;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fafbfc;
+}
+
+.update-password input:focus {
+    outline: none;
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+.update-password .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.btn-red {
+    background-color: #d32f2f;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: auto;
+    min-width: 140px;
+}
+
+.btn-red:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-red:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.3);
+}
+
+.message {
+    font-size: 0.9rem;
+    color: #555;
+    flex-grow: 1;
+}
+
+.booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.booking-item {
+    background: #fafbfc;
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid #d9dfe7;
+}
+
+.booking-item h4 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #041625;
+}
+
+.booking-item p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.booking-item h4 a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.booking-item h4 a:hover {
+    text-decoration: underline;
+}
+
+.booking-item {
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.booking-details {
+    flex: 1;
+}
+
+.remove-btn-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.remove-btn {
+    background-color: #d72c21;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.remove-btn:hover {
+    background-color: #b3241b;
+}
+
+.booking-item h4 a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.booking-item h4 a:hover {
+    text-decoration: underline;
+}
+
+.booking-item {
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.booking-details {
+    flex: 1;
+}
+
+.remove-btn-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.remove-btn {
+    background-color: #d72c21;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.remove-btn:hover {
+    background-color: #b3241b;
+}
+
+.delete-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.delete-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.delete-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    .nav-panel {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 10px;
+    }
+
+    .profile-form .form-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .nav-panel {
+        width: 100%;
+        margin: 10px 0;
+        border-radius: 0;
+    }
+
+    .content {
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    .profile-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-form textarea {
+        grid-column: span 1;
+    }
+
+    .profile-form .form-actions,
+    .update-password .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .btn-red {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .message {
+        text-align: center;
+    }
+}

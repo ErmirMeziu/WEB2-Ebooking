@@ -71,3 +71,13 @@ CREATE TABLE rentals (
     numberOfReviews INT NOT NULL
 );
 
+CREATE TABLE car_rentals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    car_id INT NOT NULL,
+    rental_start DATE NOT NULL,
+    rental_end DATE NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
+);
+
