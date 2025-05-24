@@ -23,6 +23,7 @@
     <link rel="icon" href="../images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../styles/carspage.css">
     <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/cars.css">
     <link rel="stylesheet" href="../styles/footer.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../styles/login-register.css">
@@ -40,6 +41,7 @@
     <?php
     require_once __DIR__ . '/carclass.php';
     require_once '../db.php';
+    session_start();
 
     $carid = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
@@ -84,6 +86,11 @@
         $features,
         $morefeatures
     );
+
+    $cars = allcars($conn);
+    shuffle($cars);
+    $cars = array_slice($cars, 0, 6);
+
     ?>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
@@ -154,25 +161,79 @@
                 <div class="rezervo">
                     <div>
                         <h3 style="color: #393939;">Price</h3>
-                        <b style="color: #393939;"><span id="dailyCost"><?= $car->price ?></span>€ / <span style="color: orange;">DAY</span></b>
+                        <b style="color: #393939; font-size: 25px;"><span id="dailyCost"><?= $car->price ?></span>€ / <span style="color: orange;">DAY</span></b>
                     </div>
                     <button class="btnrezervo" onclick="rezervo()">Book Now</button>
                 </div>
-                <!-- <div id="modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <h2>Booking completed successfully!</h2>
-                        <p>Thank you for booking.</p>
-                        <button class="btn-ok" onclick="closeModal()">OK</button>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
 
-    <footer style="margin-top: 100px;">
+    <section class="car_container">
+        <h1 style="padding: 30px 0 20px 0; width: 87%; color: #393939;">Other Cars You Might Like</h1>
+        <div class="container12 goTop">
+            <?php foreach ($cars as $car): ?>
+                <div class="card5">
+                    <div class="slider">
+                        <div class="slides">
+                            <?php foreach ($car->images as $img): ?>
+                                <a href="cardetails.php?id=<?= $car->id ?>">
+                                    <img class="slide" src="<?= $img ?>" alt="Image">
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                        <button class="prev" onclick="prevSlide()">&#10094;</button>
+                        <button class="next" onclick="nextSlide()">&#10095;</button>
+                    </div>
+                    <div class="badge">600Kms included. After that $15/Kms</div>
+                    <div class="card-body">
+                        <a href="cardetails.php?id=<?= $car->id ?>" style="text-decoration: none; color: black;">
+                            <div>
+                                <div class="card-title"><?= $car->name ?></div>
+                                <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
+                                <div class="card-details">
+                                    <?php foreach ($car->details as $detail): ?>
+                                        <div class="detail"><?= $detail ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="price-section">
+                                    <div class="price-section2">
+                                        <div class="discount"><?= $car->discount ?>% Off</div>
+                                        <div class="price">US$<?= $car->price ?>
+                                            <span class="old-price">US$<?= $car->oldPrice ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="rating">
+                                        <div class="reviews">Exceptional <br><?= $car->reviews ?> reviews</div>
+                                        <div class="score"><?= $car->reviewScore ?></div>
+                                    </div>
+                                </div>
+                                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
+                                    <div class="Detajet">
+                                        <button style="width: 80%;">More</button>
+                                        <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to remove this car?');" style="width: 20%;">
+                                            <input type="hidden" name="car_id" value="<?= $car->id ?>">
+                                            <button type="submit" style="width: 100%; background-color: #e74c3c;">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="Detajet">
+                                        <button style="width: 100%;">More</button>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
+
+    <footer>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 </body>
-
+<script src="../script/cars.js" defer></script>
 </html>

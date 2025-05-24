@@ -73,4 +73,44 @@ class CarDetails extends Car
         $this->morefeatures = $morefeatures;
     }
 }
+
+// 
+
+function allcars($conn) {
+    $cars = [];
+    $query = "SELECT * FROM cars";
+    $result = $conn->query($query);
+
+    while ($eachrow = $result->fetch_assoc()) {
+        $carid = $eachrow['id'];
+
+        $details = [];
+        $eachdetail = $conn->query("SELECT details FROM cardetails WHERE carid = $carid");
+        while ($d = $eachdetail->fetch_assoc()) {
+            $details[] = $d['details'];
+        }
+
+        $images = [];
+        $eachimage = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
+        while ($img = $eachimage->fetch_assoc()) {
+            $images[] = $img['imgurl'];
+        }
+
+        $cars[] = (object) [
+            'id' => $eachrow['id'],
+            'name' => $eachrow['name'],
+            'type' => $eachrow['type'],
+            'seats' => $eachrow['seats'],
+            'price' => $eachrow['price'],
+            'oldPrice' => $eachrow['oldprice'],
+            'discount' => $eachrow['discount'],
+            'reviews' => $eachrow['reviews'],
+            'reviewScore' => $eachrow['reviewscore'],
+            'details' => $details,
+            'images' => $images
+        ];
+    }
+
+    return $cars;
+}
 ?>

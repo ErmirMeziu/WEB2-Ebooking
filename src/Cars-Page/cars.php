@@ -34,49 +34,10 @@
 </head>
 
 <?php
-require_once __DIR__ . '/carclass.php';
-include '../db.php';
-
-function addcars($conn, $visible)
-{
-    $cars = [];
-    $query = "SELECT * FROM cars WHERE $visible";
-    $result = $conn->query($query);
-
-    while ($eachrow = $result->fetch_assoc()) {
-        $carid = $eachrow['id'];
-
-        $details = [];
-        $eachdetail = $conn->query("SELECT details FROM cardetails WHERE carid = $carid");
-        while ($d = $eachdetail->fetch_assoc()) {
-            $details[] = $d['details'];
-        }
-
-        $images = [];
-        $eachimage = $conn->query("SELECT imgurl FROM carimages WHERE carid = $carid");
-        while ($img = $eachimage->fetch_assoc()) {
-            $images[] = $img['imgurl'];
-        }
-
-        $cars[] = (object) [
-            'id' => $eachrow['id'],
-            'name' => $eachrow['name'],
-            'type' => $eachrow['type'],
-            'seats' => $eachrow['seats'],
-            'price' => $eachrow['price'],
-            'oldPrice' => $eachrow['oldprice'],
-            'discount' => $eachrow['discount'],
-            'reviews' => $eachrow['reviews'],
-            'reviewScore' => $eachrow['reviewscore'],
-            'details' => $details,
-            'images' => $images
-        ];
-    }
-    return $cars;
-}
-
-$cars = addcars($conn, "id <= 6");
-$hiddenCars = addcars($conn, "id > 6");
+    require_once __DIR__ . '/carclass.php';
+    include '../db.php';
+    
+    $cars = allcars($conn);
 ?>
 
 <body>
@@ -113,34 +74,17 @@ $hiddenCars = addcars($conn, "id > 6");
                     destinations.
                 </p>
             </div>
-            <div class="search">
-                <form action="" method="post" class="search-bar">
-                    <fieldset class="where-date">
-                        <legend>Where</legend>
-                        <input type="text" name="going-to" id="going-to" placeholder="Going To">
-                    </fieldset>
-                    <fieldset class="where-date">
-                        <legend>Choose Date</legend>
-                        <input type="date" name="date" id="date" min="2025-01-01">
-                    </fieldset>
-                    <fieldset class="memb">
-                        <legend>Members</legend>
-                        <input type="number" name="members" id="members" min="0">
-                    </fieldset>
-                </form>
-                <button><i class="fa-solid fa-magnifying-glass loop"></i>Search</button>
-            </div>
         </div>
     </section>
 
-    <div class="text">
-        <h1>
-            Out Awesome Vehicles
-        </h1>
-        <p>Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
-    </div>
+    <section>
+        <div class="text">
+            <h1>Our Awesome Vehicles</h1>
+            <p>Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
+        </div>
+    </section>
 
-    <section class="car_container" style="position: relative">
+    <section class="car_container" style="position: relative;">
         <?php
         if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
             echo '
@@ -154,9 +98,7 @@ $hiddenCars = addcars($conn, "id > 6");
             </div>';
         }
         ?>
-
-        <div class="container12 goTop">
-
+        <div class="container12">
             <?php foreach ($cars as $car): ?>
                 <div class="card5">
                     <div class="slider">
@@ -194,99 +136,29 @@ $hiddenCars = addcars($conn, "id > 6");
                                     </div>
                                 </div>
                                 <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
-                                        <div class="Detajet">
-                                            <button style="width: 80%;">More</button>
-                                            <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');" style="width: 20%;">
-                                                <input type="hidden" name="car_id" value="<?= $car->id ?>">
-                                                <button type="submit" style="width: 100%; background-color: #e74c3c;">
-                                                    <i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    <?php } else { ?>
-                                        <div class="Detajet">
-                                            <button style="width: 100%;">More</button>
-                                        </div>
-                                    <?php } ?>
+                                    <div class="Detajet">
+                                        <button style="width: 80%;">More</button>
+                                        <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to remove this car?');" style="width: 20%;">
+                                            <input type="hidden" name="car_id" value="<?= $car->id ?>">
+                                            <button type="submit" style="width: 100%; background-color: #e74c3c;">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="Detajet">
+                                        <button style="width: 100%;">More</button>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </a>
                     </div>
                 </div>
             <?php endforeach; ?>
-
-            <div class="toHide">
-                <?php foreach ($hiddenCars as $car): ?>
-                    <div class="card5 goTop">
-                        <div class="slider">
-                            <div class="slides">
-                                <?php foreach ($car->images as $img): ?>
-                                    <a href="cardetails.php?id=<?= $car->id ?>">
-                                        <img class="slide" src="<?= $img ?>" alt="Image">
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-                            <button class="prev" onclick="prevSlide()">&#10094;</button>
-                            <button class="next" onclick="nextSlide()">&#10095;</button>
-                        </div>
-                        <div class="badge">600Kms included. After that $15/Kms</div>
-                        <div class="card-body">
-                            <a href="cardetails.php?id=<?= $car->id ?>" style="text-decoration: none; color: black;">
-                                <div>
-                                    <div class="card-title"><?= $car->name ?></div>
-                                    <p class="paragraph"><?= $car->type ?> | AC | <?= $car->seats ?> Seats</p>
-                                    <div class="card-details">
-                                        <?php foreach ($car->details as $detail): ?>
-                                            <div class="detail"><?= $detail ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                    <div class="price-section">
-                                        <div class="price-section2">
-                                            <div class="discount"><?= $car->discount ?>% Off</div>
-                                            <div class="price">US$<?= $car->price ?>
-                                                <span class="old-price">US$<?= $car->oldPrice ?></span>
-                                            </div>
-                                        </div>
-                                        <div class="rating">
-                                            <div class="reviews">Exceptional <br><?= $car->reviews ?> reviews</div>
-                                            <div class="score"><?= $car->reviewScore ?></div>
-                                        </div>
-                                    </div>
-                                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) { ?>
-                                        <div class="Detajet">
-                                            <button style="width: 80%;">More</button>
-                                            <form action="removecar.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');" style="width: 20%;">
-                                                <input type="hidden" name="car_id" value="<?= $car->id ?>">
-                                                <button type="submit" style="width: 100%; background-color: #e74c3c;">
-                                                    <i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    <?php } else { ?>
-                                        <div class="Detajet">
-                                            <button style="width: 100%;">More</button>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-            <button class="view-more">VIEW MORE</button>
         </div>
-    </section>
+        <abbr title="Go up button"><a href="#" class="gotopbtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" /></svg></a></abbr>
 
-    <abbr title="Go up button">
-        <a href="#" class="gotopbtn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <path fill="#ffffff"
-                    d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
-            </svg>
-        </a>
-    </abbr>
-
-    <footer style="margin-top: 50px; background-color: white;">
+    <footer style="margin-top: 30px; background-color: white;">
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 </body>

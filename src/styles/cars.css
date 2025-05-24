@@ -9,7 +9,7 @@ header {
 
 .home {
     width: 100%;
-    height: 600px;
+    height: 500px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -18,7 +18,6 @@ header {
     transition: 2s;
     margin-bottom: 20px;
 }
-
 
 .search {
     display: flex;
@@ -181,7 +180,7 @@ button {
     top: 0;
     left: 0;
     width: 100%;
-    height: 600px;
+    height: 500px;
     object-fit: cover;
     z-index: -10 !important;
 }
@@ -190,7 +189,7 @@ button {
     color: white;
     text-align: center;
     position: relative;
-    top: 180px;
+    top: 210px;
     margin-bottom: 200px;
     z-index: 1 !important;
 }
@@ -205,10 +204,12 @@ button {
 
 .text {
     width: 87%;
-    margin: 40px auto 50px;
+    margin: 0 auto;
+    padding: 20px 0;
 }
 
 .text h1 {
+    font-family: 'Poppins', sans-serif;
     text-align: center;
     color: #052449;
 }
@@ -241,9 +242,7 @@ button {
 }
 
 .container12 {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
     width: 87%;
     gap: 15px;
     margin-top: 12.5px;
@@ -258,7 +257,6 @@ button {
     height: 550px;
     position: relative;
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
     cursor: pointer;
 }
@@ -616,4 +614,23 @@ html {
     visibility: visible;
     opacity: 1;
     transition: opacity 1s ease;
+}
+
+@media (max-width: 540px) {
+    .container12{   
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 541px) and (max-width: 1023px) {
+    .container12{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+@media (min-width: 1024px) {
+    .container12{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
 }

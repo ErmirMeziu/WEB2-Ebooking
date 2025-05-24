@@ -211,6 +211,7 @@ hr {
     margin: auto;
     width: 87%;
     margin-top: 20px;
+    padding: 10px 0;
 }
 
 .right2 {
@@ -366,4 +367,12 @@ hr {
     font-family: 'Poppins';
     font-weight: 500;
     padding: 5px;
+}
+
+.car_container{
+    padding-bottom: 30px;
+    h1{
+        font-size: 32px;
+        font-family: 'Poppins', sans-serif;
+    }
 }

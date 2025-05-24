@@ -306,6 +306,7 @@ input {
     height: 313px;
     border-radius: 20px;
     padding: 10px 8px;
+    object-fit: cover;
 }
 
 .star {
