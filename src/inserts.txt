@@ -146,4 +146,61 @@ INSERT INTO users (
     'male',
     'I am a software developer with a passion for clean code.',
     '$2y$10$lYS2jwQZclpKJTa7SmSZXeW3BlXHCsSKCMnCDIsF7FeeyU79T5ZV6'
-); // Admin123@ password
+); 
+
+
+INSERT INTO hotels (
+    id, name, address, city, country, description, hidden_description, 
+    overall_rating, location_rating, review_count, map_embed_url, map_link_url
+) VALUES (
+    1, 
+    'Hotel Chancellor@Orchard', 
+    '28 Cavenagh Road', 
+    'Singapore', 
+    'Singapore', 
+    'Located in the heart of Orchard Road, Hotel Chancellor@Orchard offers modern accommodations with easy access to shopping and entertainment.|10 minutes away, shopping areas like Bugis Village, Chinatown, and Little India are accessible by train. The property is a quick 1.1 km stroll from Singapore Art Museum and Orchard MRT Station. Changi Airport is approximately 17 km away.|With an al fresco and indoor dining area, Bistro@Chancellor Cafe on the second floor serves buffet breakfast every morning.', 
+    'Hotel Chancellor@Orchard offers a 24-hour front desk, meeting facilities, luggage storage, children\'s playground, and coin-operated laundry machines. Free WiFi is available throughout the property.\n\nCouples particularly like the location — they rated it 8.8 for a two-person trip.', 
+    7.5, 
+    8.8, 
+    1250, 
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.832399358039!2d103.8421518!3d1.3011349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da199656c10c63%3A0x7634e84074996b35!2sHotel%20Chancellor!5e0!3m2!1sen!2ssg!4v1693005872123!5m2!1sen!2ssg', 
+    'https://www.google.com/maps/place/Hotel+Chancellor/@1.3149209,103.8118214,13.59z/data=!4m9!3m8!1s0x31da199656c10c63:0x7634e84074996b35!5m2!4m1!1i2!8m2!3d1.3011349!4d103.8421518!16s%2Fg%2F11cjj86261?entry=ttu&g_ep=EgoyMDI0MTIwOS4wIKXMDSoASAFQAw%3D%3D'
+);
+
+-- Insert sample room types
+INSERT INTO rooms (hotel_id, room_type, bed_configuration, max_guests, price) VALUES
+(1, 'Deluxe Double Room', '1 double bed', 2, 150.00),
+(1, 'Superior Twin Room', '2 single beds', 2, 140.00),
+(1, 'Family Suite', '1 double bed and 2 single beds', 4, 250.00),
+(1, 'Executive Suite', '1 king bed', 3, 300.00);
+
+
+INSERT INTO reviews (hotel_id, category, rating)
+VALUES 
+(1, 'Staff', 7.0),
+(1, 'Facilities', 6.4),
+(1, 'Comfort', 6.9),
+(1, 'Value for money', 6.7),
+(1, 'Free WiFi', 7.7),
+(1, 'Location', 8.4);
+
+
+INSERT INTO house_rules (hotel_id, rule_type, details)
+VALUES 
+(1, 'Check-in', 'From 15:00'),
+(1, 'Check-out', 'Until 12:00'),
+(1, 'Cancellation/prepayment', 'Cancellation and prepayment policies vary according to accommodation type. Please enter the dates of your stay and check the conditions of your required option.'),
+(1, 'Children and beds', 'Children of any age are welcome.\nChildren 7 years and above will be charged as adults at this property.\nTo see correct prices and occupancy information, please add the number of children in your group and their ages to your search.\n\nCot and extra bed policies:\n0 - 2 years: Cot upon request, Free\n7+ years: Extra bed upon request, $75 per person, per night'),
+(1, 'Age restriction', 'The minimum age for check-in is 18'),
+(1, 'Pets', 'Pets are not allowed.'),
+(1, 'This property accepts', 'Visa, Mastercard, American Express, Cash');
+
+INSERT INTO hotel_images (hotel_id, imgurl, is_main) VALUES
+(1, '../images/Hotel1/hotel1-room.jpg', TRUE),
+(1, '../images/Hotel1/Building.jpg', TRUE),
+(1, '../images/Hotel1/buffe.jpg', TRUE),
+(1, '../images/Hotel1/Inside.jpg', FALSE),
+(1, '../images/Hotel1/pool.jpg', FALSE),
+(1, '../images/Hotel1/conference.jpg', FALSE),
+(1, '../images/Hotel1/hall.jpg', FALSE),
+(1, '../images/Hotel1/pool2.jpg', FALSE);
