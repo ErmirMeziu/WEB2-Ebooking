@@ -1,0 +1,137 @@
+:root {
+    --primary-color: #4CAF50;
+    --primary-hover: #45a049;
+    --text-color: #052449;
+    --error-color: #e74c3c;
+    --error-hover: #c0392b;
+    --input-border: #ccc;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-car-form {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-family: 'Poppins', sans-serif;
+}
+
+.add-car-form h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #4E5F70;
+    box-sizing: border-box;
+}
+
+.multi-input {
+    margin-top: 5px;
+}
+
+.multi-input div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.multi-input input,
+.multi-input select {
+    flex: 1;
+}
+
+.add-btn,
+.remove-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.add-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.add-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.remove-btn {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.remove-btn:hover {
+    background-color: var(--error-hover);
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-hover);
+    box-shadow: var(--shadow);
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.other-detail-input,
+.other-extra-input {
+    width: 200px;
+}
+
+@media (max-width: 600px) {
+    .add-car-form {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .other-detail-input,
+    .other-extra-input {
+        width: 100%;
+    }
+}
