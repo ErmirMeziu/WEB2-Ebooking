@@ -100,15 +100,6 @@ CREATE TABLE hotels (
 
 CREATE TABLE rooms (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    hotel_id INT NOT NULL,
-    room_type VARCHAR(255) NOT NULL,
-    description TEXT,
-    max_guests INT NOT NULL,
-    bed_configuration VARCHAR(255),
-    FOREIGN KEY (hotel_id) REFERENCES hotels(id)
-);
-CREATE TABLE rooms (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     hotel_id INT,
     room_type VARCHAR(100),
     bed_configuration VARCHAR(255),
