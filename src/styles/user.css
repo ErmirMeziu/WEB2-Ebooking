@@ -497,6 +497,81 @@ body {
     background-color: var(--error-hover);
 }
 
+.reviews-container {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-container h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #041625;
+}
+
+.review-card {
+    background: #fafbfc;
+    padding: 15px;
+    border: 1px solid #d9dfe7;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.review-card p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.review-card p strong {
+    color: #041625;
+    font-weight: 600;
+}
+
+.review-card small {
+    color: #888;
+    font-size: 14px;
+}
+
+.review-card a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.review-card a.action-approve {
+    background: #28a745;
+}
+
+.review-card a.action-approve:hover {
+    background: #218838;
+}
+
+.review-card a.action-unapprove {
+    background: #ffc107;
+}
+
+.review-card a.action-unapprove:hover {
+    background: #e0a800;
+}
+
+.review-card a.action-delete {
+    background: #d32f2f;
+}
+
+.review-card a.action-delete:hover {
+    background: #b71c1c;
+}
+
 @media (max-width: 600px) {
     .booking-item {
         flex-direction: column;

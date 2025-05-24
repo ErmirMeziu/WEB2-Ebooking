@@ -60,6 +60,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
+// Handle review actions (approve/unapprove/delete)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $is_admin) {
+    $review_id = $_POST['review_id'] ?? null;
+    if ($review_id && is_numeric($review_id)) {
+        if ($_POST['action'] === 'approve_review') {
+            $sql = "UPDATE site_reviews SET status = 'approved' WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $review_id);
+            if ($stmt->execute()) {
+                $delete_message = "Review approved successfully.";
+            } else {
+                $delete_message = "Error approving review: " . $stmt->error;
+            }
+            $stmt->close();
+        } elseif ($_POST['action'] === 'unapprove_review') {
+            $sql = "UPDATE site_reviews SET status = 'pending' WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $review_id);
+            if ($stmt->execute()) {
+                $delete_message = "Review unapproved successfully.";
+            } else {
+                $delete_message = "Error unapproving review: " . $stmt->error;
+            }
+            $stmt->close();
+        } elseif ($_POST['action'] === 'delete_review') {
+            $sql = "DELETE FROM site_reviews WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $review_id);
+            if ($stmt->execute()) {
+                $delete_message = "Review deleted successfully.";
+            } else {
+                $delete_message = "Error deleting review: " . $stmt->error;
+            }
+            $stmt->close();
+        }
+    }
+}
+
 // Fetch user profile data
 $sql = "SELECT name, surname, email, phone, birthdate, gender, bio FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
@@ -141,6 +179,43 @@ if ($section === 'cars') {
             position: relative !important;
             background-color: #041625 !important;
         }
+        .reviews-container {
+            margin-top: 20px;
+        }
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .review-card p {
+            margin: 5px 0;
+        }
+        .action-approve, .action-unapprove, .action-delete {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .action-approve:hover, .action-unapprove:hover, .action-delete:hover {
+            text-decoration: underline;
+        }
+        .action-delete {
+            color: #dc3545;
+        }
+        .delete-message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .delete-message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .delete-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
     </style>
 </head>
 
@@ -164,6 +239,9 @@ if ($section === 'cars') {
                     <li><a href="?section=cars" class="<?php echo $section === 'cars' ? 'active' : ''; ?>"><i
                                 class="fas fa-car"></i> <?php echo $is_admin ? 'All Car Rentals' : 'Rented Cars'; ?></a>
                     </li>
+                    <li><a href="?section=reviews" class="<?php echo $section === 'reviews' ? 'active' : ''; ?>"><i
+                                class="fas fa-star"></i> <?php echo $is_admin ? 'All Reviews' : 'My Reviews'; ?></a>
+                    </li>
                     <li><a href="/WEB2-Ebooking/src/components/logout.php"><i class="fas fa-sign-out-alt"></i>
                             Logout</a></li>
                 </ul>
@@ -171,6 +249,13 @@ if ($section === 'cars') {
         </div>
 
         <div class="content">
+            <?php if ($delete_message): ?>
+                <div
+                    class="delete-message <?php echo strpos($delete_message, 'successfully') !== false ? 'success' : 'error'; ?>">
+                    <?php echo htmlspecialchars($delete_message); ?>
+                </div>
+            <?php endif; ?>
+
             <?php if ($section === 'profile'): ?>
                 <div class="card" id="personal-info">
                     <h3>Personal Info</h3>
@@ -244,12 +329,6 @@ if ($section === 'cars') {
             <?php elseif ($section === 'cars'): ?>
                 <div class="card" id="booked-cars">
                     <h3 class="section-title"><?php echo $is_admin ? 'All Car Rentals' : 'Booked Cars'; ?></h3>
-                    <?php if ($delete_message): ?>
-                        <div
-                            class="delete-message <?php echo strpos($delete_message, 'successfully') !== false ? 'success' : 'error'; ?>">
-                            <?php echo htmlspecialchars($delete_message); ?>
-                        </div>
-                    <?php endif; ?>
                     <?php if (empty($booked_cars)): ?>
                         <p class="no-rentals">No car rentals found.</p>
                     <?php else: ?>
@@ -320,6 +399,80 @@ if ($section === 'cars') {
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
+                </div>
+            <?php elseif ($section === 'reviews'): ?>
+                <div class="card" id="reviews">
+                    <h3><?php echo $is_admin ? 'All Reviews' : 'My Reviews'; ?></h3>
+                    <div class="reviews-container">
+                        <?php if ($is_admin): ?>
+                            <?php
+                            $sql = "SELECT sr.id, sr.rating, sr.comment, sr.created_at, sr.status, u.name 
+                                    FROM site_reviews sr 
+                                    JOIN users u ON sr.user_id = u.id 
+                                    ORDER BY sr.created_at DESC";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($result->num_rows === 0) {
+                                echo "<p>No reviews found.</p>";
+                            } else {
+                                while ($row = $result->fetch_assoc()): ?>
+                                    <div class="review-card">
+                                        <p><strong><?php echo htmlspecialchars($row['name']); ?></strong> rated <?php echo $row['rating']; ?> ★ (<?php echo htmlspecialchars($row['status']); ?>)</p>
+                                        <p><?php echo htmlspecialchars($row['comment']); ?></p>
+                                        <p><small><?php echo $row['created_at']; ?></small></p>
+                                        <?php if ($row['status'] === 'pending'): ?>
+                                            <form method="POST" action="?section=reviews" style="display: inline;">
+                                                <input type="hidden" name="action" value="approve_review">
+                                                <input type="hidden" name="review_id" value="<?php echo $row['id']; ?>">
+                                                <button type="submit" class="action-approve">Approve</button>
+                                            </form>
+                                            <form method="POST" action="?section=reviews" style="display: inline;">
+                                                <input type="hidden" name="action" value="delete_review">
+                                                <input type="hidden" name="review_id" value="<?php echo $row['id']; ?>">
+                                                <button type="submit" class="action-delete" onclick="return confirm('Are you sure you want to delete this review?');">Delete</button>
+                                            </form>
+                                        <?php elseif ($row['status'] === 'approved'): ?>
+                                            <form method="POST" action="?section=reviews" style="display: inline;">
+                                                <input type="hidden" name="action" value="unapprove_review">
+                                                <input type="hidden" name="review_id" value="<?php echo $row['id']; ?>">
+                                                <button type="submit" class="action-unapprove">Unapprove</button>
+                                            </form>
+                                            <form method="POST" action="?section=reviews" style="display: inline;">
+                                                <input type="hidden" name="action" value="delete_review">
+                                                <input type="hidden" name="review_id" value="<?php echo $row['id']; ?>">
+                                                <button type="submit" class="action-delete" onclick="return confirm('Are you sure you want to delete this review?');">Delete</button>
+                                            </form>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endwhile;
+                            }
+                            $stmt->close();
+                            ?>
+                        <?php else: ?>
+                            <?php
+                            $stmt = $conn->prepare("SELECT sr.rating, sr.comment, sr.created_at, sr.status 
+                                                   FROM site_reviews sr 
+                                                   WHERE sr.user_id = ? 
+                                                   ORDER BY sr.created_at DESC");
+                            $stmt->bind_param("i", $user_id);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($result->num_rows === 0) {
+                                echo "<p>No reviews found.</p>";
+                            } else {
+                                while ($row = $result->fetch_assoc()): ?>
+                                    <div class="review-card">
+                                        <p>You rated <?php echo $row['rating']; ?> ★ (<?php echo htmlspecialchars($row['status']); ?>)</p>
+                                        <p><?php echo htmlspecialchars($row['comment']); ?></p>
+                                        <p><small><?php echo $row['created_at']; ?></small></p>
+                                    </div>
+                                <?php endwhile;
+                            }
+                            $stmt->close();
+                            ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>

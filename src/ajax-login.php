@@ -17,19 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } elseif (strlen($password) < 8) {
         $response['message'] = "Password must be at least 8 characters long.";
     } else {
-        $stmt = $conn->prepare("SELECT id, name, password_hash FROM users WHERE email = ?");
+      $stmt = $conn->prepare("SELECT id, name, password_hash, role FROM users WHERE email = ?");
         $stmt->bind_param("s", $inputEmail);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows === 1) {
-            $stmt->bind_result($id, $name, $hashedPassword);
+          $stmt->bind_result($id, $name, $hashedPassword, $role);
             $stmt->fetch();
 
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['user_id'] = $id;
                 $_SESSION['user_name'] = $name;
                 $_SESSION['user_email'] = $inputEmail;
+                $_SESSION['role'] = $role;
 
                 $_SESSION['is_admin'] = str_ends_with(strtolower($inputEmail), '@admin.com');
 
