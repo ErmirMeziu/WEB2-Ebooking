@@ -96,14 +96,13 @@ if ($section === 'hotels') {
 $booked_cars = [];
 if ($section === 'cars') {
     if ($is_admin) {
-        $sql = "SELECT cr.user_id, c.id AS car_id, c.name, c.type, cr.rental_start, cr.rental_end, c.price, 
-                       u.name AS user_name, u.surname AS user_surname
+        $sql = "SELECT cr.user_id, c.id AS car_id, c.name, c.type, cr.rental_start, cr.rental_end, cr.total_price, c.price, u.name AS user_name, u.surname AS user_surname
                 FROM car_rentals cr
                 JOIN cars c ON cr.car_id = c.id
                 JOIN users u ON cr.user_id = u.id";
         $stmt = $conn->prepare($sql);
     } else {
-        $sql = "SELECT c.id AS car_id, c.name, c.type, cr.rental_start, cr.rental_end, c.price
+        $sql = "SELECT c.id AS car_id, c.name, c.type, cr.rental_start, cr.rental_end, cr.total_price, c.price
                 FROM car_rentals cr
                 JOIN cars c ON cr.car_id = c.id
                 WHERE cr.user_id = ?";
@@ -297,12 +296,12 @@ if ($section === 'cars') {
                                             <p class="info-item"><span>Phone:</span> <?php echo htmlspecialchars($user_phone); ?></p>
                                         <?php endif; ?>
                                         <p class="info-item"><span>Type:</span> <?php echo htmlspecialchars($car['type']); ?></p>
-                                        <p class="info-item"><span>Price per day:</span>
-                                            $<?php echo number_format($car['price'], 2); ?></p>
-                                        <p class="info-item"><span>Rental Start-End:</span>
+                                        <p class="info-item"><span>Price per day:</span> <?php echo number_format($car['price'], 2); ?>€</p>
+                                        <p class="info-item"><span>Rental Period:</span>
                                             <?php echo htmlspecialchars(date('M d, Y', strtotime($car['rental_start']))); ?> -
                                             <?php echo htmlspecialchars(date('M d, Y', strtotime($car['rental_end']))); ?>
                                         </p>
+                                        <p class="info-item"><span>Total Price:</span> <?php echo number_format($car['total_price'], 2);?>€</p>
                                     </div>
                                     <div class="remove-btn-container">
                                         <form method="POST" action="?section=cars"

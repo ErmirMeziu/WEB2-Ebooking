@@ -163,7 +163,7 @@
                         <h3 style="color: #393939;">Price</h3>
                         <b style="color: #393939; font-size: 25px;"><span id="dailyCost"><?= $car->price ?></span>€ / <span style="color: orange;">DAY</span></b>
                     </div>
-                    <button class="btnrezervo" onclick="rezervo()">Book Now</button>
+                    <a href="rentcar.php?id=<?= $car->id ?>"><button class="btnrezervo" style="height: 70px;">Rent Now</button></a>
                 </div>
             </div>
         </div>

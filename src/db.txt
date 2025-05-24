@@ -77,7 +77,8 @@ CREATE TABLE car_rentals (
     car_id INT NOT NULL,
     rental_start DATE NOT NULL,
     rental_end DATE NOT NULL,
+    image VARCHAR(255) DEFAULT NULL,
+    total_price DECIMAL(10,2) DEFAULT 0.00,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
 );
-

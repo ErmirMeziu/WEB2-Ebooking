@@ -121,10 +121,14 @@ $cars = allcars($conn);
                                 </div>
                                 <div class="price-section">
                                     <div class="price-section2">
-                                        <div class="discount"><?= $car->discount ?>% Off</div>
-                                        <div class="price">US$<?= $car->price ?>
-                                            <span class="old-price">US$<?= $car->oldPrice ?></span>
-                                        </div>
+                                        <?php if ($car->discount > 0): ?>
+                                            <div class="discount"><?= $car->discount ?>% Off</div>
+                                            <div class="price">US$<?= $car->price ?>
+                                                <span class="old-price">US$<?= $car->oldPrice ?></span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="price" style="margin-top: 10px;">US$<?= $car->price ?></div>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="rating">
                                         <div class="reviews">Exceptional <br><?= $car->reviews ?> reviews</div>
