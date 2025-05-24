@@ -64,7 +64,18 @@ insert into cardetails (id, carid, details) values
 (22, 6, '1 Large bag'),
 (23, 6, '1 Small bag'),
 (24, 6, 'Diesel'),
-(25, 7, 'Automatic');
+(25, 7, 'Automatic'),
+(26, 7, '1 Large bag'),
+(27, 7, '1 Small bag'),
+(28, 7, 'Diesel'),
+(29, 8, 'Automatic'),
+(30, 8, '1 Large bag'),
+(31, 8, '1 Small bag'),
+(32, 8, 'Diesel'),
+(33, 9, 'Automatic'),
+(34, 9, '1 Large bag'),
+(35, 9, '1 Small bag'),
+(36, 9, 'Diesel');
 
 INSERT INTO car_specs (id, car_id, air_conditioning, number_of_doors, transmission_type, passenger_capacity, suitcase_capacity) VALUES
 (1, 1, 'Air Conditioning', 5, 'Transmission Automatic', 5, 2),

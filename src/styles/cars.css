@@ -376,8 +376,8 @@ button {
 
 .rating .score {
     display: flex;
-    background: #e74c3c;
-    color: #fff;
+    background: #ffe2e0;
+    color: #e74c3c;
     font-size: 14px;
     font-weight: bold;
     border-radius: 10px;
@@ -501,6 +501,7 @@ img.displaySlide {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
 
 }
 
