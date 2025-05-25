@@ -258,24 +258,29 @@
         </div>
     </section>
 
-    <!-- Contact Form Modal -->
-    <address class="contact-form-content">
-        <div class="show-hide">
-            <span class="close-form" id="close-contact-form">&times;</span>
-            <h2>Contact Us</h2>
-            <p>If you have any questions or would like to get in touch with us, feel free to send us a message:</p>
-            <form action="mailto:info@geotrip.com" method="post" enctype="text/plain">
-                <label for="user-name-field">Your Name:</label>
-                <input type="text" id="user-name-field" name="user-name" required>
-                <label for="user-email-field">Your Email:</label>
-                <input type="email" id="user-email-field" name="user-email" required>
-                <label for="user-message-field">Your Message:</label>
-                <textarea id="user-message-field" name="user-message" rows="4" required></textarea>
-        </div>
+    <!-- Contact Form Modal --> 
+       <div class="forma" style="max-width: 500px; margin: 40px auto; padding: 30px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+    <form action="/WEB2-Ebooking/src/send_email.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+        
+        <label for="user-name-field" style="margin-bottom: 8px; font-weight: bold; color: #333333; margin-top: 15px;">Your Name:</label>
+        <input type="text" id="user-name-field" name="user-name" required
+               style="padding: 10px; border: 1px solid #cccccc; border-radius: 6px; font-size: 16px;">
 
-        <button type="submit" class="button-show" id="Message">Send Message</button>
-        </form>
-    </address>
+        <label for="user-email-field" style="margin-bottom: 8px; font-weight: bold; color: #333333; margin-top: 15px;">Your Email:</label>
+        <input type="email" id="user-email-field" name="user-email" required
+               style="padding: 10px; border: 1px solid #cccccc; border-radius: 6px; font-size: 16px;">
+
+        <label for="user-message-field" style="margin-bottom: 8px; font-weight: bold; color: #333333; margin-top: 15px;">Your Message:</label>
+        <textarea id="user-message-field" name="user-message" rows="4" required
+                  style="padding: 10px; border: 1px solid #cccccc; border-radius: 6px; font-size: 16px; resize: vertical; min-height: 100px;"></textarea>
+
+        <button type="submit" class="button-show" id="send-message"
+                style="margin-top: 20px; padding: 12px 20px; background-color: #007BFF; color: #ffffff; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+            Send Message
+        </button>
+    </form>
+</div>
+
 
     <footer>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>

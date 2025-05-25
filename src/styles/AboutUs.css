@@ -363,7 +363,7 @@ header {
 
 /* Contact form modal styling */
 .contact-form-modal {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -455,7 +455,7 @@ p {
 }
 
 .show-hide {
-    display: none;
+    display: block;
 }
 
 .show-hide-special {
@@ -493,3 +493,4 @@ html {
 .gotopbtn:active {
     filter: brightness(0.8);
 }
+
