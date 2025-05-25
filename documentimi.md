@@ -160,4 +160,60 @@ Ky dokument shërben si template për të dokumentuar fazën e parë të projekt
 
 ---
 
+---------------------------------------------------Pjesa e dytë-----------------------------------------------------
+## 🔍 PHP dhe MySQL —
 
+### 🔹 1. Lidhja me Bazën e të Dhënave  
+- **File**: [user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)  
+- **Lines**: 2  
+- **Shembull / Përshkrim**:  
+  Përdorimi i `mysqli_connect` ose `PDO` për krijimin e një lidhjeje të sigurt me bazën e të dhënave në *phpMyAdmin*.
+
+---
+
+### 🔹 2. Krijimi i Tabelave përmes PHP  
+- **File**: [db.php](https://github.com/ErmirMeziu/WEB2-Ebooking/blob/main/src/db.php)  
+- **Lines**: ~21–171  
+- **Shembull / Përshkrim**:  
+  Ekzekutimi i komandave `CREATE TABLE` për të krijuar strukturat e tabelave që ruajnë të dhënat e përdoruesve dhe rezervimeve.
+
+---
+
+### 🔹 3. Menaxhimi i të Dhënave (INSERT, DELETE, UPDATE)
+
+#### ▪️ INSERT  
+- **File**: [submit_site_review.php](https://github.com/ErmirMeziu/WEB2-Ebooking/blob/main/src/user/submit_site_review.php)  
+- **Lines**: 26  
+- **Shembull / Përshkrim**:  
+  Shtimi i një review të ri përmes query-t `INSERT INTO`, për të ruajtur komentet e përdoruesve në databazë.
+
+#### ▪️ DELETE  
+- **File**: [user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)  
+- **Lines**: 28  
+- **Shembull / Përshkrim**:  
+  Fshirja e një review ose rezervimi përmes `DELETE FROM` — heqje e përhershme e të dhënave nga databaza.
+
+#### ▪️ UPDATE  
+- **File**: [user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)  
+- **Lines**: 67–77  
+- **Shembull / Përshkrim**:  
+  Ndryshimi i statusit të një review nga *pending* në *approved*, duke përdorur query `UPDATE` — për moderimin e komenteve pa fshirje.
+
+---
+
+### 🔹 4. Lidhja nga një Skriptë e Jashtme  
+- **File**: [user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)  
+- **Lines**: 187–190  
+- **Shembull / Përshkrim**:  
+  Skripti i jashtëm është përdorur për të përfshirë komponentin e navbar-it në faqe të ndryshme — për të mundësuar rishfrytëzimin e kodit dhe mirëmbajtjen më të lehtë të strukturës.
+
+---
+
+### 🔹 5. Mbrojtja ndaj MySQL Injection  
+- **File**: [user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)  
+- **Lines**: 28, 39, 67, 77  
+- **Shembull / Përshkrim**:  
+  Për t’u mbrojtur nga SQL Injection është përdorur `preparedStatement` me `placeholder (?)`, në vend të vlerave të drejtpërdrejta.  
+  Kjo teknikë është aplikuar gjatë përdorimit të query-ve `INSERT`, `UPDATE` dhe `DELETE`, duke parandaluar manipulimin e të dhënave përmes inputeve të jashtme.
+
+---

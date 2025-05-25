@@ -33,32 +33,38 @@
         #cars {
             color: rgb(215, 44, 33);
         }
+         body.recent-viewed {
+            background: linear-gradient(135deg, #fceabb, #f8b500);
+        }
     </style>
+      <?php
+    $hasRecent = isset($_COOKIE['recent_cars']) && $_COOKIE['recent_cars'] !== '';
+    ?>
 </head>
 
-<body>
+<body class="<?= $hasRecent ? 'recent-viewed' : '' ?>">
 
     <?php
     require_once __DIR__ . '/carclass.php';
     require_once '../db.php';
     session_start();
 
-    function customErrorHandler($errno, $errstr, $errfile, $errline)
-    {
-        echo "<div style='background-color:rgb(252, 242, 242); padding: 20px; border: 1px solid darkred; margin: 20px;'>
-                <b>Gabimi i personalizuar:</b><br>
-                <strong>Lloji:</strong> $errno<br>
-                <strong>Përshkrimi:</strong> $errstr<br>
-                <strong>Path-i:</strong> $errfile<br>
-                <strong>Linja:</strong> $errline<br>
-            </div>";
-    }
-    set_error_handler("customErrorHandler");
-
     $carid = isset($_GET['id']) ? intval($_GET['id']) : 0;
-    if ($carid < 0) {
-        trigger_error("ID e makinës është e pavlefshme (më e vogël se 0).", E_USER_WARNING);
-    }
+
+    $recentCars = [];
+if (isset($_COOKIE['recent_cars'])) {
+    $recentCars = explode(',', $_COOKIE['recent_cars']);
+    $recentCars = array_diff($recentCars, [$carid]);
+}
+array_unshift($recentCars, $carid);
+$recentCars = array_slice($recentCars, 0, 5);
+setcookie('recent_cars', implode(',', $recentCars), time() + (7 * 24 * 60 * 60), "/");
+
+if (isset($_GET['clear_recent'])) {
+    setcookie('recent_cars', '', time() - 3600, "/");
+    header("Location: cardetails.php?id=$carid");
+    exit();
+}
 
     $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
     $stmt->bind_param("i", $carid);
@@ -66,15 +72,7 @@
     $carData = $stmt->get_result()->fetch_assoc();
 
     if (!$carData) {
-        trigger_error("Nuk u gjet asnjë makinë me këtë ID.", E_USER_WARNING);
-        die("Makina nuk u gjet.");
-    }
-
-    $pageKey = "visitsoncarwithid" . $carid;
-    if (!isset($_SESSION[$pageKey])) {
-        $_SESSION[$pageKey] = 1;
-    } else {
-        $_SESSION[$pageKey]++;
+        die("Car not found.");
     }
 
     $stmt = $conn->prepare("SELECT * FROM car_specs WHERE car_id = ?");
@@ -114,6 +112,7 @@
     $cars = allcars($conn);
     shuffle($cars);
     $cars = array_slice($cars, 0, 6);
+
     ?>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
@@ -144,7 +143,6 @@
         <?php } else { ?>
             <div class="price4">
                 <h1><?= $car->getname() ?></h1>
-                <?php eval('?>'.$_SESSION['variabla']); test(); echo "<span>{$_SESSION[$pageKey]} times.</span>"; ?>
             </div>
         <?php } ?>
 
@@ -254,6 +252,25 @@
             <?php endforeach; ?>
         </div>
     </section>
+
+    <?php
+if (isset($_COOKIE['recent_cars'])) {
+    $ids = explode(',', $_COOKIE['recent_cars']);
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $types = str_repeat('i', count($ids));
+
+    $stmt = $conn->prepare("SELECT * FROM cars WHERE id IN ($placeholders)");
+    $stmt->bind_param($types, ...$ids);
+    $stmt->execute();
+    $recentResults = $stmt->get_result();
+
+    echo "<section class='car_container'><h2 style='padding: 30px;'>Recently Viewed Cars</h2><div class='container12 goTop'>";
+    while ($row = $recentResults->fetch_assoc()) {
+        echo "<div class='card5'><a href='cardetails.php?id={$row['id']}'><h4>{$row['name']}</h4><p>{$row['price']} € / day</p></a></div>";
+    }
+    echo "</div></section>";
+}
+?>
 
     <footer>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>

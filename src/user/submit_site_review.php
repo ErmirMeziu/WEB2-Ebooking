@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("INSERT INTO site_reviews (user_id, rating, comment, status) VALUES (?, ?, ?, 'pending')");
+    $stmt = $conn->prepare("INSERT INTO site_reviews (user_id, rating, comment, status) VALUES (?, ?, ?, 'pending')");///Insertimi, Fshirja, Update-imi i DB nga PHP
     if (!$stmt) {
         error_log("Database prepare failed: " . $conn->error);
         echo json_encode(['success' => false, 'message' => 'Database error occurred.']);

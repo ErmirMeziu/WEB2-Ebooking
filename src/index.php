@@ -78,8 +78,6 @@ function getThreeCars($conn)
 
     while ($row = $result->fetch_assoc()) {
         $carid = $row['id'];
-
-        // Merr detajet
         $details = [];
         $detailResult = $conn->query("SELECT details FROM cardetails WHERE carid = $carid");
         while ($d = $detailResult->fetch_assoc()) {
