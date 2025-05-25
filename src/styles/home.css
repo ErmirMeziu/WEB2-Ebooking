@@ -561,8 +561,8 @@ button {
 
 
 .property-same {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    gap: 10px;
 }
 
 .property-same a {
@@ -571,7 +571,7 @@ button {
     border: 1px dashed rgb(135, 147, 160);
     color: #45596C;
     border-radius: 2px;
-    padding: 3px;
+    padding: 3px 10px;
     font-size: 12px;
 }
 
