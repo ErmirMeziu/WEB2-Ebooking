@@ -175,16 +175,18 @@ try {
         .reserve-btn {
             background-color: #2563eb;
             color: white;
-            padding: 8px 16px;
+            align-items: center !important;
             border: none;
             border-radius: 4px;
             text-decoration: none;
             display: inline-block;
             cursor: pointer;
+            text-align: center;
+            align-content: center;
         }
 
         .reserve-btn:hover {
-            background-color: #1e40af;
+            background-color: #1e40af !important;
         }
     </style>
 </head>
@@ -407,17 +409,17 @@ try {
         </div>
     </div>
 
-    <footer style="margin-top: 150px;">
+    <footer style="margin-top: 70px;">
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/footer.php'); ?>
     </footer>
 
     <script>
         const audio = document.getElementById("audio");
         const audioIcon = document.getElementById("audio-icon");
-        audioIcon.addEventListener("click", function() {
+        audioIcon.addEventListener("click", function () {
             audio.play();
         });
-        $('#btn-res').on('click', function() {
+        $('#btn-res').on('click', function () {
             console.log('Reserve link clicked, navigating to:', $(this).attr('href'));
         });
     </script>

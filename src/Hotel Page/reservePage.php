@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../styles/carspage.css">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/login-register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -255,6 +256,18 @@
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
+
+    <section id="all">
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/register.php'); ?>
+        <script>
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = '/WEB2-Ebooking/src/script/login-register.js';
+                document.body.appendChild(script);
+            }, 500);
+        </script>
+    </section>
 
     <section class="booking-container">
         <h1>Book <?= htmlspecialchars($hotelData['name']) ?></h1>

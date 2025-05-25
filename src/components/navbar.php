@@ -25,7 +25,7 @@ $navbarItems = [
 
 <div class="login-register">
     <?php if (isset($_SESSION['user_name'])): ?>
-        <p style="margin-right: 20px;">Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?></p>
+        <p style="margin-right: 20px; color:white !important">Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?></p>
         <a href="/WEB2-Ebooking/src/user/user.php"><i class="fa-solid fa-user"
                 style="color: white; font-size: 25px"></i></a>
         <a href="/WEB2-Ebooking/src/components/logout.php" class="log-out">Log Out</i></a>
