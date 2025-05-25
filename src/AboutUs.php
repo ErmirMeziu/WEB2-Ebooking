@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,22 +9,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoTrip - Tour & Travel Booking</title>
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/WEB2-Ebooking/src/images/favicon.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/login-register.css">
-    <link rel="stylesheet" href="styles/AboutUs.css">
+    <link rel="stylesheet" href="/WEB2-Ebooking/src/styles/navbar.css">
+    <link rel="stylesheet" href="/WEB2-Ebooking/src/styles/footer.css">
+    <link rel="stylesheet" href="/WEB2-Ebooking/src/styles/login-register.css">
+    <link rel="stylesheet" href="/WEB2-Ebooking/src/styles/AboutUs.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-
     <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
-    <script src="script/aboutus.js" defer></script>
+    <script src="/WEB2-Ebooking/src/script/aboutus.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
@@ -48,14 +50,13 @@
         </script>
     </section>
 
-    <div style="position: relative;" style="width: 100%; height: 100%;">
+    <div style="position: relative; width: 100%; height: 100%;">
         <div class="page-container">
             <div class="sidebar">
-                <a href="index.html"><i class="fa-solid fa-hotel icon"></i>Home</a>
-                <a href="Hotel Page/hotels.html"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
-                <a href="Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a>
-                <a href="AboutUs.html" style="color: rgb(215, 44, 33);"><i
-                        class="fa-solid fa-circle-info icon"></i>About Us</a>
+                <a href="index.php"><i class="fa-solid fa-hotel icon"></i>Home</a>
+                <a href="Hotel Page/hotels.php"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
+                <a href="Cars-Page/cars.php"><i class="fa-solid fa-car icon"></i>Cars</a>
+                <a href="AboutUs.php" style="color: rgb(215, 44, 33);"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
             </div>
         </div>
     </div>
@@ -66,7 +67,6 @@
         </a>
     </abbr>
 
-
     <section class="about-us">
         <div class="videocontainer">
             <video autoplay muted loop id="myVideo">
@@ -76,10 +76,6 @@
     </section>
 
     <section class="about-section" id="About-GeoTrip">
-
-        <!-- Sidebar -->
-
-
         <div class="about-container">
             <i class="fa-solid fa-list list1"></i>
 
@@ -92,9 +88,9 @@
                 </div>
             </div>
 
-            <h1>About GeoTrip </h1>
+            <h1>About GeoTrip</h1>
             <h2>(we love to help you travel) <i class="fa-solid fa-volume-high audio-icon" id="audio-icon"></i></h2>
-            <audio id="audio" src="../src/Video/Audio1.mp3" preload="auto"></audio>
+            <audio id="audio" src="/WEB2-Ebooking/src/Video/Audio1.mp3" preload="auto"></audio>
             <h3>OUR MISSION</h3>
             <p>
                 GeoTrip is a SaaS-based web solution focused on simplifying travel discovery, planning, and booking
@@ -121,145 +117,110 @@
             </p>
             <p>Based in Denver, Colorado, GeoTrip is a self-funded startup driven by innovation and passion for travel.
                 The company is now preparing for its first round of seed funding to further refine its platform and
-                leverage its cutting-edge Travel Chat AI, setting a new standard for personalized travel planning. </p>
+                leverage its cutting-edge Travel Chat AI, setting a new standard for personalized travel planning.
+            </p>
         </div>
     </section>
 
     <section class="about-us-body" id="Travel">
-
         <div class="container1">
-
             <h2>Your Travel All-In-One-Place with GeoTrip</h2>
 
             <div class="features">
                 <div class="feature">
                     <h4>Dream about your trip</h4>
-                    <img src="images/aboutUs/icon1.png" alt="Bucket List Icon">
+                    <img src="/WEB2-Ebooking/src/images/aboutUs/icon1.png" alt="Bucket List Icon">
                     <p>Check out our curated bucket lists and itineraries for inspiration.</p>
                 </div>
                 <div class="feature">
                     <h4>Explore your places</h4>
-                    <img src="images/aboutUs/icon2.png" alt="Travel Content Icon">
+                    <img src="/WEB2-Ebooking/src/images/aboutUs/icon2.png" alt="Travel Content Icon">
                     <p>Visit the latest in daily travel content from all over the web.</p>
                 </div>
                 <div class="feature">
                     <h4>Share with others</h4>
-                    <img src="images//aboutUs/icon3.png" alt="Save Places Icon">
+                    <img src="/WEB2-Ebooking/src/images/aboutUs/icon3.png" alt="Save Places Icon">
                     <p>Find and save places to share with friends and family.</p>
                 </div>
             </div>
 
-
             <div class="features">
                 <div class="feature">
                     <h4>Plan Your Route</h4>
-                    <img src="images//aboutUs/icon4.png" alt="Plan Your Route Icon">
+                    <img src="/WEB2-Ebooking/src/images/aboutUs/icon4.png" alt="Plan Your Route Icon">
                     <p>Create & save your plans, travel methods, and accommodations.</p>
                 </div>
                 <div class="feature">
                     <h4>Book Your Travel</h4>
-                    <img src="images//aboutUs/icon5.png" alt="Book Travel Icon">
+                    <img src="/WEB2-Ebooking/src/images/aboutUs/icon5.png" alt="Book Travel Icon">
                     <p>Add your booked travel plans and dates to your calendar.</p>
                 </div>
                 <div class="feature">
                     <h4>Enjoy Your Destination</h4>
-                    <img src="images//aboutUs/icon6.png" alt="Enjoy Destination Icon">
+                    <img src="/WEB2-Ebooking/src/images/aboutUs/icon6.png" alt="Enjoy Destination Icon">
                     <p>Travel, explore, and enjoy. Our mobile app is there for your needs.</p>
                 </div>
             </div>
         </div>
 
         <div class="button-container">
-            <a href="index.html" class="button">Create New Trip</a>
-            <a href="Hotel Page/hotels.html" class="button">Explore Destinations</a>
-
+            <a href="index.php" class="button">Create New Trip</a>
+            <a href="Hotel Page/hotels.php" class="button">Explore Destinations</a>
         </div>
-
     </section>
+
+    <?php
+    // Read news items from news.json using fread()
+    $news_file = $_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/data/news.json';
+    $news_data = [];
+    $news_items = [];
+    $last_updated = '';
+
+    if (file_exists($news_file)) {
+        $file = fopen($news_file, 'r');
+        if ($file) {
+            $content = fread($file, filesize($news_file));
+            $news_data = json_decode($content, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                echo "<p>Error: Invalid JSON format in news file. " . json_last_error_msg() . "</p>";
+            } else {
+                $news_items = isset($news_data['news']) ? $news_data['news'] : [];
+                $last_updated = isset($news_data['last_updated']) ? $news_data['last_updated'] : 'Unknown';
+            }
+            fclose($file);
+        } else {
+            echo "<p>Error: Unable to open news file.</p>";
+        }
+    } else {
+        echo "<p>Error: News file does not exist.</p>";
+    }
+    ?>
 
     <section class="news-section" id="News">
         <h1>News</h1>
+        <p class="last-updated">Last Updated: <?php echo htmlspecialchars($last_updated); ?></p>
         <div class="news-grid">
-            <div class="news-item">
-                <img src="images//aboutUs/AboutUsNews.jpeg" alt="News 1">
-                <a
-                    href="https://www.trip.com/newsroom/trip-com-to-offer-seamless-booking-journey-for-disney-adventure-cruises/"></a>
-                <h2>
-                    <a href="https://www.trip.com/newsroom/trip-com-to-offer-seamless-booking-journey-for-disney-adventure-cruises/"
-                        target="_blank">GeoTrip to Offer Seamless Booking Journey for Disney Adventure Cruises</a>
-                </h2>
-
-                <p>Dec 9, 2024 | GeoTrip.com Group</p>
-                <p>When bookings for the much-anticipated Disney Adventure cruise open...</p>
-            </div>
-            <div class="news-item">
-                <img src="images//aboutUs/AboutUsNews (2).jpeg" alt="News 2">
-                <h2>
-                    <a href="https://www.trip.com/newsroom/trip-com-wins-double-recognition-for-exceptional-customer-service/"
-                        target="_blank">GeoTrip Wins Double Recognition for Exceptional Customer Service</a>
-                </h2>
-                <p>Nov 21, 2024 | GeoTrip</p>
-                <p>GeoTrip has been recognized for outstanding customer service...</p>
-            </div>
-            <div class="news-item">
-                <img src="images//aboutUs/AboutUsNews (3).jpeg" alt="News 3">
-                <h2>
-                    <a href="https://www.trip.com/newsroom/trip-com-joins-gstcs-market-access-program/"
-                        target="_blank">GeoTrip joins GSTC's Market Access Program</a>
-                </h2>
-                <p>Nov 11, 2024 | GeoTrip</p>
-                <p>GeoTrip, a leader in online travel services, introduces a feature for sustainable hotels...</p>
-            </div>
-            <div class="news-item">
-                <img src="images//aboutUs/AboutUsNews(4).jpeg" alt="News 4">
-                <h2>
-                    <a href="https://www.trip.com/newsroom/trip-com-group-celebrates-25-years/" target="_blank"> Group
-                        Celebrates 25 Years of Innovation</a>
-                </h2>
-                <p>Oct 28, 2024 | GeoTrip</p>
-                <p>GeoTrip Group is marking 25 years of leadership in the travel industry...</p>
-            </div>
-            <div class="news-item">
-                <img src="images//aboutUs/AboutUsNews(5).jpg" alt="News 5">
-                <h2>
-                    <a href="https://www.trip.com/newsroom/what-is-next-for-travel-innovation-trip-com-group-leads-with-ai-toolkit-at-itb-asia-2024/"
-                        target="_blank"> What is Next for Travel Innovation?</a>
-                </h2>
-                <p>Oct 24, 2024 | GeoTrip Group</p>
-                <p>As technology paves the way for future travel...</p>
-            </div>
-            <div class="news-item">
-                <img src="images/aboutUs/AboutUsNews(6).jpeg" alt="News 6">
-                <h2>
-                    <a href="https://www.trip.com/newsroom/cruise-travel-boom-trip-record-demand-disney-adventure/"
-                        target="_blank"> Cruise Travel Booms as GeoTrip Anticipates Record Demand</a>
-                </h2>
-                <p>Oct 22, 2024 | GeoTrip</p>
-                <p>The cruise industry is experiencing a renaissance...</p>
-            </div>
-            <div class="news-item">
-                <img src="images//aboutUs/AboutUsNews(7).jpg" alt="News 7">
-                <h2>
-                    <a href="https://www.trip.com/newsroom/trip-com-obtains-iata-goglobal-accreditation/"
-                        target="_blank"> Obtains IATA GoGlobal Accreditation</a>
-                </h2>
-                <p>Oct 17, 2024 | GeoTrip</p>
-                <p>GeoTrip has received IATA's GoGlobal accreditation...</p>
-            </div>
-            <div class="news-item">
-                <img src="images//aboutUs/AboutUsNews(8).jpeg" alt="News 8">
-                <h2>
-                    <a href="https://www.trip.com/newsroom/trip-com-group-2024-sustainable-travel-consumer-report-insights/"
-                        target="_blank"> the Action-Awareness Gap</a>
-                </h2>
-                <p>Oct 14, 2024 | GeoTrip Group</p>
-                <p>GeoTrip Group's 2024 Sustainable Travel Consumer Report highlights...</p>
-            </div>
+            <?php if (!empty($news_items)): ?>
+                <?php foreach ($news_items as $index => $item): ?>
+                    <div class="news-item">
+                        <img src="/WEB2-Ebooking/src/<?php echo htmlspecialchars($item['image']); ?>" alt="News <?php echo $index + 1; ?>">
+                        <h2>
+                            <a href="<?php echo htmlspecialchars($item['link']); ?>" target="_blank">
+                                <?php echo htmlspecialchars($item['title']); ?>
+                            </a>
+                        </h2>
+                        <p><?php echo htmlspecialchars($item['date']); ?> | GeoTrip<?php echo isset($item['source']) ? ' ' . htmlspecialchars($item['source']) : ''; ?></p>
+                        <p><?php echo htmlspecialchars($item['summary']); ?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No news available at the moment.</p>
+            <?php endif; ?>
         </div>
     </section>
 
-    <!-- Contact Form Modal --> 
-       <div class="forma" style="max-width: 500px; margin: 40px auto; padding: 30px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+    <!-- Contact Form -->
+    <div class="forma" style="max-width: 500px; margin: 40px auto; padding: 30px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
     <form action="/WEB2-Ebooking/src/send_email.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
         
         <label for="user-name-field" style="margin-bottom: 8px; font-weight: bold; color: #333333; margin-top: 15px;">Your Name:</label>
