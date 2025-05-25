@@ -128,7 +128,6 @@
         while ($row = $result->fetch_assoc()) {
             $images[] = $row['imgurl'];
         }
-        $image_url = $images[0];
         $car = new CarDetails(
             $carid,
             $carData['name'],
@@ -167,8 +166,8 @@
                     $days = $interval->days + 1;
                     $total_price = $days * $carData['price'];
                     
-                    $stmt = $conn->prepare("INSERT INTO car_rentals (user_id, car_id, rental_start, rental_end, image, total_price) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("iisssd", $user_id, $carid, $start_date, $end_date, $image_url, $total_price);
+                    $stmt = $conn->prepare("INSERT INTO car_rentals (user_id, car_id, rental_start, rental_end, total_price) VALUES (?, ?, ?, ?, ?)");
+                    $stmt->bind_param("iissd", $user_id, $carid, $start_date, $end_date, $total_price);
                     if ($stmt->execute()) {
                         echo "<script>alert('Car booked successfully! Total price: €" . number_format($total_price, 2) . "'); window.location.href = 'cardetails.php?id=$carid';</script>";
                     } else {

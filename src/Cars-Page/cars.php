@@ -33,40 +33,54 @@
 </head>
 
 <?php
-require_once __DIR__ . '/carclass.php';
-include '../db.php';
+    require_once __DIR__ . '/carclass.php';
+    include '../db.php';
+    session_start();
+    $cars = allcars($conn);
 
-$cars = allcars($conn);
+    $_SESSION['variabla'] = '
+        <?php
+            function test(){
+            echo "<span>You have viewed this car </span>";
+            }
+        ?>';
+
+        if (!isset($_SESSION['mesazhi'])) {
+            $_SESSION['mesazhi'] = "Cicero famously orated against his political opponent.";
+        }
+        if (isset($_GET['ndrysho'])) {
+            $_SESSION['mesazhi'] = "Cicero famously orated against his political opponent, Lucius Sergius Catilina.";
+        }
 ?>
 
 <body>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
     </header>
-
+    
     <section id="all">
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/login.php'); ?>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/register.php'); ?>
-
+        
         <script>
             setTimeout(() => {
                 const script = document.createElement('script');
                 script.src = '/WEB2-Ebooking/src/script/login-register.js';
                 document.body.appendChild(script);
             }, 500);
-        </script>
+            </script>
     </section>
-
+    
     <section>
         <div class="container-video">
-        </div>
-        <div class="home">
-            <video class="background-video" autoplay muted loop style="margin-top:76px;">
-                <source src="../Video/Car.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <div class="home-text">
+            </div>
+            <div class="home">
+                <video class="background-video" autoplay muted loop style="margin-top:76px;">
+                    <source src="../Video/Car.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <div class="home-text">
                 <h1>Starts Your Trip With GeoTrip</h1>
                 <p>Take a little break from the work stress of everyday. Discover plan trip and explore beautiful
                     <br>
@@ -79,7 +93,8 @@ $cars = allcars($conn);
     <section>
         <div class="text">
             <h1>Our Awesome Vehicles</h1>
-            <p>Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
+            <p><?= $_SESSION['mesazhi']; ?></p>
+            <a href="?ndrysho=true" style="display: flex; justify-content: center; font-size: 10px; text-decoration: none; color: grey;">Change</a>
         </div>
     </section>
 

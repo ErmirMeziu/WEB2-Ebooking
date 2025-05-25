@@ -43,14 +43,38 @@
     require_once '../db.php';
     session_start();
 
+    function customErrorHandler($errno, $errstr, $errfile, $errline)
+    {
+        echo "<div style='background-color:rgb(252, 242, 242); padding: 20px; border: 1px solid darkred; margin: 20px;'>
+                <b>Gabimi i personalizuar:</b><br>
+                <strong>Lloji:</strong> $errno<br>
+                <strong>Përshkrimi:</strong> $errstr<br>
+                <strong>Path-i:</strong> $errfile<br>
+                <strong>Linja:</strong> $errline<br>
+            </div>";
+    }
+    set_error_handler("customErrorHandler");
+
     $carid = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    if ($carid < 0) {
+        trigger_error("ID e makinës është e pavlefshme (më e vogël se 0).", E_USER_WARNING);
+    }
+
     $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
     $stmt->bind_param("i", $carid);
     $stmt->execute();
     $carData = $stmt->get_result()->fetch_assoc();
 
     if (!$carData) {
-        die("Car not found.");
+        trigger_error("Nuk u gjet asnjë makinë me këtë ID.", E_USER_WARNING);
+        die("Makina nuk u gjet.");
+    }
+
+    $pageKey = "visitsoncarwithid" . $carid;
+    if (!isset($_SESSION[$pageKey])) {
+        $_SESSION[$pageKey] = 1;
+    } else {
+        $_SESSION[$pageKey]++;
     }
 
     $stmt = $conn->prepare("SELECT * FROM car_specs WHERE car_id = ?");
@@ -90,7 +114,6 @@
     $cars = allcars($conn);
     shuffle($cars);
     $cars = array_slice($cars, 0, 6);
-
     ?>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
@@ -121,6 +144,7 @@
         <?php } else { ?>
             <div class="price4">
                 <h1><?= $car->getname() ?></h1>
+                <?php eval('?>'.$_SESSION['variabla']); test(); echo "<span>{$_SESSION[$pageKey]} times.</span>"; ?>
             </div>
         <?php } ?>
 
