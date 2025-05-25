@@ -373,5 +373,20 @@ hr {
     h1{
         font-size: 32px;
         font-family: 'Poppins', sans-serif;
+        text-align: left;
+        width: 91%;
+        color: #393939;
+    }
+}
+
+.viewedrecently{
+    padding: 10px;
+    border: 2px solid lightgrey;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.296);
+    box-shadow: 3px 5px 14px 0px rgba(180,180,180,0.75);
+    a{
+        text-decoration: none;
+        color: black;
     }
 }

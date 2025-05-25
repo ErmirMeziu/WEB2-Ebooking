@@ -98,7 +98,7 @@
         </div>
     </section>
 
-    <section class="car_container" style="position: relative;">
+    <section class="car_container" style="position: relative; margin-top: 20px;">
         <?php
         if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
             echo '
