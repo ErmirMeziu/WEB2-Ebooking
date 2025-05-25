@@ -11,6 +11,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,8 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
@@ -34,6 +36,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             padding: 0;
             line-height: 1.6;
         }
+
         .form-container {
             max-width: 900px;
             margin: 40px auto;
@@ -42,12 +45,14 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             font-weight: 600;
             color: #2c3e50;
             margin-bottom: 20px;
             text-align: center;
         }
+
         .form-section {
             margin-bottom: 25px;
             padding: 20px;
@@ -55,20 +60,24 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             border-radius: 8px;
             border: 1px solid #e0e0e0;
         }
+
         .form-group {
             margin-bottom: 15px;
         }
+
         .form-group label {
             display: block;
             font-weight: 500;
             color: #34495e;
             margin-bottom: 5px;
         }
+
         .form-group .input-wrapper {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .form-group input,
         .form-group textarea,
         .form-group select {
@@ -80,12 +89,14 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             font-size: 14px;
             transition: border-color 0.3s ease;
         }
+
         .form-group input:focus,
         .form-group textarea:focus {
             border-color: #3498db;
             outline: none;
             box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
         }
+
         .multi-input .input-group {
             margin-bottom: 15px;
             padding: 10px;
@@ -93,11 +104,14 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             border: 1px solid #e0e0e0;
             border-radius: 6px;
         }
+
         .input-wrapper input,
         .input-wrapper textarea {
             flex: 1;
         }
-        .add-button, .remove-btn {
+
+        .add-button,
+        .remove-btn {
             padding: 8px 15px;
             border: none;
             border-radius: 6px;
@@ -105,20 +119,25 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             font-weight: 500;
             min-width: 80px;
         }
+
         .add-button {
             background: #2ecc71;
             color: white;
         }
+
         .add-button:hover {
             background: #27ae60;
         }
+
         .remove-btn {
             background: #e74c3c;
             color: white;
         }
+
         .remove-btn:hover {
             background: #c0392b;
         }
+
         .submit-btn {
             background: #3498db;
             color: white;
@@ -130,36 +149,44 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             width: 100%;
             font-size: 16px;
         }
+
         .submit-btn:hover {
             background: #2980b9;
         }
+
         @media (max-width: 600px) {
             .form-container {
                 margin: 20px;
                 padding: 15px;
             }
+
             .form-group input,
             .form-group textarea {
                 font-size: 13px;
             }
+
             .submit-btn {
                 font-size: 14px;
             }
+
             .input-wrapper {
                 flex-direction: column;
                 align-items: flex-start;
             }
+
             .input-wrapper input,
             .input-wrapper textarea {
                 width: 100%;
                 max-width: none;
             }
+
             .input-wrapper .remove-btn {
                 margin-top: 5px;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/components/navbar.php'); ?>
@@ -174,7 +201,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
         $hotelId = null;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            error_log("Form data: " . print_r($_POST, true)); 
+            error_log("Form data: " . print_r($_POST, true));
 
             $name = $_POST['name'];
             $address = $_POST['address'];
@@ -271,7 +298,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
                 if (!empty($room_type)) {
                     $max_guest_value = (int) ($max_guests[$index] ?? 1);
                     $price_value = (float) ($prices[$index] ?? 0.0);
-                    $bed_config = $bed_configurations[$index] ?? null; 
+                    $bed_config = $bed_configurations[$index] ?? null;
 
                     $stmt = $conn->prepare("INSERT INTO rooms (hotel_id, room_type, bed_configuration, max_guests, price) VALUES (?, ?, ?, ?, ?)");
                     if ($stmt === false) {
@@ -312,7 +339,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
             }
 
             $conn->close();
-            echo "<script>alert('Hotel added successfully!'); window.location.href='/WEB2-Ebooking/src/HotelPage/hotels.php';</script>";
+            echo "<script>alert('Hotel added successfully!'); window.location.href='/WEB2-Ebooking/src/Hotel Page/hotels.php';</script>";
             exit();
         }
         ?>
@@ -346,11 +373,13 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
                 </div>
                 <div class="form-group">
                     <label for="location_rating">Location Rating (0.0 - 10.0)</label>
-                    <input type="number" id="location_rating" name="location_rating" step="0.1" min="0.0" max="10.0" value="0.0">
+                    <input type="number" id="location_rating" name="location_rating" step="0.1" min="0.0" max="10.0"
+                        value="0.0">
                 </div>
                 <div class="form-group">
                     <label for="overall_rating">Overall Rating (0.0 - 10.0)</label>
-                    <input type="number" id="overall_rating" name="overall_rating" step="0.1" min="0.0" max="10.0" value="0.0">
+                    <input type="number" id="overall_rating" name="overall_rating" step="0.1" min="0.0" max="10.0"
+                        value="0.0">
                 </div>
                 <div class="form-group">
                     <label for="review_count">Review Count</label>
@@ -430,7 +459,8 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
                         <div class="form-group">
                             <label for="rating_0">Rating (0.0 - 10.0) *</label>
                             <div class="input-wrapper">
-                                <input type="number" id="rating_0" name="rating[0]" step="0.1" min="0.0" max="10.0" required>
+                                <input type="number" id="rating_0" name="rating[0]" step="0.1" min="0.0" max="10.0"
+                                    required>
                                 <button type="button" class="remove-btn">Remove</button>
                             </div>
                         </div>
@@ -587,4 +617,5 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
         });
     </script>
 </body>
+
 </html>

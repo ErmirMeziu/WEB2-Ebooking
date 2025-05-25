@@ -158,7 +158,8 @@ footer {
 
 .footer-section .paymentmethods img {
     width: 100%;
-    height: 35px;
+    height: 25px;
+    object-fit: cover;
 }
 
 .footer-section .ourpartners {
@@ -168,6 +169,7 @@ footer {
 }
 
 .footer-section .ourpartners img {
-    width: 85%;
-    height: 30px;
+    width: 100%;
+    height: 25px;
+    object-fit: cover;
 }

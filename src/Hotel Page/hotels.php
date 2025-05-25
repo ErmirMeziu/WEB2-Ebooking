@@ -8,15 +8,14 @@ $offset = ($page - 1) * $hotels_per_page;
 
 $search = isset($_GET['text']) ? trim($_GET['text']) : '';
 $checkin = isset($_GET['date']) ? $_GET['date'] : '';
-$guests = isset($_GET['number']) ? max(1, intval($_GET['number'])) : 1; // Ensure at least 1 guest
-$bed_type = isset($_GET['bed_type']) ? (array)$_GET['bed_type'] : [];
-$amenities = isset($_GET['amenities']) ? (array)$_GET['amenities'] : [];
+$guests = isset($_GET['number']) ? max(1, intval($_GET['number'])) : 1;
+$bed_type = isset($_GET['bed_type']) ? (array) $_GET['bed_type'] : [];
+$amenities = isset($_GET['amenities']) ? (array) $_GET['amenities'] : [];
 $rating = isset($_GET['rating']) ? floatval($_GET['rating']) : 0;
 
 $error_message = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
 
-// Validate check-in date (must not be in the past)
-$today = date('Y-m-d'); // Today is 2025-05-25
+$today = date('Y-m-d');
 if ($checkin && $checkin < $today) {
     $error_message = "Check-in date cannot be in the past.";
     $checkin = '';
@@ -140,7 +139,6 @@ if ($rating > 0) {
     $types .= 'd';
 }
 
-// Construct the count query with necessary JOINs
 $count_query = "SELECT COUNT(DISTINCT h.id) FROM hotels h";
 if ($guests > 0 || !empty($bed_type)) {
     $count_query .= " LEFT JOIN rooms r ON h.id = r.hotel_id";
@@ -244,7 +242,9 @@ function generateStars($rating)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="../styles/home.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/c2f2fe035b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/hotels.css">
     <script src="../script/hotel-mainpage.js" defer></script>
@@ -277,6 +277,19 @@ function generateStars($rating)
             font-size: 14px;
             color: #555;
         }
+
+        .top {
+            position: absolute !important;
+            top: -63px !important;
+            left: 1074px;
+
+        }
+
+        .top button,
+        .top button:hover {
+            background-color: #c4291d !important;
+            color: white;
+        }
     </style>
 </head>
 
@@ -301,7 +314,8 @@ function generateStars($rating)
         <div class="page-container">
             <div class="sidebar">
                 <a href="/WEB2-Ebooking/src/index.php"><i class="fa-solid fa-hotel icon"></i>Home</a>
-                <a href="/WEB2-Ebooking/src/Hotel Page/hotels.php" style="color: rgb(215, 44, 33);"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
+                <a href="/WEB2-Ebooking/src/Hotel Page/hotels.php" style="color: rgb(215, 44, 33);"><i
+                        class="fa-solid fa-hotel icon"></i>Hotels</a>
                 <a href="/WEB2-Ebooking/src/Cars-Page/cars.php"><i class="fa-solid fa-car icon"></i>Cars</a>
                 <a href="/WEB2-Ebooking/src/AboutUs.php"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
             </div>
@@ -316,7 +330,8 @@ function generateStars($rating)
             <div class="search-input">
                 <fieldset>
                     <legend>Where</legend>
-                    <input type="text" name="text" id="text" class="same" placeholder="Going To" value="<?php echo htmlspecialchars($search); ?>" list="locations">
+                    <input type="text" name="text" id="text" class="same" placeholder="Going To"
+                        value="<?php echo htmlspecialchars($search); ?>" list="locations">
                     <datalist id="locations">
                         <?php
                         $locations = $conn->query("SELECT DISTINCT city FROM hotels");
@@ -330,7 +345,8 @@ function generateStars($rating)
                 </fieldset>
                 <fieldset>
                     <legend>CheckIn & CheckOut</legend>
-                    <input type="date" name="date" id="date" class="same" min="2025-05-25" value="<?php echo htmlspecialchars($checkin); ?>">
+                    <input type="date" name="date" id="date" class="same" min="2025-05-25"
+                        value="<?php echo htmlspecialchars($checkin); ?>">
                 </fieldset>
                 <fieldset>
                     <legend>Guests & Rooms</legend>
@@ -363,16 +379,20 @@ function generateStars($rating)
                                 <?php
                                 $bed_count = count($bed_types);
                                 for ($i = 0; $i < $bed_count; $i += 2):
-                                ?>
+                                    ?>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="bed_type[]" id="bed_<?php echo $i; ?>" value="<?php echo htmlspecialchars($bed_types[$i]); ?>" <?php echo in_array($bed_types[$i], $bed_type) ? 'checked' : ''; ?>>
-                                            <label for="bed_<?php echo $i; ?>"><?php echo htmlspecialchars($bed_types[$i]); ?></label>
+                                            <input type="checkbox" name="bed_type[]" id="bed_<?php echo $i; ?>"
+                                                value="<?php echo htmlspecialchars($bed_types[$i]); ?>" <?php echo in_array($bed_types[$i], $bed_type) ? 'checked' : ''; ?>>
+                                            <label
+                                                for="bed_<?php echo $i; ?>"><?php echo htmlspecialchars($bed_types[$i]); ?></label>
                                         </td>
                                         <?php if ($i + 1 < $bed_count): ?>
                                             <td>
-                                                <input type="checkbox" name="bed_type[]" id="bed_<?php echo $i + 1; ?>" value="<?php echo htmlspecialchars($bed_types[$i + 1]); ?>" <?php echo in_array($bed_types[$i + 1], $bed_type) ? 'checked' : ''; ?>>
-                                                <label for="bed_<?php echo $i + 1; ?>"><?php echo htmlspecialchars($bed_types[$i + 1]); ?></label>
+                                                <input type="checkbox" name="bed_type[]" id="bed_<?php echo $i + 1; ?>"
+                                                    value="<?php echo htmlspecialchars($bed_types[$i + 1]); ?>" <?php echo in_array($bed_types[$i + 1], $bed_type) ? 'checked' : ''; ?>>
+                                                <label
+                                                    for="bed_<?php echo $i + 1; ?>"><?php echo htmlspecialchars($bed_types[$i + 1]); ?></label>
                                             </td>
                                         <?php else: ?>
                                             <td></td>
@@ -397,8 +417,10 @@ function generateStars($rating)
                             <?php endforeach; ?>
                             <?php foreach ($utility_amenities as $index => $amenity): ?>
                                 <div class="amenity-item">
-                                    <input type="checkbox" name="amenities[]" id="util_<?php echo $index; ?>" value="<?php echo htmlspecialchars($amenity); ?>" <?php echo in_array($amenity, $amenities) ? 'checked' : ''; ?> class="amenity-checkbox">
-                                    <label for="util_<?php echo $index; ?>" class="amenity-label"><?php echo htmlspecialchars($amenity); ?></label>
+                                    <input type="checkbox" name="amenities[]" id="util_<?php echo $index; ?>"
+                                        value="<?php echo htmlspecialchars($amenity); ?>" <?php echo in_array($amenity, $amenities) ? 'checked' : ''; ?> class="amenity-checkbox">
+                                    <label for="util_<?php echo $index; ?>"
+                                        class="amenity-label"><?php echo htmlspecialchars($amenity); ?></label>
                                 </div>
                             <?php endforeach; ?>
                             <button type="submit" style="margin-top: 10px;">Apply</button>
@@ -419,7 +441,9 @@ function generateStars($rating)
                                 <input type="hidden" name="amenities[]" value="<?php echo htmlspecialchars($amenity); ?>">
                             <?php endforeach; ?>
                             <div style="position: relative;">
-                                <input type="range" name="rating" id="rating-slider" min="0" max="10" step="0.1" value="<?php echo $rating; ?>" class="rating-slider" oninput="updateStars(this.value)">
+                                <input type="range" name="rating" id="rating-slider" min="0" max="10" step="0.1"
+                                    value="<?php echo $rating; ?>" class="rating-slider"
+                                    oninput="updateStars(this.value)">
                                 <div class="star-display">
                                     <span class="star">
                                         <?php echo generateStars($rating); ?>
@@ -452,16 +476,20 @@ function generateStars($rating)
 
                     <div style="margin-top: 10px;">
                         <?php if ($rating_counts[5] > 0): ?>
-                            <div><span class="star"><?php echo generateStars(10); ?></span> <?php echo $rating_counts[5]; ?> hotels</div>
+                            <div><span class="star"><?php echo generateStars(10); ?></span> <?php echo $rating_counts[5]; ?>
+                                hotels</div>
                         <?php endif; ?>
                         <?php if ($rating_counts[4] > 0): ?>
-                            <div><span class="star"><?php echo generateStars(8); ?></span> <?php echo $rating_counts[4]; ?> hotels</div>
+                            <div><span class="star"><?php echo generateStars(8); ?></span> <?php echo $rating_counts[4]; ?>
+                                hotels</div>
                         <?php endif; ?>
                         <?php if ($rating_counts[3] > 0): ?>
-                            <div><span class="star"><?php echo generateStars(6); ?></span> <?php echo $rating_counts[3]; ?> hotels</div>
+                            <div><span class="star"><?php echo generateStars(6); ?></span> <?php echo $rating_counts[3]; ?>
+                                hotels</div>
                         <?php endif; ?>
                         <?php if ($rating_counts[0] > 0): ?>
-                            <div><span class="star"><?php echo generateStars(2); ?></span> <?php echo $rating_counts[0]; ?> hotels</div>
+                            <div><span class="star"><?php echo generateStars(2); ?></span> <?php echo $rating_counts[0]; ?>
+                                hotels</div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -469,6 +497,16 @@ function generateStars($rating)
         </div>
 
         <section class="hotel-listings">
+            <?php
+            if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
+                echo '
+                 <div class="top">
+                 <div class="adCar">
+                 <a href="addHotel.php"><button class="addCar">Add new hotel</button></a>
+                </div>
+                </div>';
+            }
+            ?>
             <div class="hotel-page page1 active" id="page1">
                 <?php $count = 0; ?>
                 <?php foreach ($hotels as $hotel): ?>
@@ -479,25 +517,31 @@ function generateStars($rating)
                     <div class="box">
                         <div class="section2">
                             <div class="hotel-img">
-                                <a href="/WEB2-Ebooking/src/Hotel Page/hotelsView.php?id=<?php echo $hotel['id']; ?>" target="_blank">
-                                    <img src="<?php echo htmlspecialchars($hotel['image_path'] ?: '../images/hotel-photo/default.jpg'); ?>" alt="Picture of hotel">
+                                <a href="/WEB2-Ebooking/src/Hotel Page/hotelsView.php?id=<?php echo $hotel['id']; ?>"
+                                    target="_blank">
+                                    <img src="<?php echo htmlspecialchars($hotel['image_path'] ?: '../images/hotel-photo/default.jpg'); ?>"
+                                        alt="Picture of hotel">
                                 </a>
                             </div>
                             <div class="hotel-text">
-                                <?php echo generateStars($hotel['overall_rating']); ?>
-                                <p id="style-hotel-p"><?php echo htmlspecialchars($hotel['name']); ?></p>
-                                <p id="text5"><?php echo htmlspecialchars($hotel['address'] . ', ' . $hotel['city'] . ', ' . $hotel['country']); ?></p>
-                                <div class="hotel-offers">
-                                    <?php foreach ($features as $feature): ?>
-                                        <p><?php echo htmlspecialchars($feature); ?></p>
-                                    <?php endforeach; ?>
+                                <div>
+                                    <?php echo generateStars($hotel['overall_rating']); ?>
+                                    <p id="style-hotel-p"><?php echo htmlspecialchars($hotel['name']); ?></p>
+                                </div>
+                                <div>
+                                    <p id="text5">
+                                        <?php echo htmlspecialchars($hotel['address'] . ', ' . $hotel['city'] . ', ' . $hotel['country']); ?>
+                                    </p>
+                                    <div class="hotel-offers">
+                                        <?php foreach ($features as $feature): ?>
+                                            <p><?php echo htmlspecialchars($feature); ?></p>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                                 <div class="middle-text">
                                     <p id="text6"><?php echo htmlspecialchars($hotel['room_type']); ?></p>
-                                    <p id="text7"><?php echo htmlspecialchars(formatLastBooked($hotel['last_booked'])); ?></p>
-                                </div>
-                                <div class="bottom-text">
-                                    <p id="text8"><?php echo htmlspecialchars($hotel['cancellation_policy']); ?></p>
+                                    <p id="text7"><?php echo htmlspecialchars(formatLastBooked($hotel['last_booked'])); ?>
+                                    </p>
                                 </div>
                             </div>
                             <div class="hotel-button">
@@ -505,16 +549,20 @@ function generateStars($rating)
                                     <div class="part1">
                                         <p id="text10"><?php echo $rating_text; ?></p>
                                         <p id="text11">
-                                            <output name="reviews-count" id="reviews-count"><?php echo number_format($hotel['review_count']); ?></output> reviews
+                                            <output name="reviews-count"
+                                                id="reviews-count"><?php echo number_format($hotel['review_count']); ?></output>
+                                            reviews
                                         </p>
                                     </div>
-                                    <button id="button"><?php echo number_format($hotel['overall_rating'], 1); ?>/10</button>
+                                    <button
+                                        id="button"><?php echo number_format($hotel['overall_rating'], 1); ?>/10</button>
                                 </div>
                                 <div class="price-section">
                                     <div class="price-details">
                                         <p class="current-price">$<?php echo number_format($hotel['price'], 2); ?></p>
                                     </div>
-                                    <a href="/WEB2-Ebooking/src/Hotel Page/hotelsView.php?id=<?php echo $hotel['id']; ?>" class="availability-button">See Availability</a>
+                                    <a href="/WEB2-Ebooking/src/Hotel Page/hotelsView.php?id=<?php echo $hotel['id']; ?>"
+                                        class="availability-button">See Availability</a>
                                 </div>
                             </div>
                         </div>
@@ -522,7 +570,7 @@ function generateStars($rating)
                     <?php
                     $count++;
                     if ($count == 2 && $page == 1) {
-                    ?>
+                        ?>
                         <div class="advertisement">
                             <div class="adv-img">
                                 <p id="icon"><i class="fa-solid fa-gift fs-3 text-success"></i></p>
@@ -535,7 +583,7 @@ function generateStars($rating)
                                 <button>Get Started</button>
                             </div>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
                 <?php endforeach; ?>
@@ -546,11 +594,21 @@ function generateStars($rating)
 
             <div class="bottom" id="box-bottom">
                 <div class="bottom-part">
-                    <p><a href="?page=<?php echo max(1, $page - 1); ?>&text=<?php echo urlencode($search); ?>&date=<?php echo urlencode($checkin); ?>&number=<?php echo $guests; ?>&rating=<?php echo $rating; ?><?php foreach ($bed_type as $bed) echo '&bed_type[]=' . urlencode($bed); ?><?php foreach ($amenities as $amenity) echo '&amenities[]=' . urlencode($amenity); ?>"><i class="fa-solid fa-arrow-left" id="left-arrow"></i></a></p>
+                    <p><a href="?page=<?php echo max(1, $page - 1); ?>&text=<?php echo urlencode($search); ?>&date=<?php echo urlencode($checkin); ?>&number=<?php echo $guests; ?>&rating=<?php echo $rating; ?><?php foreach ($bed_type as $bed)
+                                          echo '&bed_type[]=' . urlencode($bed); ?><?php foreach ($amenities as $amenity)
+                                                  echo '&amenities[]=' . urlencode($amenity); ?>"><i
+                                class="fa-solid fa-arrow-left" id="left-arrow"></i></a></p>
                     <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                        <a href="?page=<?php echo $i; ?>&text=<?php echo urlencode($search); ?>&date=<?php echo urlencode($checkin); ?>&number=<?php echo $guests; ?>&rating=<?php echo $rating; ?><?php foreach ($bed_type as $bed) echo '&bed_type[]=' . urlencode($bed); ?><?php foreach ($amenities as $amenity) echo '&amenities[]=' . urlencode($amenity); ?>" class="page-btn <?php echo $i == $page ? 'active' : ''; ?>" id="page<?php echo $i; ?>-btn"><?php echo $i; ?></a>
+                        <a href="?page=<?php echo $i; ?>&text=<?php echo urlencode($search); ?>&date=<?php echo urlencode($checkin); ?>&number=<?php echo $guests; ?>&rating=<?php echo $rating; ?><?php foreach ($bed_type as $bed)
+                                           echo '&bed_type[]=' . urlencode($bed); ?><?php foreach ($amenities as $amenity)
+                                                   echo '&amenities[]=' . urlencode($amenity); ?>"
+                            class="page-btn <?php echo $i == $page ? 'active' : ''; ?>"
+                            id="page<?php echo $i; ?>-btn"><?php echo $i; ?></a>
                     <?php endfor; ?>
-                    <p><a href="?page=<?php echo min($total_pages, $page + 1); ?>&text=<?php echo urlencode($search); ?>&date=<?php echo urlencode($checkin); ?>&number=<?php echo $guests; ?>&rating=<?php echo $rating; ?><?php foreach ($bed_type as $bed) echo '&bed_type[]=' . urlencode($bed); ?><?php foreach ($amenities as $amenity) echo '&amenities[]=' . urlencode($amenity); ?>"><i class="fa-solid fa-arrow-right" id="right-arrow"></i></a></p>
+                    <p><a href="?page=<?php echo min($total_pages, $page + 1); ?>&text=<?php echo urlencode($search); ?>&date=<?php echo urlencode($checkin); ?>&number=<?php echo $guests; ?>&rating=<?php echo $rating; ?><?php foreach ($bed_type as $bed)
+                                          echo '&bed_type[]=' . urlencode($bed); ?><?php foreach ($amenities as $amenity)
+                                                  echo '&amenities[]=' . urlencode($amenity); ?>"><i
+                                class="fa-solid fa-arrow-right" id="right-arrow"></i></a></p>
                 </div>
             </div>
         </section>

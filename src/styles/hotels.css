@@ -118,6 +118,11 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
     width: 100%;
+    position: relative;
+}
+
+.availability-button {
+    text-decoration: none;
 }
 
 .section2 {
@@ -125,16 +130,17 @@ header {
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px;
+    padding-bottom: 3px;
 }
 
 .section2 .hotel-img {
-    width: 295px;
+    width: 300px;
     flex: 0 0 auto;
 }
 
 .section2 .hotel-img img {
     width: 100%;
-    height: 293px;
+    height: 300px;
     border-radius: 10px;
     object-fit: cover;
 }
@@ -143,6 +149,11 @@ header {
     flex: 1;
     min-width: 200px;
     padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    bottom: 10px;
 }
 
 .hotel-button {
@@ -223,8 +234,8 @@ header {
 .button-part input[type="checkbox"],
 .select input[type="checkbox"] {
     margin-right: 10px;
-    width: 18px;
-    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
     accent-color: #d72c21;
     cursor: pointer;
     transition: transform 0.2s;
@@ -295,6 +306,7 @@ button[type="submit"]:hover {
 }
 
 .hotel-text #style-hotel-p {
+    font-size: 20px;
     font-weight: 710;
     color: rgb(5, 38, 79);
 }
@@ -366,11 +378,13 @@ button[type="submit"]:hover {
 }
 
 .price-section {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
-    width: 100%;
+    gap: 10px;
+    bottom: 20px;
+    right: 20px;
 }
 
 .price-details {
@@ -385,6 +399,9 @@ button[type="submit"]:hover {
     font-size: 22px;
     color: rgb(205, 44, 34);
     font-weight: bold;
+    position: relative;
+    left: 85px;
+    top: 7px;
 }
 
 .availability-button {
@@ -517,61 +534,10 @@ button[type="submit"]:hover {
 }
 
 .amenity-checkbox {
-    display: none;
+    position: relative;
 
 }
 
 .amenity-label {
-    position: relative;
-    padding-left: 30px;
-
-    cursor: pointer;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.5;
-}
-
-.amenity-label::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border: 2px solid #d72c21;
-
-    border-radius: 4px;
-    background-color: #fff;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-.amenity-checkbox:checked+.amenity-label::before {
-    background-color: #d72c21;
-
-    border-color: #d72c21;
-}
-
-.amenity-label::after {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 50%;
-    width: 8px;
-    height: 14px;
-    border-right: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-    opacity: 0;
-    transition: opacity 0.3s;
-    transform: translateY(-58%) rotate(45deg) translateX(10%);
- 
-}
-
-.amenity-checkbox:checked+.amenity-label::after {
-    opacity: 1;
-}
-
-.amenity-label:hover::before {
-    border-color: #b22222;
-
+    display: none;
 }
