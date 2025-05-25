@@ -33,10 +33,16 @@
         #cars {
             color: rgb(215, 44, 33);
         }
+         body.recent-viewed {
+            background: linear-gradient(135deg, #fceabb, #f8b500);
+        }
     </style>
+      <?php
+    $hasRecent = isset($_COOKIE['recent_cars']) && $_COOKIE['recent_cars'] !== '';
+    ?>
 </head>
 
-<body>
+<body class="<?= $hasRecent ? 'recent-viewed' : '' ?>">
 
     <?php
     require_once __DIR__ . '/carclass.php';
