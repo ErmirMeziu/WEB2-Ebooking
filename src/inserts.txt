@@ -254,14 +254,14 @@ INSERT INTO house_rules (hotel_id, rule_type, details) VALUES
 -- Insert hotel images
 INSERT INTO hotel_images (hotel_id, imgurl, is_main) VALUES
 -- Hotel 1
-(1, '../images/Hotel1/hotel1-room.jpg', TRUE),
-(1, '../images/Hotel1/Building.jpg', TRUE),
-(1, '../images/Hotel1/buffe.jpg', TRUE),
-(1, '../images/Hotel1/Inside.jpg', FALSE),
-(1, '../images/Hotel1/pool.jpg', FALSE),
-(1, '../images/Hotel1/conference.jpg', FALSE),
-(1, '../images/Hotel1/hall.jpg', FALSE),
-(1, '../images/Hotel1/pool2.jpg', FALSE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/hotel1-room.jpg', TRUE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/Building.jpg', TRUE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/buffe.jpg', TRUE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/Inside.jpg', FALSE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/pool.jpg', FALSE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/conference.jpg', FALSE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/hall.jpg', FALSE),
+(1, '/WEB2-Ebooking/src/images/Hotel1/pool2.jpg', FALSE),
 -- Hotel 2
 (2, '../images/Hotel Dorsett/Outside.jpg', TRUE),
 (2, '../images/Hotel Dorsett/Bufe.jpg', TRUE),

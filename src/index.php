@@ -112,59 +112,102 @@ function getThreeCars($conn)
 
 $cars = getThreeCars($conn);
 
-function getRentalsFromDB($conn)
+// hotels
+class HotelList
 {
-    $rentals = [];
+    public $images;
+    public $name;
+    public $location;
+    public $details;
+    public $discount;
+    public $price;
+    public $reviewscore;
+    public $reviews;
 
-    $result = $conn->query("SELECT * FROM rentals LIMIT 3");
-
-    while ($row = $result->fetch_assoc()) {
-        $details = array_filter([$row['detail1'], $row['detail2'], $row['detail3']]);
-
-        switch ($row['type']) {
-            case 'House':
-                $rentals[] = new House(
-                    $row['imagePath'],
-                    $row['name'],
-                    $details,
-                    $row['discount'],
-                    $row['price'],
-                    $row['numberOfStars'],
-                    $row['review'],
-                    $row['numberOfReviews']
-                );
-                break;
-            case 'Villa':
-                $rentals[] = new Villa(
-                    $row['imagePath'],
-                    $row['name'],
-                    $details,
-                    $row['discount'],
-                    $row['price'],
-                    $row['numberOfStars'],
-                    $row['review'],
-                    $row['numberOfReviews']
-                );
-                break;
-            case 'Apartment':
-                $rentals[] = new Apartment(
-                    $row['imagePath'],
-                    $row['name'],
-                    $details,
-                    $row['discount'],
-                    $row['price'],
-                    $row['numberOfStars'],
-                    $row['review'],
-                    $row['numberOfReviews']
-                );
-                break;
-        }
+    public function __construct($images, $name, $location, $details, $discount, $price, $reviewscore, $reviews)
+    {
+        $this->images = $images;
+        $this->name = $name;
+        $this->location = $location;
+        $this->details = $details;
+        $this->discount = $discount;
+        $this->price = $price;
+        $this->reviewscore = $reviewscore;
+        $this->reviews = (int) $reviews;
     }
 
-    return $rentals;
+    public function numberOfStars()
+    {
+        return $this->reviewscore;
+    }
+
+    public function ratingScore()
+    {
+        return $this->reviews;
+    }
 }
 
-$rentals = getRentalsFromDB($conn);
+
+
+function getThreeHotels($conn)
+{
+    $hotels = [];
+    $result = $conn->query("SELECT * FROM hotels ORDER BY RAND() LIMIT 3");
+
+    while ($row = $result->fetch_assoc()) {
+        $hotelId = $row['id'];
+
+
+        $images = [];
+        $imgResult = $conn->query("SELECT imgurl FROM hotel_images WHERE hotel_id = $hotelId AND is_main = TRUE LIMIT 1");
+        while ($img = $imgResult->fetch_assoc()) {
+            $images[] = $img['imgurl'];
+        }
+        if (empty($images)) {
+            $images[] = '/WEB2-Ebooking/src/images/property/property-placeholder.webp';
+        }
+
+        $price = 100;
+        $priceResult = $conn->query("SELECT MIN(price) AS min_price FROM rooms WHERE hotel_id = $hotelId");
+        if ($p = $priceResult->fetch_assoc()) {
+            $price = $p['min_price'] ?? 100;
+        }
+
+        $details = [];
+        if (!empty($row['amenities'])) {
+            $detailsRaw = explode(',', $row['amenities']);
+            foreach ($detailsRaw as $d) {
+                $trimmed = trim($d);
+                if (!empty($trimmed)) {
+                    $details[] = $trimmed;
+                }
+            }
+        }
+        if (empty($details)) {
+            $details = ['Best Price', 'Secure Booking', '24/7 Support'];
+        }
+
+        $overallRating = $row['overall_rating'] ?? 0;
+        $reviewScore = floor($overallRating / 2);
+
+        $hotel = new HotelList(
+            $images,
+            $row['name'],
+            $row['city'] . ', ' . $row['country'],
+            $details,
+            rand(10, 30),
+            $price,
+            $reviewScore,
+            $overallRating
+        );
+
+        $hotels[] = $hotel;
+    }
+
+    return $hotels;
+}
+
+$hotels = getThreeHotels($conn);
 
 ?>
 
@@ -270,76 +313,11 @@ $rentals = getRentalsFromDB($conn);
     </section>
 
     <section class="rental">
-        <?php
-        abstract class Rental
-        {
-            public $imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews;
-            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
-            {
-                $this->imagePath = $imagePath;
-                $this->name = $name;
-                $this->details = $details;
-                $this->discount = $discount;
-                $this->price = $price;
-                $this->numberOfStars = $numberOfStars;
-                $this->review = $review;
-                $this->numberOfReviews = $numberOfReviews;
-            }
-
-            abstract public function getRentalType();
-        }
-
-        class House extends Rental
-        {
-            const TYPE = 'House';
-
-            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
-            {
-                parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
-            }
-
-            public function getRentalType()
-            {
-                return self::TYPE;
-            }
-        }
-
-        class Villa extends Rental
-        {
-            const TYPE = 'Villa';
-
-            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
-            {
-                parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
-            }
-
-            public function getRentalType()
-            {
-                return self::TYPE;
-            }
-        }
-
-        class Apartment extends Rental
-        {
-            const TYPE = 'Apartment';
-
-            public function __construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews)
-            {
-                parent::__construct($imagePath, $name, $details, $discount, $price, $numberOfStars, $review, $numberOfReviews);
-            }
-
-            public function getRentalType()
-            {
-                return self::TYPE;
-            }
-        }
-
-        ?>
-
         <div class="top">
-            <h4>Featured Rental In Australia</h4>
+            <h4>Featured Hotels</h4>
             <a href="Hotel Page/hotels.php"><button>More <i class="fa-solid fa-arrow-trend-up ms-2"></i></button></a>
         </div>
+
         <div id="card-container" class="card-container" style="color: rgb(5,38,78); height: 450px;">
             <div class="card-different responsive">
                 <img src="images/property/property-different.png" alt="Jackson ville">
@@ -349,43 +327,53 @@ $rentals = getRentalsFromDB($conn);
                 </h4>
             </div>
 
-            <?php foreach ($rentals as $rental): ?>
+            <?php foreach ($hotels as $hotel): ?>
                 <div class="card responsive">
                     <div class="image">
-                        <img src="<?= htmlspecialchars($rental->imagePath) ?>" alt="">
+                        <img src="<?= htmlspecialchars($hotel->images[0]) ?>" alt="">
                     </div>
                     <div class="card-container1">
                         <div class="head">
-                            <button
-                                style="width: auto; padding: 3px 7px;"><?= htmlspecialchars($rental->getRentalType()) ?></button>
-                            <h5><?= htmlspecialchars($rental->name) ?></h5>
+                            <button style="width: auto; padding: 3px 7px;">Hotel</button>
+                            <h5><?= htmlspecialchars($hotel->name) ?></h5>
                         </div>
                         <div class="property-same" style="position: relative; top: 7px;">
-                            <?php foreach ($rental->details as $detail): ?>
+                            <?php
+                            $i = 0;
+                            foreach ($hotel->details as $detail):
+                                if ($i == 3)
+                                    break;
+                                ?>
                                 <div><a href=""><?= htmlspecialchars($detail) ?></a></div>
-                            <?php endforeach; ?>
+                                <?php
+                                $i++;
+                            endforeach;
+                            ?>
                         </div>
                         <div class="end">
                             <div class="left">
-                                <button><?= htmlspecialchars($rental->discount) ?>% Off</button>
-                                <h4>From <b>$<?= htmlspecialchars($rental->price) ?></b></h4>
+                                <button><?= $hotel->discount ?>% Off</button>
+                                <h4>From <b>$<?= htmlspecialchars($hotel->price) ?></b></h4>
                             </div>
                             <div class="right">
                                 <p style="position: relative; top: 5px; right: 2px;">
-                                    <?php for ($i = 0; $i < $rental->numberOfStars; $i++): ?>
-                                        <i class="fa-sharp fa-solid fa-star fa-sm" style="color: #ffc800;"></i>
+                                    <?php for ($i = 0; $i < $hotel->numberOfStars(); $i++): ?>
+                                        <i class="fa-solid fa-star" style="color: #ffc800;"></i>
                                     <?php endfor; ?>
+
                                 </p>
-                                <h5><?= htmlspecialchars($rental->review) ?>
-                                    <span>(<?= htmlspecialchars($rental->numberOfReviews) ?> reviews)</span>
+                                <h5>
+                                    <span>(<?= htmlspecialchars($hotel->reviews) ?> reviews)</span>
                                 </h5>
                             </div>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
+
         </div>
     </section>
+
 
     <section class="app">
         <nav class="app-container">
