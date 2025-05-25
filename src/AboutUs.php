@@ -47,6 +47,16 @@ session_start();
                 script.src = '/WEB2-Ebooking/src/script/login-register.js';
                 document.body.appendChild(script);
             }, 500);
+
+            window.onscroll = function () {
+
+    if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+        header.style.backgroundColor = "rgb(4,22,37)";
+    } else {
+        header.style.backgroundColor = "transparent";
+    }
+}
+
         </script>
     </section>
 
@@ -170,7 +180,6 @@ session_start();
     </section>
 
     <?php
-    // Read news items from news.json using fread()
     $news_file = $_SERVER['DOCUMENT_ROOT'] . '/WEB2-Ebooking/src/data/news.json';
     $news_data = [];
     $news_items = [];
@@ -219,7 +228,6 @@ session_start();
         </div>
     </section>
 
-    <!-- Contact Form -->
     <div class="forma" style="max-width: 500px; margin: 40px auto; padding: 30px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
     <form action="/WEB2-Ebooking/src/send_email.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
         

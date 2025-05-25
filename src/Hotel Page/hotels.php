@@ -180,7 +180,25 @@ try {
     $stmt->execute();
     $result = $stmt->get_result();
     $hotels = [];
+    $weather_api_key = '59dc4404330a3ca6b9ee898631459f3c'; // Added OpenWeatherMap API key
     while ($row = $result->fetch_assoc()) {
+        // Fetch weather data for the hotel's city
+        $city = urlencode($row['city']);
+        $weather_url = "http://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$weather_api_key}&units=metric";
+        $weather_data = @file_get_contents($weather_url);
+        if ($weather_data !== false) {
+            $weather = json_decode($weather_data, true);
+            if (isset($weather['main']['temp']) && isset($weather['weather'][0]['description'])) {
+                $row['weather'] = [
+                    'temp' => round($weather['main']['temp']),
+                    'description' => ucfirst($weather['weather'][0]['description'])
+                ];
+            } else {
+                $row['weather'] = ['temp' => 'N/A', 'description' => 'Weather data unavailable'];
+            }
+        } else {
+            $row['weather'] = ['temp' => 'N/A', 'description' => 'Weather data unavailable'];
+        }
         $hotels[] = $row;
     }
     $stmt->close();
@@ -289,6 +307,12 @@ function generateStars($rating)
         .top button:hover {
             background-color: #c4291d !important;
             color: white;
+        }
+
+        .weather-info {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -532,6 +556,10 @@ function generateStars($rating)
                                     <p id="text5">
                                         <?php echo htmlspecialchars($hotel['address'] . ', ' . $hotel['city'] . ', ' . $hotel['country']); ?>
                                     </p>
+                                    <div class="weather-info">
+                                        Weather in <?php echo htmlspecialchars($hotel['city']); ?>: 
+                                        <?php echo $hotel['weather']['temp']; ?>°C, <?php echo $hotel['weather']['description']; ?>
+                                    </div>
                                     <div class="hotel-offers">
                                         <?php foreach ($features as $feature): ?>
                                             <p><?php echo htmlspecialchars($feature); ?></p>
