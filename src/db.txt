@@ -95,7 +95,9 @@ CREATE TABLE hotels (
     location_rating DECIMAL(3,1),
     review_count INT,
     map_embed_url TEXT,
-    map_link_url TEXT
+    map_link_url TEXT,
+    amenities TEXT, 
+    last_booked INT DEFAULT 0 
 );
 
 CREATE TABLE rooms (
@@ -129,7 +131,7 @@ CREATE TABLE hotel_images (
     id INT AUTO_INCREMENT PRIMARY KEY,
     hotel_id INT NOT NULL,
     imgurl VARCHAR(255) NOT NULL,
-    is_main BOOLEAN DEFAULT FALSE, 
+    is_main BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE
 );
 
@@ -139,6 +141,6 @@ CREATE TABLE site_reviews (
     rating DECIMAL(3,1) NOT NULL,
     comment TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('pending', 'approved', 'deleted') NOT NULL DEFAULT 'pending';
+    status ENUM('pending', 'approved', 'deleted') NOT NULL DEFAULT 'pending',
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );  

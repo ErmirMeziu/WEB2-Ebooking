@@ -1,10 +1,25 @@
 <?php
+session_start();
 include '../db.php';
 
-$hotel_id = 1;
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $hotel_id = intval($_GET['id']);
+    $_SESSION['hotel_id'] = $hotel_id; 
+} elseif (isset($_SESSION['hotel_id']) && is_numeric($_SESSION['hotel_id'])) {
+    $hotel_id = intval($_SESSION['hotel_id']);
+} else {
+    
+    header("Location: hotels.php?error=" . urlencode("Please select a hotel to view details."));
+    exit;
+}
+
+if ($hotel_id <= 0) {
+    header("Location: hotels.php?error=" . urlencode("Invalid hotel ID."));
+    exit;
+}
 
 try {
-    // Fetch hotel data
+   
     $stmt = $conn->prepare("SELECT * FROM hotels WHERE id = ?");
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $conn->error);
@@ -19,7 +34,7 @@ try {
         exit;
     }
 
-    // Fetch rooms
+ 
     $stmt = $conn->prepare("SELECT * FROM rooms WHERE hotel_id = ?");
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $conn->error);
@@ -36,7 +51,6 @@ try {
         echo "No rooms found for hotel ID $hotel_id.";
     }
 
-    // Fetch reviews
     $stmt = $conn->prepare("SELECT * FROM reviews WHERE hotel_id = ?");
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $conn->error);
@@ -53,7 +67,6 @@ try {
         echo "No reviews found for hotel ID $hotel_id.";
     }
 
-    // Fetch house rules
     $stmt = $conn->prepare("SELECT * FROM house_rules WHERE hotel_id = ?");
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $conn->error);
@@ -69,9 +82,7 @@ try {
     if (empty($house_rules)) {
         echo "No house rules found for hotel ID $hotel_id.";
     }
-
-
-    // Fetch images (main and bottom photos)
+    
     $stmt = $conn->prepare("SELECT imgurl, is_main FROM hotel_images WHERE hotel_id = ?");
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $conn->error);
@@ -181,10 +192,10 @@ try {
     <div style="position: relative; width: 100%; height: 100%;">
         <div class="page-container">
             <div class="sidebar">
-                <a href="../index.html"><i class="fa-solid fa-hotel icon"></i>Home</a>
-                <a href="hotels.html" style="color: rgb(215, 44, 33)"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
-                <a href="../Cars-Page/cars.html"><i class="fa-solid fa-car icon"></i>Cars</a>
-                <a href="../AboutUs.html"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
+                <a href="../index.php"><i class="fa-solid fa-hotel icon"></i>Home</a>
+                <a href="hotels.php" style="color: rgb(215, 44, 33)"><i class="fa-solid fa-hotel icon"></i>Hotels</a>
+                <a href="../Cars-Page/cars.php"><i class="fa-solid fa-car icon"></i>Cars</a>
+                <a href="../AboutUs.php"><i class="fa-solid fa-circle-info icon"></i>About Us</a>
             </div>
         </div>
     </div>
@@ -223,7 +234,7 @@ try {
                         $paragraph = trim($paragraph);
                         if ($paragraph === '') continue;
                         echo '<p>' . nl2br(htmlspecialchars($paragraph)) . '</p>';
-                        echo '<p>&nbsp;</p>';
+                        echo '<p> </p>';
                     }
                 }
                 ?>
@@ -236,25 +247,21 @@ try {
                         foreach ($hidden_paragraphs as $index => $paragraph) {
                             $paragraph = trim($paragraph);
                             if ($paragraph === '') continue;
-
                             echo '<p>' . nl2br(htmlspecialchars($paragraph)) . '</p>';
-                            echo '<p>&nbsp;</p>';
+                            echo '<p> </p>';
                         }
-
                         $rating_text = !empty($hotel['location_rating'])
                             ? 'The location has been rated at: <strong>' . htmlspecialchars($hotel['location_rating']) . '</strong>.'
                             : '';
                         if ($rating_text !== '') {
                             echo '<p>' . $rating_text . '</p>';
-                            echo '<p>&nbsp;</p>';
+                            echo '<p> </p>';
                         }
                     }
                     ?>
                 </div>
                 <button class="toggle-btn" id="toggle-btn">Show More</button>
             </div>
-
-
         </div>
 
         <div class="sec2">
@@ -263,7 +270,6 @@ try {
                     <p id="second" style="font-size: 16px; color: black; font-weight: 600;">
                         Total reviews: <?php echo htmlspecialchars($hotel['review_count']); ?> reviews
                     </p>
-
                 </div>
                 <div class="btn">
                     <button><?php echo htmlspecialchars($hotel['overall_rating']); ?></button>
@@ -283,8 +289,6 @@ try {
                 <iframe src="<?php echo htmlspecialchars($hotel['map_embed_url']); ?>" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <button class="show-on-map-btn"><a href="<?php echo htmlspecialchars($hotel['map_link_url']); ?>" target="_blank">Show on map</a></button>
             </div>
-
-
         </div>
     </div>
 
@@ -321,7 +325,6 @@ try {
                 <?php endforeach; ?>
             </tbody>
         </table>
-
 
         <br>
         <div class="gs-btn">
@@ -391,3 +394,4 @@ try {
 </body>
 
 </html>
+<?php $conn->close(); ?>
