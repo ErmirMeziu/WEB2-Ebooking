@@ -13,7 +13,7 @@ if (!isset($_GET['id']) || !isset($_GET['action'])) {
 $id = intval($_GET['id']);
 $action = $_GET['action'];
 
-$stmt = $conn->prepare("UPDATE site_reviews SET status = ? WHERE id = ?");
+$stmt = $conn->prepare("UPDATE site_reviews SET status = ? WHERE id = ?");///Update-imi i DB nga PHP dhe sql injection
 if (!$stmt) {
     header("Location: admin_reviews.php?error=" . urlencode("Error preparing statement: " . $conn->error));
     exit;

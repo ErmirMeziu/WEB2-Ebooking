@@ -160,4 +160,51 @@ Ky dokument shërben si template për të dokumentuar fazën e parë të projekt
 
 ---
 
+---------------------------------------------------Pjesa e dytë-----------------------------------------------------
 
+## 🔍PHP dhe MySQL —
+
+🔹 1. Lidhja me Bazën e të Dhënave
+🔵 File: [[user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)]
+🔵 Lines: [2]
+🔵 Shembull / Përshkrim:
+Përdorimi i mysqli_connect ose PDO për të krijuar një lidhje të sigurt me bazën e të dhënave myphpadmin
+
+🔹 2. Krijimi i Tabelave përmes PHP
+🔵 File: [db.php](https://github.com/ErmirMeziu/WEB2-Ebooking/blob/main/src/db.php)
+🔵 Lines: [p.sh. 21–171]
+🔵 Shembull / Përshkrim:
+Ekzekutimi i query-ve CREATE TABLE për të krijuar struktura tabelash për ruajtjen e të dhënave.
+
+🔹 3. Menaxhimi i të Dhënave (INSERT, DELETE, UPDATE)
+🔵 INSERT INTO
+🔵 File: [submit_site_review.php](https://github.com/ErmirMeziu/WEB2-Ebooking/blob/main/src/user/submit_site_review.php)
+🔵 Lines: [26]
+🔵 Shtimi i review të ri / Për të ruajtur komente të reja nga përdoruesit
+
+🔵 DELETE INTO 
+🔵 File: [[user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)]
+🔵 Lines: [28]
+🔵 	Fshirja e review ose rezervimi të makinës/Për të hequr përgjithmonë një të dhënë nga DB
+
+🔵 UPDATE INTO 
+🔵 File: [[user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)]
+🔵 Lines: [67-77]
+🔵 Ndryshimi i statusit të review (p.sh. nga pending në approved)	 / Për të moderuar komente pa i fshirë
+
+🔹 4. Lidhja nga një Skriptë e Jashtme
+🔵 File: [[user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)]
+🔵 Lines: [187-190]
+🔵 Kjo script e jashtme eshte perdorur ne menyre qe te riperedorim pjesen e kodit te navbarit dhe te jete me i lehte per mirembajtje 
+
+🔵 UPDATE INTO 
+🔵 File: [[user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)]
+🔵 Lines: [67-77]
+🔵 Ndryshimi i statusit të review (p.sh. nga pending në approved)	 / Për të moderuar komente pa i fshirë
+
+## 🔍MySQL Injection 
+🔹 MySQL Injection 
+🔵 Çfarë metoda janë përdorur për t’u mbrojtur nga SQL Injection
+🔵 File: [[user.php](https://github.com/ErmirMeziu/WEB2-Ebooking/tree/main/src/user)]
+🔵 Lines: [28-39-67-77..]
+🔵 Per tu mbrojtur nga SQL Injection eshte perdor preparedStatment ku ne vend te vlerave reale kemi perdorur placeholder("?") dhe i kemi perdor sa here qe kemi bere update insert delete per te dhenat nga databaza
