@@ -119,21 +119,20 @@ class HotelList
     public $name;
     public $location;
     public $details;
-    public $discount;
+
     public $price;
     public $reviewscore;
     public $reviews;
 
-    public function __construct($images, $name, $location, $details, $discount, $price, $reviewscore, $reviews)
+    public function __construct($images, $name, $location, $details, $price, $reviewscore, $reviews)
     {
         $this->images = $images;
         $this->name = $name;
         $this->location = $location;
         $this->details = $details;
-        $this->discount = $discount;
         $this->price = $price;
         $this->reviewscore = $reviewscore;
-        $this->reviews = (int) $reviews;
+        $this->reviews =  $reviews;
     }
 
     public function numberOfStars()
@@ -195,7 +194,6 @@ function getThreeHotels($conn)
             $row['name'],
             $row['city'] . ', ' . $row['country'],
             $details,
-            rand(10, 30),
             $price,
             $reviewScore,
             $overallRating
@@ -251,22 +249,8 @@ $hotels = getThreeHotels($conn);
                     destinations.
                 </p>
             </div>
-            <div class="search">
-                <form action="" method="post" class="search-bar">
-                    <fieldset class="where-date">
-                        <legend>Where</legend>
-                        <input type="text" name="going-to" id="going-to" placeholder="Going To">
-                    </fieldset>
-                    <fieldset class="where-date">
-                        <legend>Choose Date</legend>
-                        <input type="date" name="date" id="date" min="2025-01-01">
-                    </fieldset>
-                    <fieldset class="memb">
-                        <legend>Members</legend>
-                        <input type="number" name="members" id="members" min="0">
-                    </fieldset>
-                    <button><i class="fa-solid fa-magnifying-glass loop"></i>Search</button>
-                </form>
+            <div class="search" style="background-color: transparent;">
+
             </div>
         </div>
 
@@ -343,16 +327,16 @@ $hotels = getThreeHotels($conn);
                             foreach ($hotel->details as $detail):
                                 if ($i == 3)
                                     break;
-                                ?>
+                            ?>
                                 <div><a href=""><?= htmlspecialchars($detail) ?></a></div>
-                                <?php
+                            <?php
                                 $i++;
                             endforeach;
                             ?>
                         </div>
                         <div class="end">
                             <div class="left">
-                                <button><?= $hotel->discount ?>% Off</button>
+
                                 <h4>From <b>$<?= htmlspecialchars($hotel->price) ?></b></h4>
                             </div>
                             <div class="right">
@@ -363,7 +347,7 @@ $hotels = getThreeHotels($conn);
 
                                 </p>
                                 <h5>
-                                    <span>(<?= htmlspecialchars($hotel->reviews) ?> reviews)</span>
+                                    <span>(<?= htmlspecialchars($hotel->reviews) ?> / 10 rating)</span>
                                 </h5>
                             </div>
                         </div>
@@ -388,23 +372,19 @@ $hotels = getThreeHotels($conn);
                             OFF on your first<br>domestic flight booking</p>
                     </nav>
                 </nav>
-                <nav class="mobile">
-                    <form action="" method="post">
-                        <label for="mobile-number">+91 - </label>
-                        <input type="text" name="mobile-number" id="mobile-number" placeholder="Enter Mobile Number">
-                    </form>
-                    <button>Get App Link</button>
+                <nav class="mobile" style="background-color: #ffe6e5;">
+                    <h1 style="font-size: 36px; margin-left: 85px;">Cooming soon...</h1>
                 </nav>
             </nav>
             <nav class="right">
-                <nav class="playstore">
+                <nav class="playstore" id="googlePlay">
                     <i class="fa-brands fa-google-play text-light fs-1"></i>
                     <nav class="same">
                         <p class="pragraph" style="color: #cacee4; font-weight: 500">GET IT ON </p>
                         <p>Google Play</span></p>
                     </nav>
                 </nav>
-                <nav class="appstore">
+                <nav class="appstore" id="appStore">
                     <i class="fa-brands fa-apple text-light fs-1"></i>
                     <nav class="same">
                         <p class="pragraph" style="color: #cacee4; font-weight: 500;">DOWNLOAD ON THE </p>
@@ -414,6 +394,16 @@ $hotels = getThreeHotels($conn);
             </nav>
         </nav>
     </section>
+
+    <script>
+        document.getElementById('googlePlay').addEventListener('click', function() {
+            alert('Coming soon on Google Play!');
+        });
+
+        document.getElementById('appStore').addEventListener('click', function() {
+            alert('Coming soon on the App Store!');
+        });
+    </script>
 
     <section class="destinations">
         <div class="top">
@@ -515,7 +505,7 @@ $hotels = getThreeHotels($conn);
 
             if ($result && $result->num_rows > 0):
                 while ($row = $result->fetch_assoc()):
-                    ?>
+            ?>
                     <div class="review-card">
                         <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
                         <div class="review-header">
@@ -534,7 +524,7 @@ $hotels = getThreeHotels($conn);
                         </div>
                         <p class="review-comment"><?php echo htmlspecialchars($row['comment']); ?></p>
                     </div>
-                    <?php
+            <?php
                 endwhile;
             else:
                 echo "<p class='no-reviews'>No reviews yet. Be the first to share your thoughts!</p>";
