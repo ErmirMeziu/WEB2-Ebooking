@@ -1,11 +1,20 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 include '../db.php';
+
+$response = [];
+
+function setResponseMessage(&$response, $status, $message)
+{
+    $response['status'] = $status;
+    $response['message'] = $message;
+}
 
 $user_id = $_SESSION['user_id'] ?? null;
 if (!$user_id) {
-    $_SESSION['msg'] = "User not logged in.";
-    header("Location: user.php");
+    setResponseMessage($response, 'error', 'User not logged in.');
+    echo json_encode($response);
     exit;
 }
 
@@ -17,8 +26,8 @@ $gender = $_POST['gender'] ?? '';
 $bio = $_POST['bio'] ?? '';
 
 if (!$name || !$surname || !$gender) {
-    $_SESSION['msg'] = "Name, surname, and gender are required.";
-    header("Location: user.php");
+    setResponseMessage($response, 'error', 'Name, surname, and gender are required.');
+    echo json_encode($response);
     exit;
 }
 
@@ -26,24 +35,23 @@ $sql = "UPDATE users SET name = ?, surname = ?, phone = ?, birthdate = ?, gender
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
-    $_SESSION['msg'] = "Prepare failed: " . $conn->error;
-    header("Location: user.php");
+    setResponseMessage($response, 'error', 'Prepare failed: ' . $conn->error);
+    echo json_encode($response);
     exit;
 }
 
 $stmt->bind_param("ssssssi", $name, $surname, $phone, $birthdate, $gender, $bio, $user_id);
 
 if ($stmt->execute()) {
-
     $_SESSION['user_name'] = $name;
-    $_SESSION['msg'] = "Profile updated successfully!";
+    setResponseMessage($response, 'success', 'Profile updated successfully!');
 } else {
-    $_SESSION['msg'] = "Error updating profile: " . $stmt->error;
+    setResponseMessage($response, 'error', 'Error updating profile: ' . $stmt->error);
 }
-
 
 $stmt->close();
 $conn->close();
 
-header("Location: user.php");
+echo json_encode($response);
 exit;
+?>

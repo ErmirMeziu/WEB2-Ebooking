@@ -155,9 +155,14 @@ if ($section === 'cars') {
     while ($row = $result->fetch_assoc()) {
         $booked_cars[] = $row;
     }
+    unset($row);
+    unset($result);
+
     $stmt->close();
+    unset($stmt);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -454,15 +459,15 @@ if ($section === 'cars') {
 </body>
 
 </html>
-
 <script>
-    document.querySelector('.update-password')?.addEventListener('submit', function (e) {
+    document.querySelector('.update-password').addEventListener('submit', function (e) {
         e.preventDefault();
         const form = e.target;
+        const messageSpan = form.querySelector('.message');
+
         const old_password = form.old_password.value.trim();
         const new_password = form.new_password.value.trim();
         const confirm_password = form.confirm_password.value.trim();
-        const messageSpan = form.querySelector('.message');
 
         if (new_password.length < 8) {
             messageSpan.style.color = 'red';
@@ -482,14 +487,11 @@ if ($section === 'cars') {
             return;
         }
 
+        const formData = new FormData(form);
+
         fetch('update_password.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                old_password,
-                new_password,
-                confirm_password
-            })
+            body: formData
         })
             .then(response => response.json())
             .then(data => {
@@ -502,6 +504,48 @@ if ($section === 'cars') {
                 messageSpan.textContent = data.message;
             })
             .catch(err => {
+                messageSpan.style.color = 'red';
+                messageSpan.textContent = 'Something went wrong. Please try again.';
+                console.error(err);
+            });
+    });
+
+
+    document.querySelector('.profile-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+
+
+        fetch('update_profile.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                let messageSpan = form.querySelector('.message');
+                if (!messageSpan) {
+                    messageSpan = document.createElement('span');
+                    messageSpan.classList.add('message');
+                    messageSpan.style.marginTop = '8px';
+                    form.querySelector('.form-actions').appendChild(messageSpan);
+                }
+
+                if (data.status === 'success') {
+                    messageSpan.style.color = 'green';
+                    messageSpan.textContent = 'Profile updated successfully.';
+                } else {
+                    messageSpan.style.color = 'red';
+                    messageSpan.textContent = data.message || 'Update failed. Please try again.';
+                }
+            })
+            .catch(err => {
+                let messageSpan = form.querySelector('.message');
+                if (!messageSpan) {
+                    messageSpan = document.createElement('span');
+                    messageSpan.classList.add('message');
+                    form.querySelector('.form-actions').appendChild(messageSpan);
+                }
                 messageSpan.style.color = 'red';
                 messageSpan.textContent = 'Something went wrong. Please try again.';
                 console.error(err);
