@@ -6,20 +6,6 @@ list1.addEventListener('click', function () {
     sidebar1.classList.toggle("sidebar-special1");
 });
 
-// Get the elements
-const contactBtn = document.querySelector('.button-show');
-const show_hide = document.querySelector('.show-hide');
-const closeContactForm = document.querySelector('.close-form');
-
-//toggle show-hide
-contactBtn.addEventListener('click', function () {
-    show_hide.classList.add('show-hide-special');
-    show_hide.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-closeContactForm.addEventListener('click', function () {
-    show_hide.classList.remove('show-hide-special');
-})
 
 
 /*go to top */
