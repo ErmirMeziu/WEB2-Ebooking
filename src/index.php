@@ -312,6 +312,7 @@ $hotels = getThreeHotels($conn);
 
             <?php foreach ($hotels as $hotel): ?>
                 <div class="card responsive">
+                    
                     <div class="image">
                         <img src="<?= htmlspecialchars($hotel->images[0]) ?>" alt="">
                     </div>

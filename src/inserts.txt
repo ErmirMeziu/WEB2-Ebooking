@@ -476,7 +476,7 @@ INSERT INTO hotel_images (hotel_id, imgurl, is_main) VALUES
 (4, '/WEB2-Ebooking/src/images/Hotel1/pool.jpg', FALSE),
 (4, '/WEB2-Ebooking/src/images/Hotel Dorsett/WorkPlace.jpg', FALSE),
 -- Hotel 5
-(5, '/WEB2-Ebooking/src/images/hotel-royal-plaza/Outside.jpg', TRUE),
+(5, '/WEB2-Ebooking/src/images/Hotel1/Outside.jpg', TRUE),
 (5, '/WEB2-Ebooking/src/images/Hotel1/Building.jpg', TRUE),
 (5, '/WEB2-Ebooking/src/images/Hotel1/buffe.jpg', TRUE),
 (5, '/WEB2-Ebooking/src/images/Hotel Dorsett/Bathroom.jpg', FALSE),
