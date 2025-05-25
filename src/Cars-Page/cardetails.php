@@ -66,6 +66,7 @@ if (isset($_GET['clear_recent'])) {
     exit();
 }
 
+// Mbrojtje nga SQL Injection duke përdorur prepared statements
     $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
     $stmt->bind_param("i", $carid);
     $stmt->execute();
