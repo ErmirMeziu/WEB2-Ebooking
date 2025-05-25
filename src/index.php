@@ -45,6 +45,7 @@
 
 session_start();
 include 'db.php';
+include_once 'table_creator.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
@@ -130,7 +131,7 @@ class HotelList
         $this->details = $details;
         $this->price = $price;
         $this->reviewscore = $reviewscore;
-        $this->reviews =  $reviews;
+        $this->reviews = $reviews;
     }
 
     public function numberOfStars()
@@ -325,9 +326,9 @@ $hotels = getThreeHotels($conn);
                             foreach ($hotel->details as $detail):
                                 if ($i == 3)
                                     break;
-                            ?>
+                                ?>
                                 <div><a href=""><?= htmlspecialchars($detail) ?></a></div>
-                            <?php
+                                <?php
                                 $i++;
                             endforeach;
                             ?>
@@ -394,11 +395,11 @@ $hotels = getThreeHotels($conn);
     </section>
 
     <script>
-        document.getElementById('googlePlay').addEventListener('click', function() {
+        document.getElementById('googlePlay').addEventListener('click', function () {
             alert('Coming soon on Google Play!');
         });
 
-        document.getElementById('appStore').addEventListener('click', function() {
+        document.getElementById('appStore').addEventListener('click', function () {
             alert('Coming soon on the App Store!');
         });
     </script>
@@ -503,7 +504,7 @@ $hotels = getThreeHotels($conn);
 
             if ($result && $result->num_rows > 0):
                 while ($row = $result->fetch_assoc()):
-            ?>
+                    ?>
                     <div class="review-card">
                         <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
                         <div class="review-header">
@@ -522,7 +523,7 @@ $hotels = getThreeHotels($conn);
                         </div>
                         <p class="review-comment"><?php echo htmlspecialchars($row['comment']); ?></p>
                     </div>
-            <?php
+                    <?php
                 endwhile;
             else:
                 echo "<p class='no-reviews'>No reviews yet. Be the first to share your thoughts!</p>";
