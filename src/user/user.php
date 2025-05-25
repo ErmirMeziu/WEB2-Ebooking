@@ -114,20 +114,35 @@ $stmt->close();
 $booked_hotels = [];
 if ($section === 'hotels') {
     if ($is_admin) {
-        $sql = "SELECT name, type, price, discount, numberOfStars, review, numberOfReviews FROM rentals";
+        $sql = "SELECT hb.id AS booking_id, hb.user_id, h.id AS hotel_id, h.name, h.city, h.country, hb.check_in, hb.check_out, hb.total_price, 
+                (SELECT MIN(r.price) FROM rooms r WHERE r.hotel_id = h.id) AS price, 
+                h.overall_rating, h.review_count, u.name AS user_name, u.surname AS user_surname
+                FROM hotel_bookings hb
+                JOIN hotels h ON hb.hotel_id = h.id
+                JOIN users u ON hb.user_id = u.id";
         $stmt = $conn->prepare($sql);
     } else {
-        $booked_hotels = [];
-        $stmt = null;
+        $sql = "SELECT hb.id AS booking_id, h.id AS hotel_id, h.name, h.city, h.country, hb.check_in, hb.check_out, hb.total_price, 
+                (SELECT MIN(r.price) FROM rooms r WHERE r.hotel_id = h.id) AS price, 
+                h.overall_rating, h.review_count
+                FROM hotel_bookings hb
+                JOIN hotels h ON hb.hotel_id = h.id
+                WHERE hb.user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
     }
-    if ($stmt) {
-        $stmt->execute();
-        $result = $stmt->get_result();
-        while ($row = $result->fetch_assoc()) {
-            $booked_hotels[] = $row;
-        }
-        $stmt->close();
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
     }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        $booked_hotels[] = $row;
+    }
+    unset($row);
+    unset($result);
+    $stmt->close();
+    unset($stmt);
 }
 
 // Fetch car rentals
@@ -160,6 +175,38 @@ if ($section === 'cars') {
 
     $stmt->close();
     unset($stmt);
+}
+
+
+//delete hotel booking
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'delete_booking') {
+    $booking_id = $_POST['booking_id'] ?? null;
+    $hotel_id = $_POST['hotel_id'] ?? null;
+    $check_in = $_POST['check_in'] ?? null;
+    $check_out = $_POST['check_out'] ?? null;
+    $target_user_id = $_POST['user_id'] ?? $user_id;
+
+    if (!is_numeric($booking_id) || !is_numeric($hotel_id) || !$check_in || !$check_out || !is_numeric($target_user_id)) {
+        $delete_message = "Invalid booking details.";
+    } elseif (!$is_admin && $target_user_id != $user_id) {
+        $delete_message = "Permission denied.";
+    } else {
+        $sql = "DELETE FROM hotel_bookings WHERE id = ? AND user_id = ? AND hotel_id = ? AND check_in = ? AND check_out = ?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            $delete_message = "Database error: " . $conn->error;
+        } else {
+            $stmt->bind_param("iiiss", $booking_id, $target_user_id, $hotel_id, $check_in, $check_out);
+            if ($stmt->execute() && $stmt->affected_rows > 0) {
+                $delete_message = "Booking removed successfully.";
+                header("Location: ?section=hotels");
+                exit;
+            } else {
+                $delete_message = "Booking not found.";
+            }
+            $stmt->close();
+        }
+    }
 }
 ?>
 
@@ -270,24 +317,77 @@ if ($section === 'cars') {
                 </div>
             <?php elseif ($section === 'hotels'): ?>
                 <div class="card" id="booked-hotels">
-                    <h3><?php echo $is_admin ? 'All Hotel Bookings' : 'Booked Hotels'; ?></h3>
+                    <h3 class="section-title"><?php echo $is_admin ? 'All Hotel Bookings' : 'Booked Hotels'; ?></h3>
                     <?php if (empty($booked_hotels)): ?>
-                        <p>No hotel bookings found.</p>
+                        <p class="no-rentals">No hotel bookings found.</p>
                     <?php else: ?>
                         <div class="booking-list">
-                            <?php foreach ($booked_hotels as $hotel): ?>
+                            <?php
+                            include '../db.php';
+                            foreach ($booked_hotels as $hotel):
+                                $stmt = $conn->prepare("SELECT imgurl FROM hotel_images WHERE hotel_id = ? AND is_main = 1 LIMIT 1");
+                                $stmt->bind_param("i", $hotel['hotel_id']);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $image = $result->fetch_assoc();
+                                $stmt->close();
+
+                                $user_phone = '';
+                                if ($is_admin && isset($hotel['user_id'])) {
+                                    $stmt = $conn->prepare("SELECT phone FROM users WHERE id = ?");
+                                    $stmt->bind_param("i", $hotel['user_id']);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+                                    $user = $result->fetch_assoc();
+                                    $user_phone = $user['phone'] ?? 'N/A';
+                                    $stmt->close();
+                                }
+                                ?>
                                 <div class="booking-item">
-                                    <div class="booking-details">
-                                        <h4><?php echo htmlspecialchars($hotel['name']); ?></h4>
-                                        <?php if ($is_admin && isset($hotel['user_name'])): ?>
-                                            <p>User: <?php echo htmlspecialchars($hotel['user_name'] . ' ' . $hotel['user_surname']); ?>
-                                            </p>
+                                    <div class="booking-image">
+                                        <?php if ($image && !empty($image['imgurl'])): ?>
+                                            <img src="<?php echo htmlspecialchars($image['imgurl']); ?>"
+                                                alt="<?php echo htmlspecialchars($hotel['name']); ?>">
+                                        <?php else: ?>
+                                            <img src="/WEB2-Ebooking/src/images/Hotels/placeholder.jpg" alt="No image available">
                                         <?php endif; ?>
-                                        <p>Type: <?php echo htmlspecialchars($hotel['type']); ?></p>
-                                        <p>Price: $<?php echo number_format($hotel['price'], 2); ?></p>
-                                        <p>Discount: <?php echo htmlspecialchars($hotel['discount']); ?>%</p>
-                                        <p>Rating: <?php echo htmlspecialchars($hotel['review']); ?>/5
-                                            (<?php echo htmlspecialchars($hotel['numberOfReviews']); ?> reviews)</p>
+                                    </div>
+                                    <div class="booking-info">
+                                        <h4 class="hotel-name">
+                                            <a
+                                                href="/WEB2-Ebooking/src/Hotels-page/hoteldetails.php?id=<?php echo $hotel['hotel_id']; ?>">
+                                                <?php echo htmlspecialchars($hotel['name']); ?>
+                                            </a>
+                                        </h4>
+                                        <?php if ($is_admin): ?>
+                                            <p class="info-item"><span>User:</span>
+                                                <?php echo htmlspecialchars($hotel['user_name'] . ' ' . $hotel['user_surname']); ?></p>
+                                            <p class="info-item"><span>Phone:</span> <?php echo htmlspecialchars($user_phone); ?></p>
+                                        <?php endif; ?>
+                                        <p class="info-item"><span>Location:</span>
+                                            <?php echo htmlspecialchars($hotel['city'] . ', ' . $hotel['country']); ?></p>
+                                        <p class="info-item"><span>Price per night:</span>
+                                            <?php echo number_format($hotel['price'], 2); ?>€</p>
+                                        <p class="info-item"><span>Booking Period:</span>
+                                            <?php echo htmlspecialchars(date('M d, Y', strtotime($hotel['check_in']))); ?> -
+                                            <?php echo htmlspecialchars(date('M d, Y', strtotime($hotel['check_out']))); ?>
+                                        </p>
+                                        <p class="info-item"><span>Total Price:</span>
+                                            <?php echo number_format($hotel['total_price'], 2); ?>€</p>
+                                    </div>
+                                    <div class="remove-btn-container">
+                                        <form method="POST" action="?section=hotels"
+                                            onsubmit="return confirm('Are you sure you want to remove this booking?');">
+                                            <input type="hidden" name="action" value="delete_booking">
+                                            <input type="hidden" name="booking_id" value="<?php echo $hotel['booking_id']; ?>">
+                                            <?php if ($is_admin): ?>
+                                                <input type="hidden" name="user_id" value="<?php echo $hotel['user_id']; ?>">
+                                            <?php endif; ?>
+                                            <input type="hidden" name="hotel_id" value="<?php echo $hotel['hotel_id']; ?>">
+                                            <input type="hidden" name="check_in" value="<?php echo $hotel['check_in']; ?>">
+                                            <input type="hidden" name="check_out" value="<?php echo $hotel['check_out']; ?>">
+                                            <button type="submit" class="remove-btn">Remove</button>
+                                        </form>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
